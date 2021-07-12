@@ -251,7 +251,7 @@
   </nav>
 </div>
 <script src="script.js"></script>
-
+<script src="../js/right.js"></script>
 
 <body id="top">
   <!--상단바 넣을공간---------->

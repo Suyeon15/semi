@@ -147,7 +147,7 @@ html {
 			</div>
 		</div>
 	</form>
-	
+	<script src="../js/right.js"></script>
 	
 	
 	
