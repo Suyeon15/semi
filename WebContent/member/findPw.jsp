@@ -124,6 +124,7 @@ a {
 	display: none;
 }
 </style>
+<script src="../js/right.js"></script>
 </head>
 
 <!-- 비밀번호 성공시 이쪽으로 변경하기 !!! -->

@@ -92,6 +92,7 @@
 	</div>
    
   </body>
+  <script src="../js/right.js"></script>
   <script type="text/javascript">
 		
   		
