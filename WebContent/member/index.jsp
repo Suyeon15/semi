@@ -147,8 +147,8 @@ html {
 			</div>
 		</div>
 	</form>
-	
-	
+	<script src="../js/right.js"></script>
+	<script src="../js/f5_attack.js"></script>
 	
 	
 	
