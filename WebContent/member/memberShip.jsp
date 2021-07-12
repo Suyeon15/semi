@@ -595,7 +595,7 @@
         }
     });
 	</script>
-
+<script src="../js/right.js"></script>
 
 
 
