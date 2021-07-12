@@ -26,17 +26,11 @@
 
 <style>
 
-/* tbody tr:nth-child(2n){ */
-/*    background-color: #FFFFFF; */
-/* } */
-/* tbody tr:nth-child(2n-1){ */
-/*    background-color: #E6E6FA; */
-/* } */
+
 .table-striped>tbody>tr:nth-child(odd) {
     background-color: LemonChiffon;
 }
 .table-hover tbody tr:hover {
-/*     background-color: #E6E6FA; */
     background-color: #D3D3D3;
 }
 
@@ -53,12 +47,9 @@ body {
     margin: 130px 0;
 }
 .table-title {        
-	/* padding-bottom: 15px; */
 	background: #435d7d;
 	color: #fff;
 	padding: 16px 30px;
-	/* min-width: 100%; */
-	/* margin: -20px -25px 10px; */
 	border-radius: 3px 3px 0 0;
 }
 .table-title h2 {
@@ -67,12 +58,6 @@ body {
 } 
 
 
-/* .pagination {
-	float: right; 
-	left:-39%;
-	position: relative;
-	margin: 0 0 5px;
-} */
 .pagination {
 	justify-content: center;
 }
@@ -105,30 +90,6 @@ body {
 	padding-top: 6px
 }
 
-/* .search{
-	float:right;
-	left:30%;
-	position: relative;
-	margin-top: 55px;
-	justify-content: center;
-} */
-/* #search{
-	background: #03A9F4;
-} */
-
-/* 1번 스타일 검색바 */
-/* .form-control-inline { */
-/*     min-width: 0; */
-/*     width: 80px; */
-/*     display: inline;  */
-/* } */
-/* .searchWord{ */
-/* 	width: 350px; */
-/* 	display: inline; */
-/* } */
-
-
-/* 2번 스타일 검색바    선택*/   
 .search{
 	overflow: hidden;
 	margin-top: 45px;
@@ -171,7 +132,7 @@ $(function(){
 <body>
 
 <div class="nav_wrapper"> 
-  <!--<a class="menu-link" href="#menu"></a>-->
+ 
   
   <div class="spinner-master">
     <input type="checkbox" id="spinner-form" />
@@ -277,7 +238,6 @@ $(function(){
 			</thead>
 			<tbody>
 			
-<!-- 			<i class="fa fa-bullhorn" aria-hidden="true" style="font-size:25px"></i> -->
 			
 			<!-- 게시글 리스트 뽑아오기  -->
 			<c:choose>
@@ -341,28 +301,24 @@ $(function(){
 
 		<div class="row" style="text-align: center;">
 		<div class="col-12" >
-			<ul class="pagination">
-				<c:forEach var="i" items="${navi}" varStatus="s">
+			<ul class="pagination">	
+		
+				<c:forEach var="i" items="${navi}" varStatus="s">	
 					<c:choose>
-						<c:when test="${i == '>'}">
+						<c:when test="${i=='>'}">
 							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index-1]+1}&category=${category}&searchWord=${searchWord}">Next</a>
 						</c:when>
-						<c:when test="${i == '<'}">
+						<c:when test="${i=='<'}">
 							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
 						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
-						</c:otherwise>
+                       	<c:when test="${i==cpage}">
+                           	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                           	<li class="page-item" id="currentPage"><a href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                        </c:otherwise>
 					</c:choose>
 				</c:forEach>
-			
-<!-- 				<li class="page-item"><a href="#" class="page-link">Previous</a></li> -->
-<!-- 				<li class="page-item"><a href="#" class="page-link">1</a></li> -->
-<!-- 				<li class="page-item"><a href="#" class="page-link">2</a></li> -->
-<!-- 				<li class="page-item active"><a href="#" class="page-link">3</a></li> -->
-<!-- 				<li class="page-item"><a href="#" class="page-link">4</a></li> -->
-<!-- 				<li class="page-item"><a href="#" class="page-link">5</a></li> -->
-<!-- 				<li class="page-item"><a href="#" class="page-link">Next</a></li> -->
 			</ul>
 		</div>
 		
