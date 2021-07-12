@@ -33,7 +33,19 @@ public class MemberDAO {
 		}
 		return instance;
 	}
-
+	
+	 //XSSFilter 역으로 다시 해서 화면에 뿌리기
+		public String ReXSSFilter(String target) {
+			if(target!=null){
+				target = target.replaceAll("&lt;","<");	
+				target = target.replaceAll("&gt;",">");		
+				target = target.replaceAll("&amp;","&");		
+			}
+			return target;
+		}
+	
+	
+	
 	private Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
