@@ -412,7 +412,7 @@ $(document).ready(function(){
 	                    article.append(div2);
 	                   
 	                    
-	                    div2.append("<a href='' class='edit' data-toggle='modal' id='cmtModifyViewBtn'> <i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i></a>");
+	                   
 	                    
 	                    // 삭제버튼
 	                    let cmtdela = $("<a href='#deleteEmployeeModal' class='delete' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
@@ -423,7 +423,7 @@ $(document).ready(function(){
 	                    div2.append(cmtdela);
 	                    
 	                    // 수정버튼
-	                    
+	                     div2.append("<a href='' class='edit' data-toggle='modal' id='cmtModify'> <i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i></a>");
 	                    
 	                    
 	                    
@@ -450,18 +450,44 @@ $(document).ready(function(){
 	   });
 	   
 	       // 댓글 수정버튼 클릭 시 이벤트
-	      $("#cmtModifyViewBtn").on("click",function(){
+// 	      $("#cmtModifyViewBtn").on("click",function(){
 	        
-	        let parent =  $(this).parent().siblings(".comcont");
-	         parent.attr("contenteditable","true");
-	         $(".comcont:eq(0)").focus();
+// 	        let parent =  $(this).parent().siblings(".comcont");
+// 	         parent.attr("contenteditable","true");
+// 	         $(".comcont:eq(0)").focus();
 	         
-	         $(this).before("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green'><i class='material-icons'>&#xe86c;</i></a>");
-	         $("#cmtDeleteBtn").before("<a href='' style='color:red'><i class='material-icons' id='cmtModifycmpBtn'>&#xe5c9;</i></a>")
-	         $(this).remove();
-	         $("#cmtDeleteBtn").remove();
+// 	         $(this).before("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green'><i class='material-icons'>&#xe86c;</i></a>");
+// 	         $("#cmtDeleteBtn").before("<a href='' style='color:red'><i class='material-icons' id='cmtModifycmpBtn'>&#xe5c9;</i></a>")
+// 	         $(this).remove();
+// 	         $("#cmtDeleteBtn").remove();
 	         
-	      })
+// 	      })
+	      
+	      
+	      
+	       // ajax로 새로 막 생긴 댓글의 수정버튼 클릭 시 이벤트 => 윤서
+	       $(document).on("click","#cmtModify",function(){   	 
+	    	   let parent =  $(this).parent().siblings(".comcont");
+ 	           parent.attr("contenteditable","true");
+	    	   parent.focus();
+	    	   
+	    	   let done = $("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green'>");
+ 	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+ 	    	   done.append(doneIcon);	    	   
+	    	   $(this).before(done);
+	 	        
+	    	   let cancel = $("<a href='' style='color:red'>");
+ 	    	   let cancelIcon = $("<i class='material-icons' id='cmtModifycmpBtn'>&#xe5c9;</i>"); 
+ 	    	   cancel.append(cancelIcon);	  
+ 	    	   $("#cmtDeleteBtn").before(cancel);
+ 	    	  
+	 	        $(this).remove();
+	 	       $("#cmtDelete").remove();
+	 	        $("#cmtDeleteBtn").remove();
+	       })
+	      
+	      
+	      
 	      // 수정 댓글 출력
 	      $("#cmtModifycmpBtn").on("click",function(){
 	         var content = $('.comcont').html();
