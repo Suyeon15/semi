@@ -47,6 +47,10 @@ public class MemberDTO {
 		this.pw = pw;
 	}
 	
+	
+	
+	
+	
 	public MemberDTO(String pw, String postal, String address1, String address2, String id) {
 		this.id = id;
 		this.pw = pw;

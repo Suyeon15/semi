@@ -58,10 +58,59 @@ public class MemberDAO {
 					result = new MemberDTO(tmdId, name);
 				}
 			}
-
+			System.out.println(result);
 			return result;
 		}
 	}
+	
+//	public MemberDTO guest(String id, String pw) throws Exception {
+//		String sql = "select * from member where id=? and pw=?";
+//		MemberDTO result = null;
+//		// Connection / PrepareStatement : https://sas-study.tistory.com/160
+//		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+//			pstat.setString(1, id);
+//			pstat.setString(2, pw);
+//
+//			// executeQuery 사용 : https://mozi.tistory.com/26
+//			try (ResultSet rs = pstat.executeQuery();) {
+//				if (rs.next()) {
+//					String tmdId = rs.getNString("id");
+//					String name = rs.getNString("name");
+//
+//					result = new MemberDTO(tmdId, name);
+//				}
+//			}
+//			System.out.println(result);
+//			return result;
+//		}
+//	}
+	
+	public MemberDTO guest(String id, String pw) throws Exception {
+		String sql = "select * from member where id=? and pw=?";
+		MemberDTO result = null;
+		// Connection / PrepareStatement : https://sas-study.tistory.com/160
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, id);
+			pstat.setString(2, pw);
+
+			// executeQuery 사용 : https://mozi.tistory.com/26
+			try (ResultSet rs = pstat.executeQuery();) {
+				if (rs.next()) {
+					String tmdId = rs.getNString("id");
+					String name = rs.getNString("name");
+
+					result = new MemberDTO(tmdId, name);
+				}
+			}
+			System.out.println(result);
+			return result;
+		}
+	}
+	
+	
+	
+	
+	
 
 	// 회원가입
 	public int join(MemberDTO dto) throws Exception {
@@ -70,8 +119,8 @@ public class MemberDAO {
 			pstat.setNString(1, dto.getId());
 			pstat.setNString(2, Util.getSHA512(dto.getPw()));
 			pstat.setNString(3, dto.getName());
-			pstat.setNString(4, dto.getPhone());
-			pstat.setNString(5, dto.getEmail());
+			pstat.setNString(4, dto.getEmail());
+			pstat.setNString(5, dto.getPhone());
 			pstat.setNString(6, dto.getPostal());
 			pstat.setNString(7, dto.getAddress1());
 			pstat.setNString(8, dto.getAddress2());
@@ -147,18 +196,21 @@ public class MemberDAO {
 	}
 	// 아이디 찾기
 	public MemberDTO findid(String name, String phone) throws Exception {
-		String sql = "select id from member where name=? and phone=?";
+		String sql = "select * from member where name=? and phone=?";
 		MemberDTO temp = null;
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setNString(1, name);
-			pstat.setNString(2, phone);
+			pstat.setString(1, name);
+			pstat.setString(2, phone);
+			System.out.println(name);
+			System.out.println(phone);
 			try (ResultSet rs = pstat.executeQuery();) {
 				if (rs.next()) {
-					String searchid = rs.getNString("id");
-
+					System.out.println("존재 확인");
+					String searchid = rs.getString("id");
 					temp = new MemberDTO(searchid);
 				}
 			}
+			System.out.println(temp);
 			return temp;
 		}
 	}

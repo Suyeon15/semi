@@ -272,9 +272,9 @@ input {
 				</div>
 
 				<div id="minihead">
-					<strong>수정할 정보</strong>
+					<strong>수정 가능 정보</strong>
 				</div>
-				<div id="minitext">비밀번호나 우편번호 수정이 가능하게 합니다</div>
+				<div id="minitext">'비밀번호나 우편번호 수정이 가능하게 합니다' </div>
 
 
 				<!-- 패스워드 (pswd1) -->
