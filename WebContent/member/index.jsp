@@ -139,13 +139,27 @@ html {
 							<li><a href="findId.jsp">아이디 찾기</a></li>
 							<span> &nbsp;|</span>
 							<li><a href="findPw.jsp">비밀번호 찾기</a></li>
+							<span> &nbsp;|</span>
+							<li><a href="${pageContext.request.contextPath}/guest.mem?id=guest&pw=1234">게스트 모드</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+	
+	
+	
+	
+	
+
+	
+	
+	
 </body>
+
+
+
 
 
 

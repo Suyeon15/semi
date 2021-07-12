@@ -48,6 +48,22 @@ public class MemberController extends HttpServlet {
 				}
 				response.sendRedirect("member/loginView.jsp");
 				
+			// 게스트 모드
+			}else if(url.contentEquals("/guest.mem")) {
+				System.out.println("게스트");
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				
+				System.out.println(id);
+				System.out.println(pw);
+				
+				MemberDTO dto = dao.guest(id, pw);
+				if (dto != null) {
+					request.getSession().setAttribute("login", dto); // 로그인 성공했다의 의미 =dto=> ""님 환영합니다.
+				}
+				response.sendRedirect("member/loginView.jsp");
+					
+				
 				// 로그인 설정하기
 			}else if(url.contentEquals("/member/loginView.mem")) {
 				String id= request.getParameter("id");

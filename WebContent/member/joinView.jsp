@@ -22,7 +22,7 @@
 			    text: "방구석에 오신걸 환영합니다!!",
 			    type: "success"
 			}).then(function() {
-			    window.location = "member/Main.jsp";
+			    window.location = "member/index.jsp";
 			});
 			
 			</script>
