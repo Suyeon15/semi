@@ -66,7 +66,7 @@ public class FileController extends HttpServlet {
 		}else if(cmd.contentEquals("/upload.file")) {
 			String filePath = request.getServletContext().getRealPath("files");
 			File fileFolder = new File(filePath);
-	
+			System.out.println("파일저장 경로는 "+filePath);
 			if(!fileFolder.exists()) {fileFolder.mkdir();}
 		
 			MultipartRequest multi = new MultipartRequest(request, filePath, FileConfig.uploadMaxSize,"utf-8",new DefaultFileRenamePolicy());
