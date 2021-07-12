@@ -148,7 +148,7 @@ $(function(){
       
       <li ><div class="nabar_logo">방구석 오락실</div></li>
     
-      <li ><a href="Main.jsp" title="Link">Home</a></li>
+      <li ><a href="member/Main.jsp" title="Link">Home</a></li>
       
 
       <li ><a href="" title="Link">Game</a>
@@ -181,9 +181,9 @@ $(function(){
 	
 <c:choose>
 	
-	<c:when test="${login ne null && login.id eq 'admin'}">
+		<c:when test="${login ne null && login.id eq 'admin'}">
     <ul>
-       <li><a href="index.jsp" title="Link">${login.id } 님</a></li>
+       <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>
        <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
@@ -191,14 +191,22 @@ $(function(){
 	</c:when>
 	
 	
+	<c:when test="${login ne null && login.id eq 'guest'}">
+      <ul>
+       	<li><a href="#" title="Link">${login.id } 님</a></li>
+       	<li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
+      </ul>
+    </c:when>
+	
+	
 	<c:when test="${login != null}">
       <ul>
-       <li><a href="index.jsp" title="Link">${login.id } 님</a></li>
+       <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>
        <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
       </ul>
     </c:when>
-   
+    
     
 
     <c:otherwise>

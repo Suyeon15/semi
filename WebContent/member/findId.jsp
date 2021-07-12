@@ -98,7 +98,7 @@
   
   		$("#name").focusout(function(){
   			
-	     if($('#name').val() == ""){
+	     if($('#name').val() == "" && $('#name').val() == "운영자"){
 	   		$('#check').text('이름을 입력해주세요.');
 	   	  	$('#check').css('color', 'red');
 	   

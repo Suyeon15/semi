@@ -257,16 +257,7 @@
                 <span class="error_next_box"></span>
             </div>
 
-            <!-- 핸드폰 (phone) -->
-            <div>
-                <h3 class="join_title"><label for="phoneNo">핸드폰</label></h3>
-                <span class="box int_phone">
-                    <input type="tel" id="phone" name="phone" class="int" maxlength="16">
-                </span>
-                <span class="error_next_box"></span>
-            </div>
-            
-            
+               
               <!-- 이메일 (email)-->
              <div>
                 <h3 class="join_title"><label for="email">본인확인 이메일</label></h3>
@@ -276,7 +267,18 @@
                 <span class="error_next_box"></span>    
             </div>
             
-
+			
+			<!-- 핸드폰 (phone) -->
+            <div>
+                <h3 class="join_title"><label for="phoneNo">핸드폰</label></h3>
+                <span class="box int_phone">
+                    <input type="tel" id="phone" name="phone" class="int" maxlength="16">
+                </span>
+                <span class="error_next_box"></span>
+            </div>
+			
+			
+			
            
             <!-- 우편번호 (Postal) -->
             <div>
@@ -464,37 +466,38 @@
         }
         
         
-        /*전화번호*/
-        function checkPhoneNum() {
-      
-            if(phone.value === "") {
-                error[4].innerHTML = "필수 정보입니다.";
-                error[4].style.display = "block";
-            } else if(!isPhoneNum.test(phone.value)) {
-                error[4].innerHTML = "형식에 맞지 않는 번호입니다.";
-                error[4].style.display = "block";
-            } else {
-                error[4].style.display = "none";
-            }
-        }
-
-        
-         
         /*이메일*/
         function isEmailCorrect() {
        
         
             if(email.value === ""){ 
-            	error[5].innerHTML = "필수 정보입니다.";
-                error[5].style.display = "none"; 
+            	error[4].innerHTML = "필수 정보입니다.";
+                error[4].style.display = "none"; 
             } else if(!emailPattern.test(email.value)) {
-            	error[5].innerHTML = "이메일 형식에 맞지 않습니다.";
-                error[5].style.display = "block";
+            	error[4].innerHTML = "이메일 형식에 맞지 않습니다.";
+                error[4].style.display = "block";
             } else {
-                error[5].style.display = "none"; 
+                error[4].style.display = "none"; 
             }
         
         }
+        
+        
+        /*전화번호*/
+        function checkPhoneNum() {
+      
+            if(phone.value === "") {
+                error[5].innerHTML = "필수 정보입니다.";
+                error[5].style.display = "block";
+            } else if(!isPhoneNum.test(phone.value)) {
+                error[5].innerHTML = "형식에 맞지 않는 번호입니다.";
+                error[5].style.display = "block";
+            } else {
+                error[5].style.display = "none";
+            }
+        }
+
+        
 
 
         
