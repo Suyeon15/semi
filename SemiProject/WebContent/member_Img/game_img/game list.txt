@@ -1,4 +1,0 @@
-1. game1  == slither.io   	1. 지렁이 게임
-2. game2  == agar.io 	2 세포 키우기
-3. game3 == mope.io	3. 대포키우기
-4. game4 == zomebs royale.io   6번 좀비 디펜스
