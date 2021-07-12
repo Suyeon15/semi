@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -65,7 +66,7 @@ public class FileController extends HttpServlet {
 		}else if(cmd.contentEquals("/upload.file")) {
 			String filePath = request.getServletContext().getRealPath("files");
 			File fileFolder = new File(filePath);
-			
+	
 			if(!fileFolder.exists()) {fileFolder.mkdir();}
 		
 			MultipartRequest multi = new MultipartRequest(request, filePath, FileConfig.uploadMaxSize,"utf-8",new DefaultFileRenamePolicy());
@@ -76,8 +77,6 @@ public class FileController extends HttpServlet {
 			
 			
 			
-			//fdao.summerWrite(new FileDTO(0,oriName,sysName,null,0));
-			
 			String returnPath = "/files/"+sysName;
 			
 			JsonObject obj = new JsonObject();
@@ -85,9 +84,8 @@ public class FileController extends HttpServlet {
 			obj.addProperty("oriName", oriName);
 			obj.addProperty("sysName", sysName);
 			
-			//response.getWriter().append(returnPath);
 			
-			// 서버에 올라간 미아 이미지 파일들 session 에 담기
+	
 			List<String> ingFileList =(List<String>) request.getSession().getAttribute("ingFileList");
 			ingFileList.add(sysName);
    		    request.getSession().setAttribute("filePath",filePath);
@@ -113,6 +111,23 @@ public class FileController extends HttpServlet {
 				}			
 			}
 			response.getWriter().append(Integer.toString(delImgDb));
+			
+		}else if(cmd.contentEquals("/unload.file")) {
+			List<String> ingFileList =(List<String>) request.getSession().getAttribute("ingFileList");
+			String filePath = (String) request.getSession().getAttribute("filePath");
+			
+			for(int i=0; i<ingFileList.size();i++) {
+				boolean result =fdao.fileSaved(ingFileList.get(i));
+				
+				if(!result) {
+					File targetFile = new File(filePath+"/"+ingFileList.get(i));
+					targetFile.delete();
+				}
+			}
+
+			List<String> reset = new ArrayList<>();
+			request.getSession().setAttribute("ingFileList", reset);
+			
 		}
 		
 		

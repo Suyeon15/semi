@@ -26,12 +26,9 @@
 
 <style>
 .table-title {        
-	/* padding-bottom: 15px; */
 	background: #435d7d;
 	color: #fff;
 	padding: 16px 30px;
-	/* min-width: 100%; */
-	/* margin: -20px -25px 10px; */
 	border-radius: 3px 3px 0 0;
 }
 .table-title h2 {
@@ -63,16 +60,7 @@ width:450px;
 height:35px;
 display:inline;
 }
-/* button[type=button]{ */
-/* font-size:12px; */
-/* height:25px; */
-/* width:40px; */
-/* padding:3px; */
-/* margin-bottom:10px; */
-/* } */
 
-#summernoteContent{
-}
 
 </style>
 
@@ -81,14 +69,12 @@ display:inline;
 $(function(){
 	let i=0;
 	$("#backBtn").on("click",function(){
-		//location.href =	"javascript:history.back()";
 		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
 	})
 	
 	
 	$("#saveBtn").on("click",function(){
 		
-		//$("#summernote").val($(".note-editable").text());
 		let title = $("#bbs_title").val();
 		let content = $("#summernote").val();
 		
@@ -143,11 +129,11 @@ $(function(){
 	        callbacks:{
 	            onImageUpload:function(files) {
 	                  
-	                 let editor = this;   // SummerNote 인스턴스의 주소를 Editor 변수에 저장
-	                 let file = files[0];      //업로드 해야 하는 파일 인스턴스
+	                 let editor = this;  
+	                 let file = files[0];      
 	               
-	                 let form = new FormData()    // <form> 태그 생성
-	                 form.append("file",file);    // form 태그 내부에 파일 인스턴스 append 하면 자동으로   <input type=file> 이란 코드 생성되고, name 값에는 "file" 이라고 내가 지정해준 것이다.
+	                 let form = new FormData()    
+	                 form.append("file",file);    
 	      
 	                 
 	                 
@@ -155,14 +141,12 @@ $(function(){
 	                    data:form,
 	                    type:"post",
 	                    url:"${pageContext.request.contextPath}/upload.file",
-	                    contentType:false,   //내가 보내는 데이터의 타입이 Multipart/form-data 라고 해주는 설정 같은 코드 
-	                    processData:false,  //업로드 하는 파일을 get 방식이나 post 방식의 '텍스트'로 변경하는 작업을 안하겠다! 하는 코드 (텍스트화 하지 않고, 파일 그대로를 업로드하겟다!)
+	                    contentType:false,   
+	                    processData:false,  
 	                	dataType:"json",
 	           
 	                 }).done(function(resp){
-	                   console.log(resp);
-	                   console.log(resp.sysName);
-	                   
+	                  
 	                   $(editor).summernote('insertImage',"${pageContext.request.contextPath}"+resp.returnPath); //editor 인스턴스의 insertImage 기능으로 이미지를 화면에 출력
 	   
 	                   
@@ -188,6 +172,10 @@ $(function(){
 	
 	
 	
+	$(window).on("unload",function(){
+		navigator.sendBeacon("${pageContext.request.contextPath}/unload.file");
+	})
+	
 	
 	
 })
@@ -204,7 +192,7 @@ $(function(){
 
 
 <div class="nav_wrapper"> 
-  <!--<a class="menu-link" href="#menu"></a>-->
+ 
   
   <div class="spinner-master">
     <input type="checkbox" id="spinner-form" />
@@ -345,35 +333,28 @@ $(function(){
           
   </div>
 </div>
-<!--         <div class="col-sm-10"> -->
-<!--           <div id="fine-uploader"></div> -->
-<!--           Fine Uploader -->
-<%--           <jsp:include page="/resources/fileUpload/all.fine-uploader/lee/division_script.jsp" flush="true" /> --%>
-<!--         </div> -->
 
-<!--       </div> -->
-      
 
   
   
   
-<!--   관리자 모드 일때만, 나타나는 공지 등록 여부 항목 -->
-<%-- <c:choose> --%>
-<%-- 	<c:when test="${login.id eq admin}"> --%>
-<!-- 		나중에 여기에 밑에 써놓은 '공지 등록 여부 row' 넣기!!!! -->
-<%-- 	</c:when> --%>
-<%-- 	<c:otherwise> --%>
-<!-- 		<input type="hidden" name="notice" value="N"> -->
-<%-- 	</c:otherwise> --%>
-<%-- </c:choose> --%>
+
+<c:choose>
+	<c:when test="${login ne null && login.id eq 'admin'}">
+		<div class="row" style="margin-top:15px">
+			<label class="col-sm-2 control-label">공지 등록 여부</label>
+        	<div class="col-sm-10 writeDiv" >
+          	<input type="radio" name="notice" value="Y" style="margin-left:8px">등록  &nbsp; &nbsp; &nbsp;<input type="radio" name="notice" value="N" checked>등록안함
+        	</div>
+		</div> 
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="notice" value="N">
+	</c:otherwise>
+</c:choose>
 
 
-	<div class="row" style="margin-top:15px">
-		<label class="col-sm-2 control-label">공지 등록 여부</label>
-        <div class="col-sm-10 writeDiv" >
-          <input type="radio" name="notice" value="Y" style="margin-left:8px">등록  &nbsp; &nbsp; &nbsp;<input type="radio" name="notice" value="N" checked>등록안함
-        </div>
-	</div> 
+
 
 
 	<div id="imgtest">
