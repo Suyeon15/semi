@@ -116,9 +116,6 @@ $(function(){
 	
 	
 	
-	
-	
-	
 	 $('#summernote').summernote({
 	        placeholder: 'Write contents',
 	        height: 400,
@@ -221,7 +218,7 @@ $(function(){
       </li>
 
 
-      <li ><a href="#Link" title="Link">Category</a>
+      <li ><a href="#Link" title="Link">Board</a>
         <ul >
           <li ><a href="#Link" title="Link ">자유 게시판</a></li>
           <li ><a href="#Link" title="Link">후기 게시판</a></li>
@@ -233,6 +230,7 @@ $(function(){
           <li ><a href="${pageContext.request.contextPath}/rpgGames.game" title="Link">RPG	</a></li>
           <li ><a href="${pageContext.request.contextPath}/shootingGames.game" title="Link">Shooting</a></li>
           <li ><a href="${pageContext.request.contextPath}/arcadeGames.game" title="Link">Arcade</a></li>
+          <li ><a href="${pageContext.request.contextPath}/etcGames.game" title="Link">ETC</a></li>
         </ul>
       </li>
       </ul>

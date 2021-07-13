@@ -19,7 +19,7 @@
 
 
 	<c:choose>
-		<c:when test="${find != null}">
+		<c:when test="${finded != null}">
 			<script>
 			
 			Swal.fire({
@@ -28,6 +28,9 @@
 				  text: '변경된 비밀번호로 로그인 하십시오!',
 				}).then(function() {
 					
+					<%
+					session.invalidate();
+					%>
 					window.close();
 					//window.location = "${pageContext.request.contextPath}/mypage.mem";
 				});

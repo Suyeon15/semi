@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Arcade game</title>
+<title>ETC game</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -111,9 +111,9 @@
       <!-- ################################################################################################ -->
       <div id="gallery">
         <figure>
-          <header class="heading" style="text-align: center;">Arcade 게임</header>
+          <header class="heading" style="text-align: center;">ETC 게임</header>
           <ul class="nospace clear">
-         	 <c:forEach var="i" items="${aList }" varStatus="status">
+         	 <c:forEach var="i" items="${eList }" varStatus="status">
           		<c:set var="gameClsNm" value="one_quarter"/>
           		
           		<c:if test="${status.index%4 == 0 }">

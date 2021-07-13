@@ -92,9 +92,10 @@
 	</div>
    
   </body>
+  <script src="../js/f5_attack.js"></script>
   <script src="../js/right.js"></script>
   <script type="text/javascript">
-		
+	 		
   		
   
   		$("#name").focusout(function(){
