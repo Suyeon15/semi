@@ -19,11 +19,22 @@ import dto.MemberDTO;
 @WebServlet("*.mem")
 public class MemberController extends HttpServlet {
 	
+	 //XSSFilter 역으로 다시 해서 화면에 뿌리기
+		public String ReXSSFilter(String target) {
+			if(target!=null){
+				target = target.replaceAll("&lt;","<");	
+				target = target.replaceAll("&gt;",">");		
+				target = target.replaceAll("&amp;","&");		
+			}
+			return target;
+		}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-
+		
+		
 		try {
 			// 쓰는 이유 : https://yi-chi.tistory.com/12
 			String requestURI = request.getRequestURI();
@@ -32,6 +43,7 @@ public class MemberController extends HttpServlet {
 			System.out.println(url);
 			MemberDAO dao = MemberDAO.getInstance();
 				
+			
 			// 회원가입 창으로 이동
 			if (url.contentEquals("/member/membership.mem")) {
 				System.out.println("요청");
@@ -145,7 +157,7 @@ public class MemberController extends HttpServlet {
 				String phone = request.getParameter("phone");
 				MemberDTO dto = dao.findid(name, phone);
 				if (dto != null) {
-					request.getSession().setAttribute("find", dto);
+					request.getSession().setAttribute("finded", dto);
 				}
 				response.sendRedirect("member/findPw.jsp");
 				
