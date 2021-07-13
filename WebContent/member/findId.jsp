@@ -86,7 +86,7 @@
         
 		</div>
         <div class="links">
-            <a href="findPw.jsp">비밀번호 찾기</a> | <a href="index.jsp">로그인</a> | <a href="memberShip.jsp">회원가입</a>
+            <a href="findPw.jsp">비밀번호 찾기</a>
 
         </div>
 	</div>

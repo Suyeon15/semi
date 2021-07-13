@@ -26,6 +26,9 @@
 <style>
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
+
+
+
 body {
 	width: 100%;
 	height: 50%;
@@ -124,6 +127,9 @@ a {
 	display: none;
 }
 </style>
+
+
+
 <script src="../js/right.js"></script>
 </head>
 
@@ -284,8 +290,7 @@ a {
 
 				</div>
 				<div class="links">
-					<a href="findId.jsp">아이디 찾기</a> | <a href="index.jsp">로그인</a> | <a
-						href="memberShip.jsp">회원가입</a>
+					<a href="findId.jsp">아이디 찾기</a>
 
 				</div>
 			</div>
@@ -317,5 +322,10 @@ a {
 			$('#check').hide();
 		}
 	});
+	
+	
 </script>
+
+
+
 </html>
