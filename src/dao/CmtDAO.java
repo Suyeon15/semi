@@ -133,7 +133,7 @@ public class CmtDAO {
 		     }
 	     
 	     public int modify(String comments, int gamecmt_seq) throws Exception{
-	         String sql ="update game_cmt set comments=? where cmt_seq=?";
+	         String sql ="update game_cmt set comments=? where gamecmt_seq=?";
 	         
 	         try(Connection con = this.getConnection(); 
 	               PreparedStatement pstat = con.prepareStatement(sql)){
