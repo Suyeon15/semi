@@ -725,6 +725,7 @@ a.menu-link.active:after { content: "\2715"; }
                    
                    let parent =  $(this).parent().siblings(".comcont");
                    parent.attr("contenteditable","true");
+                   parent.attr("id","modifyCont");
                    parent.focus();
                    
     	 	       $("#cmedit").css("display","none");
@@ -742,22 +743,20 @@ a.menu-link.active:after { content: "\2715"; }
      	    	  
     	 	       $(this).css("display","none");
                    
-                   
+                   console.log($('#modifyCont').text());
                    $("#cmtModifyDoneBtn").on("click",function(){
-                       var content = $('.comcont').html();
-                         $('.comcont').val(content);
-                         console.log(content);
+
                        $.ajax({
                             url: "${pageContext.request.contextPath}/modify.com",
                             dataType:"json",
                                type: "post",
                                data: {
-                                  comments : $('.comcont').val(),
-                                   cmt_seq : $("#cmt_seq").val()
+                                  "comments" : $('#modifyCont').text(),
+                                   "cmt_seq" : $("#cmt_seq").val()
                                }
                          }).done(function(){
                         	 
-               	    	  	 $(".comcont").attr("contenteditable","false");
+               	    	  	 $("#modifyCont").attr("contenteditable","false");
             	    	  
             	 	      	 $("#cmedit").css("display","inline-block");
             	 	       	 $("#cmdel").css("display","inline-block");
@@ -767,6 +766,7 @@ a.menu-link.active:after { content: "\2715"; }
             	 	      	 
             	 	      	alert("댓글을 수정했습니다!");
                          })
+                         console.log($('#modifyCont').text());
                     });
 
               })
