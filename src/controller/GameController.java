@@ -75,6 +75,12 @@ public class GameController extends HttpServlet {
 				request.getSession().setAttribute("aList", aList);
 				response.sendRedirect("game/arcadeGames.jsp");
 				
+			}else if(cmd.contentEquals("/etcGames.game")) {
+				String etc = "etc";
+				List<GameDTO> eList = dao.etcList(etc);
+				
+				request.getSession().setAttribute("eList", eList);
+				response.sendRedirect("game/etcGames.jsp");
 			}else if(cmd.contentEquals("/detail.game")) {
 		    	  
 		    	  int game_seq = Integer.parseInt(request.getParameter("game_seq"));	          
