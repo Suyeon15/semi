@@ -775,27 +775,31 @@ a.menu-link.active:after { content: "\2715"; }
           
           // 별점 클릭
           $("input[name='rating']").on("click",function(){
-                   
-                       clickrate = $("input[name='rating']:checked").val();
+
+        	  clickrate = $("input[name='rating']:checked").val();
+
                       for(let i=1; i<6; i++){
                          let rate = $("input[id='rating"+i+"']").val();
                          
                      if(clickrate>=rate){
                         $("input[id='rating"+i+"']").prop('checked', true); 
+                     }else{
+                    	 $("input[id='rating']").prop('checked', false);
                      }
                       } 
 
+				
              })
                                     
           
                // 별점 데이터 보내기
                $("#save").on("click", function() {
-              console.log("hi?");
                $.ajax({
                         url : "${pageContext.request.contextPath}/rating.game",
                         type : "get",
                         dataType : "Json",
-                        data : {"newrating" : clickrate }
+                        data : {"newrating" : clickrate,
+                        	"game_seq": ${list.game_seq}}
 
                         })
                })
