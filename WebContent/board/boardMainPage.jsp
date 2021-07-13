@@ -122,6 +122,10 @@ $(function(){
 		location.href ="${pageContext.request.contextPath}/write.bor"
 	})
 	
+	$("#backBtn").on("click",function(){
+		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+	})
+	
 	
 	
 	
@@ -303,6 +307,7 @@ $(function(){
 		
 		<div class="row">
 		<div class="col-12" id="writeBtnDiv">
+			<button type="button" id="backBtn" class="btn btn-default pull-left" style="background-color: #00285b; color:white">목록</button>
 			<button class="btn btn-info" type="button" id="writeBtn" style="float:right">글쓰기</button>
 		</div>
 		</div>
