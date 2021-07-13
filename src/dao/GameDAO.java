@@ -129,6 +129,25 @@ public class GameDAO {
 			}
 		}
 	}
+	
+	public List<GameDTO> etcList(String etc) throws Exception{
+		String sql = "select * from game where category =?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, etc);
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List<GameDTO> aList = new ArrayList<>();
+				while(rs.next()) {
+					GameDTO dto = new GameDTO(rs.getInt("game_seq"),rs.getNString("game_name"),rs.getNString("category"),rs.getNString("explain"),rs.getNString("link"),rs.getNString("image"),rs.getInt("count"),rs.getDouble("rating"),rs.getNString("detail_image"));					aList.add(dto);
+					
+				}
+				return aList;
+			}
+		}
+	}
 		
 	   public GameDTO selectContents(int seq) throws Exception{
 

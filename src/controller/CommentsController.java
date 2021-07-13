@@ -58,11 +58,8 @@ public class CommentsController extends HttpServlet {
 //	            response.sendRedirect("detail.bor?board_seq="+board_seq);
 	            
 	         }else if(cmd.contentEquals("/delete.cmt")) {
-	            int board_seq = Integer.parseInt(request.getParameter("board_seq"));
 	            int cmt_seq = Integer.parseInt(request.getParameter("cmt_seq"));
 	            cdao.delete(cmt_seq);
-	            
-	            response.sendRedirect("/detail.bor?board_seq="+board_seq);
 	            
 	         }else if(cmd.contentEquals("/modify.cmt")){
 	            
