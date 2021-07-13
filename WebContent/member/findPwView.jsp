@@ -31,7 +31,6 @@
 					<%
 					session.invalidate();
 					%>
-					
 					window.close();
 					//window.location = "${pageContext.request.contextPath}/mypage.mem";
 				});
