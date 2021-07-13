@@ -712,14 +712,12 @@ a.menu-link.active:after { content: "\2715"; }
                       type : "get",
                       dataType : "Json",
                       data : {"cmt_seq" : cmt_seq}
-                      }); 
-                  
-             }else { 
-                
+                      });                 
              }
 
           })
 
+          
           //댓글 수정
           $(document).on("click","#cmedit",function(){
    
@@ -729,19 +727,47 @@ a.menu-link.active:after { content: "\2715"; }
                    parent.attr("contenteditable","true");
                    parent.focus();
                    
-                   $("#cmtModifycmpBtn").on("click",function(){
+    	 	       $("#cmedit").css("display","none");
+    	 	       $("#cmdel").css("display","none");
+    	 	       
+    	 	       let done = $("<a href='' style='color:green' id='cmtModifyDoneBtn'>");
+     	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+     	    	   done.append(doneIcon);	
+     	    	  	$(this).before(done);
+    	 	        
+    	    	   let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
+     	    	   let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
+     	    	   cancel.append(cancelIcon);
+     	    	   $("#cmdel").before(cancel);
+     	    	  
+    	 	       $(this).css("display","none");
+                   
+                   
+                   $("#cmtModifyDoneBtn").on("click",function(){
                        var content = $('.comcont').html();
-                         $('#cmt_content').val( content );
+                         $('.comcont').val(content);
+                         console.log(content);
                        $.ajax({
                             url: "${pageContext.request.contextPath}/modify.com",
                             dataType:"json",
                                type: "post",
                                data: {
-                                  cmt_content : $("#cmt_content").val(),
+                                  comments : $('.comcont').val(),
                                    cmt_seq : $("#cmt_seq").val()
                                }
+                         }).done(function(){
+                        	 
+               	    	  	 $(".comcont").attr("contenteditable","false");
+            	    	  
+            	 	      	 $("#cmedit").css("display","inline-block");
+            	 	       	 $("#cmdel").css("display","inline-block");
+
+            	    	 	 $("#cmtModifyDoneBtn").remove();	     
+            	 	      	 $("#cmtModifycancelBtn").remove();
+            	 	      	 
+            	 	      	alert("댓글을 수정했습니다!");
                          })
-                    })
+                    });
 
               })
               

@@ -77,13 +77,13 @@ public class CmtController extends HttpServlet {
 			    	 cdao.delete(cmt_seq1);
 
 			    
-			    }else if(cmd.contentEquals("/update.com")) {   
+			    }else if(cmd.contentEquals("/modify.com")) {   
 				 
 			    String comments = request.getParameter("comments");
-				 String cmt_seq = request.getParameter("cmt_seq");
-				 int cmt_seq1 = Integer.parseUnsignedInt(cmt_seq);	
+				 int gamecmt_seq = Integer.parseInt(request.getParameter("cmt_seq"));
+
 				 
-		    	 cdao.modify(comments, cmt_seq1);
+		    	 cdao.modify(comments, gamecmt_seq);
 
 		    	  
 		      }
