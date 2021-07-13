@@ -135,11 +135,11 @@ a {
 
 <!-- 비밀번호 성공시 이쪽으로 변경하기 !!! -->
 <c:choose>
-	<c:when test="${find != null }">
+	<c:when test="${finded != null }">
 		<form action="${pageContext.request.contextPath}/findpw2.mem"
 			method="post" id="checkForm" name="mod">
 			<div id="member_modify">
-				<input type="hidden" name="uId" value=${find.id}>
+				<input type="hidden" name="uId" value=${finded.id}>
 
 				<div id="header">
 					<!-- 사진 입력 -->
@@ -295,6 +295,7 @@ a {
 				</div>
 			</div>
 	</c:otherwise>
+	
 </c:choose>
 </body>
 

@@ -28,8 +28,8 @@
 				  text: '당신의 아이디는 : ${find.id} 입니다!',
 				  
 				}).then(function() {
-					
 					window.close();
+					
 					//window.location = "${pageContext.request.contextPath}/mypage.mem";
 				});
 			
