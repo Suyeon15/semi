@@ -751,7 +751,7 @@ a.menu-link.active:after { content: "\2715"; }
                             dataType:"json",
                                type: "post",
                                data: {
-                                  "comments" : $('#modifyCont').text(),
+                                  "comment" : $("#modifyCont").text(),
                                    "cmt_seq" : $("#cmt_seq").val()
                                }
                          }).done(function(){
