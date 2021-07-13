@@ -36,7 +36,7 @@ public class CmtDAO {
 	
 	public int insert(String id, String comments, int game_seq) throws Exception{
 
-	      String sql = "insert into game_cmt values(cmt_seq.nextval,?,?,sysdate,?)";
+	      String sql = "insert into game_cmt values(gamecmt_seq.nextval,?,?,sysdate,?)";
 	      try (Connection con = this.getConnection();   
 	            PreparedStatement pstat = con.prepareStatement(sql);
 	            ) {  	  
@@ -55,7 +55,7 @@ public class CmtDAO {
 	   }
 	
 	  public List<GameCmtDTO> getAllList(int game_seq) throws Exception{
-	      String sql = "select * from game_cmt where game_seq=? order by cmt_seq desc";
+	      String sql = "select * from game_cmt where game_seq=? order by gamecmt_seq desc";
 
 	      try(
 	            Connection con = this.getConnection();
@@ -73,7 +73,7 @@ public class CmtDAO {
 	            dto.setId(rs.getString("id"));
 	            dto.setComments(rs.getNString("comments"));
 	            dto.setReg_date(rs.getDate("reg_date"));
-	            dto.setCmt_seq(rs.getInt("cmt_seq"));
+	            dto.setGamecmt_seq(rs.getInt("gamecmt_seq"));
 	            list.add(dto);
 	         }
 	         return list;
@@ -81,14 +81,14 @@ public class CmtDAO {
 	      }
 	   }
 	  
-		public GameCmtDTO selectContents(int cmt_seq) throws Exception{
+		public GameCmtDTO selectContents(int gamecmt_seq) throws Exception{
 
-		      String sql = "select * from game_cmt where cmt_seq=?";
+		      String sql = "select * from game_cmt where gamecmt_seq=?";
 		      try (Connection con = this.getConnection();   
 		            PreparedStatement pstat = con.prepareStatement(sql);
 		            ) {
 
-		         pstat.setInt(1, cmt_seq);
+		         pstat.setInt(1, gamecmt_seq);
 
 			         ResultSet rs = pstat.executeQuery();
 			         GameCmtDTO dto = new GameCmtDTO();
@@ -98,7 +98,7 @@ public class CmtDAO {
 			            dto.setId(rs.getString("id"));
 			            dto.setComments(rs.getNString("comments"));
 			            dto.setReg_date(rs.getDate("reg_date"));
-			            dto.setCmt_seq(rs.getInt("cmt_seq"));
+			            dto.setGamecmt_seq(rs.getInt("gamecmt_seq"));
 		 	         }
 		 	         
 		 	         return dto;
@@ -108,7 +108,7 @@ public class CmtDAO {
 		
 		public int Getseq() throws Exception{
 
-		      String sql = "SELECT cmt_seq.NEXTVAL FROM DUAL";
+		      String sql = "SELECT gamecmt_seq.NEXTVAL FROM DUAL";
 		      try (Connection con = this.getConnection();   
 		            PreparedStatement pstat = con.prepareStatement(sql);
 		    		 ResultSet rs = pstat.executeQuery();
@@ -120,11 +120,11 @@ public class CmtDAO {
 		      }
 		   }
 		
-	     public int delete(int cmt_seq) throws Exception {
-		  	   String sql = "delete from game_cmt where cmt_seq=?";
+	     public int delete(int gamecmt_seq) throws Exception {
+		  	   String sql = "delete from game_cmt where gamecmt_seq=?";
 		  	   try(Connection con = this.getConnection();
 		  		  PreparedStatement pstat = con.prepareStatement(sql);){
-		  		   pstat.setInt(1,cmt_seq);
+		  		   pstat.setInt(1,gamecmt_seq);
 		  		   int result = pstat.executeUpdate();
 		  		   
 		  		   con.commit();
@@ -132,14 +132,14 @@ public class CmtDAO {
 		  	   }
 		     }
 	     
-	     public int modify(String comments, int cmt_seq) throws Exception{
+	     public int modify(String comments, int gamecmt_seq) throws Exception{
 	         String sql ="update game_cmt set comments=? where cmt_seq=?";
 	         
 	         try(Connection con = this.getConnection(); 
 	               PreparedStatement pstat = con.prepareStatement(sql)){
 	        	 
 	            pstat.setString(1, comments);
-	            pstat.setInt(2, cmt_seq);
+	            pstat.setInt(2, gamecmt_seq);
 	            int result =pstat.executeUpdate();
 	            con.commit();
 	            return result;
