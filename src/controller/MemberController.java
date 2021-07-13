@@ -149,7 +149,6 @@ public class MemberController extends HttpServlet {
 				}
 				response.sendRedirect("member/findPw.jsp");
 				
-				
 			 // 비밀번호 변경
 			} else if(url.contentEquals("/findpw2.mem")) {
 				 String uId = request.getParameter("uId");

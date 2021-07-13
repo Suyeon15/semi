@@ -371,6 +371,10 @@ $(document).ready(function(){
 	      $("#cmtdelete").attr("seq",seq);
 	   })
 	   
+	   
+	   
+	   
+	   
 	      // 댓글 등록 및 출력
 	$("#sign").click(function(){
 	      if($("#comment").val() == ""){
@@ -412,7 +416,13 @@ $(document).ready(function(){
 	                    article.append(div2);
 	                   
 	                    
-	                    div2.append("<a href='' class='edit' data-toggle='modal' id='cmtModifyViewBtn'> <i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i></a>");
+	                    // 수정버튼
+	                    let cmtedita=$("<a href='' class='edit' data-toggle='modal' id='cmtModify'>");
+	                    cmtedita.attr("data-seq",resp.cmt_seq);
+	                    let cmtediti=$("<i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i>");
+	                    cmtedita.append(cmtediti); 
+	                    div2.append(cmtedita);
+	                    
 	                    
 	                    // 삭제버튼
 	                    let cmtdela = $("<a href='#deleteEmployeeModal' class='delete' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
@@ -422,12 +432,7 @@ $(document).ready(function(){
 	                    cmtdela.append(cmtdeli);
 	                    div2.append(cmtdela);
 	                    
-	                    // 수정버튼
-	                    
-	                    
-	                    
-	                    
-	                    
+	        
 	                    ul.prependTo($("#cmt"));
 	                     
 	          }
@@ -448,20 +453,80 @@ $(document).ready(function(){
 	         data : {"cmt_seq" : seq}
 	      })
 	   });
+
+	      
 	   
-	       // 댓글 수정버튼 클릭 시 이벤트
-	      $("#cmtModifyViewBtn").on("click",function(){
-	        
-	        let parent =  $(this).parent().siblings(".comcont");
-	         parent.attr("contenteditable","true");
-	         $(".comcont:eq(0)").focus();
-	         
-	         $(this).before("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green'><i class='material-icons'>&#xe86c;</i></a>");
-	         $("#cmtDeleteBtn").before("<a href='' style='color:red'><i class='material-icons' id='cmtModifycmpBtn'>&#xe5c9;</i></a>")
-	         $(this).remove();
-	         $("#cmtDeleteBtn").remove();
-	         
+	   
+	   
+	   
+	       // ※※ajax로 새로 막 생긴 댓글의 수정버튼 클릭 시 이벤트 ※※ 
+	       $(document).on("click","#cmtModify",function(){   
+	    	   let seq = $(this).data("seq");
+	    	   let parent =  $(this).parent().siblings(".comcont");
+	    	   parent.attr("id","modifyCont");
+ 	           parent.attr("contenteditable","true");
+	    	   parent.focus();
+	    	   
+	    	   let done = $("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn'>");
+	    	   done.attr("seq",seq);
+	
+ 	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+ 	    	   done.append(doneIcon);	    	   
+	    	   $(this).before(done);
+	 	        
+	    	   let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
+ 	    	   let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
+ 	    	   cancel.append(cancelIcon);	  
+ 	    	   $("#cmtDelete").before(cancel);
+ 	    	  
+	 	        $(this).css("display","none");
+	 	       $("#cmtModifyViewBtn").css("display","none");
+	 	       $("#cmtDelete").css("display","none");
+	 	        $("#cmtDeleteBtn").css("display","none");
+	       })
+ 
+	       // ※※modal에 수정할 seq 값 부여 ※※
+	   $("#CommentsModifyForm").on("shown.bs.modal",function(e){
+	      let seq = $(e.relatedTarget).attr("seq");
+	      $("#cmtModifycmpBtn").attr("seq",seq);
+	   })
+	       
+	    // ※※ajax로 새로 막 생긴 댓글의 수정 완료 버튼 클릭 시 ,모달팝업 후 수정 완료하기! ※※
+	   $("#cmtModifycmpBtn").on("click", function() {  
+	     let seq = $(this).attr("seq");
+	      $.ajax({
+	         url : "${pageContext.request.contextPath}/modify.cmt",
+	         type : "post",
+	         dataType : "json",
+	         data : {
+	        	 "cmt_content" : $("#modifyCont").text(),
+	        	 "cmt_seq" :seq
+	        	 }
+	      }).done(function(){
+	    	  $("#modifyCont").attr("contenteditable","false");
+	    	  
+	    	  $("#cmtModify").css("display","inline-block");
+	 	       $("#cmtModifyViewBtn").css("display","inline-block");
+	 	       $("#cmtDelete").css("display","inline-block");
+	 	        $("#cmtDeleteBtn").css("display","inline-block");
+
+	    	  $("#cmtModifyDoneBtn").remove();	     
+	 	      $("#cmtModifycancelBtn").remove();
 	      })
+	   });
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	      
 	      // 수정 댓글 출력
 	      $("#cmtModifycmpBtn").on("click",function(){
 	         var content = $('.comcont').html();
@@ -746,7 +811,7 @@ $(document).ready(function(){
                <div class="modal-footer">
                   <input type="button" class="btn btn-default" data-dismiss="modal"
                      value="취소">
-                     <input type="submit" class="btn btn-danger" value="수정" id="cmtModifycmpBtn">
+                     <input type="button" class="btn btn-danger" value="수정" id="cmtModifycmpBtn" data-dismiss="modal">
                </div>
             </form>
          </div>

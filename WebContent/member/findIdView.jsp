@@ -29,7 +29,7 @@
 				  
 				}).then(function() {
 					
-					window.location = "findId.jsp";
+					window.close();
 					//window.location = "${pageContext.request.contextPath}/mypage.mem";
 				});
 			
