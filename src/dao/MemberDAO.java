@@ -226,6 +226,7 @@ public class MemberDAO {
 			return temp;
 		}
 	}
+	
 	// 비밀번호 찾기
 	public MemberDTO findpw(String name, String phone) throws Exception {
 		String sql = "select * from member where name=? and phone=?";
@@ -246,6 +247,7 @@ public class MemberDAO {
 			return temp;
 		}
 	}
+	
 	//  비밀번호 수정 !!
 	public int ModifyFw(String uId, String uPassword) throws Exception {
 		String sql = "update member set pw = ? where id = ?";
