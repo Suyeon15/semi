@@ -116,9 +116,6 @@ $(function(){
 	
 	
 	
-	
-	
-	
 	 $('#summernote').summernote({
 	        placeholder: 'Write contents',
 	        height: 400,
