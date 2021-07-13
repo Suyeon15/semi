@@ -17,12 +17,7 @@
 <style>
 
     
-body {
-   color: #566787;
-   background: #f5f5f5;
-   font-family: 'Varela Round', sans-serif;
-   font-size: 13px;
-}
+
 .table-responsive {
     margin: 30px 0;
 }
@@ -675,114 +670,112 @@ a.menu-link.active:after { content: "\2715"; }
 
 </style>
     <script>
-       $(function(){
+    $(function(){
 
-         //값 변수에 저장
-            let contentmsg = $("#comment").val();
-            console.log(contentmsg);
+        //값 변수에 저장
+           let contentmsg = $("#comment").val();
+           console.log(contentmsg);
 
-          //댓글 등록
-          $("#submitbtn").on("click",function(){ 
+         //댓글 등록
+         $("#submitbtn").on("click",function(){ 
 
-                $.ajax({
-                      url : "${pageContext.request.contextPath}/writeProc.com",
+               $.ajax({
+                     url : "${pageContext.request.contextPath}/writeProc.com",
+                     type : "get",
+                     dataType : "Json",
+                     data : {"comment" :  $("textarea#comment").val()
+                     }
+
+                     }).done(function(resp) {
+                        console.log(resp.game_seq);
+                         //댓글창 비워주기
+                         location.href="${pageContext.request.contextPath}/detail.game?game_seq="+resp.game_seq;
+              
+               alert("댓글이 등록됐습니다!");
+             })
+
+          });           
+
+          
+          //댓글 삭제
+          $(document).on("click","#cmdel",function(){
+             var result = confirm('댓글을 정말 삭제하시겠습니까?'); 
+             
+             if(result){
+                
+                  $(this).parents("#cmtbox").remove();
+                  let cmt_seq = $(this).parent().attr("seq");
+               
+                  $.ajax({ 
+                      url : "${pageContext.request.contextPath}/delete.com",
                       type : "get",
                       dataType : "Json",
-                      data : {"comment" :  $("textarea#comment").val()
-                      }
-
-                      }).done(function(resp) {
-                         console.log(resp.game_seq);
-                          //댓글창 비워주기
-                          location.href="${pageContext.request.contextPath}/detail.game?game_seq="+resp.game_seq;
-               
-                alert("댓글이 등록됐습니다!");
-              })
-
-           });           
-
-           
-           //댓글 삭제
-           $(document).on("click","#cmdel",function(){
-              var result = confirm('댓글을 정말 삭제하시겠습니까?'); 
-              
-              if(result){
-                 
-                   $(this).parents("#cmtbox").remove();
-                   let cmt_seq = $(this).parent().attr("seq");
+                      data : {"cmt_seq" : cmt_seq}
+                      }); 
+                  
+             }else { 
                 
-                   $.ajax({ 
-                       url : "${pageContext.request.contextPath}/delete.com",
-                       type : "get",
-                       dataType : "Json",
-                       data : {"cmt_seq" : cmt_seq}
-                       }); 
+             }
+
+          })
+
+          //댓글 수정
+          $(document).on("click","#cmedit",function(){
+   
+                   let cmt_seq = $(this).parent().attr("seq");
                    
-              }else { 
-                 
-              }
-
-           })
-
-           //댓글 수정
-           $(document).on("click","#cmedit",function(){
-    
-                    let cmt_seq = $(this).parent().attr("seq");
-                    
-                    let parent =  $(this).parent().siblings(".comcont");
-                    parent.attr("contenteditable","true");
-                    parent.focus();
-                    
-                    $("#cmtModifycmpBtn").on("click",function(){
-                        var content = $('.comcont').html();
-                          $('#cmt_content').val( content );
-                        $.ajax({
-                             url: "${pageContext.request.contextPath}/modify.com",
-                             dataType:"json",
-                                type: "post",
-                                data: {
-                                   cmt_content : $("#cmt_content").val(),
-                                    cmt_seq : $("#cmt_seq").val()
-                                }
-                          })
-                     })
-
-               })
-               
-
-           
-           // 별점 클릭
-           $("input[name='rating']").on("click",function(){
-                    
-                        clickrate = $("input[name='rating']:checked").val();
-                       for(let i=1; i<6; i++){
-                          let rate = $("input[id='rating"+i+"']").val();
-                          
-                      if(clickrate>=rate){
-                         $("input[id='rating"+i+"']").prop('checked', true); 
-                      }
-                       } 
+                   let parent =  $(this).parent().siblings(".comcont");
+                   parent.attr("contenteditable","true");
+                   parent.focus();
+                   
+                   $("#cmtModifycmpBtn").on("click",function(){
+                       var content = $('.comcont').html();
+                         $('#cmt_content').val( content );
+                       $.ajax({
+                            url: "${pageContext.request.contextPath}/modify.com",
+                            dataType:"json",
+                               type: "post",
+                               data: {
+                                  cmt_content : $("#cmt_content").val(),
+                                   cmt_seq : $("#cmt_seq").val()
+                               }
+                         })
+                    })
 
               })
-                                     
-           
-                // 별점 데이터 보내기
-                $("#save").on("click", function() {
-               console.log("hi?");
-                $.ajax({
-                         url : "${pageContext.request.contextPath}/rating.game",
-                         type : "get",
-                         dataType : "Json",
-                         data : {"newrating" : clickrate }
+              
 
-                         })
-                })
+          
+          // 별점 클릭
+          $("input[name='rating']").on("click",function(){
+                   
+                       clickrate = $("input[name='rating']:checked").val();
+                      for(let i=1; i<6; i++){
+                         let rate = $("input[id='rating"+i+"']").val();
+                         
+                     if(clickrate>=rate){
+                        $("input[id='rating"+i+"']").prop('checked', true); 
+                     }
+                      } 
 
-             
+             })
+                                    
+          
+               // 별점 데이터 보내기
+               $("#save").on("click", function() {
+              console.log("hi?");
+               $.ajax({
+                        url : "${pageContext.request.contextPath}/rating.game",
+                        type : "get",
+                        dataType : "Json",
+                        data : {"newrating" : clickrate }
 
-   
-      
-       })
+                        })
+               })
+
+
+     
+      })
     </script>
 </head>
 <body>
@@ -946,17 +939,17 @@ a.menu-link.active:after { content: "\2715"; }
          <div id="comments">
         <ul id=cmtlist>
         <c:forEach var="list" items="${cmtlist}">
-          <li class="${list.cmt_seq}" id="cmtbox">
+          <li class="${list.gamecmt_seq}" id="cmtbox">
             <article>
                 <address>
-                <div class="cmt_seq"> ${list.cmt_seq} </div>
+                <div class="cmt_seq"> ${list.gamecmt_seq} </div>
                 <div class="cmt_id"> <p2>${list.id}</p2></div>
                 </address>
                 <div id="datebox">${list.reg_date}</div>
                 <div class="comcont" id="comcont">
                       ${list.comments}
                  </div>
-                 <div id=iconbox seq="${list.cmt_seq}">
+                 <div id=iconbox seq="${list.gamecmt_seq}">
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit" id="cmedit"></i>
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete" id="cmdel"></i>
                 </div>
