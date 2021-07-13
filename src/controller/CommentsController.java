@@ -69,6 +69,7 @@ public class CommentsController extends HttpServlet {
 	            String cmt_content = request.getParameter("cmt_content");
 	            cmt_content = dao.XSSFilter(cmt_content);
 	            int cmt_seq = Integer.parseInt(request.getParameter("cmt_seq"));
+	         
 	            
 	            cdao.modify(cmt_content,cmt_seq);
 	            CommentsDTO cdto = cdao.getComments(cmt_seq);
