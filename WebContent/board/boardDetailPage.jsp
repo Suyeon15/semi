@@ -453,23 +453,12 @@ $(document).ready(function(){
 	         data : {"cmt_seq" : seq}
 	      })
 	   });
+
+	      
 	   
-	       // 댓글 수정버튼 클릭 시 이벤트
-// 	      $("#cmtModifyViewBtn").on("click",function(){
-	        
-// 	        let parent =  $(this).parent().siblings(".comcont");
-// 	         parent.attr("contenteditable","true");
-// 	         $(".comcont:eq(0)").focus();
-	         
-// 	         $(this).before("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green'><i class='material-icons'>&#xe86c;</i></a>");
-// 	         $("#cmtDeleteBtn").before("<a href='' style='color:red'><i class='material-icons' id='cmtModifycmpBtn'>&#xe5c9;</i></a>")
-// 	         $(this).remove();
-// 	         $("#cmtDeleteBtn").remove();
-	         
-// 	      })
-	      
-	      
-	      
+	   
+	   
+	   
 	       // ※※ajax로 새로 막 생긴 댓글의 수정버튼 클릭 시 이벤트 ※※ 
 	       $(document).on("click","#cmtModify",function(){   
 	    	   let seq = $(this).data("seq");
@@ -514,20 +503,23 @@ $(document).ready(function(){
 	        	 "cmt_seq" :seq
 	        	 }
 	      }).done(function(){
+	    	  $("#modifyCont").attr("contenteditable","false");
 	    	  
 	    	  $("#cmtModify").css("display","inline-block");
 	 	       $("#cmtModifyViewBtn").css("display","inline-block");
 	 	       $("#cmtDelete").css("display","inline-block");
 	 	        $("#cmtDeleteBtn").css("display","inline-block");
-	 	        
-// 	    	  $("#cmtModify").attr("display","none");
-// 	 	       $("#cmtDelete").attr("display","none");
-// 	 	        $("#cmtDeleteBtn").attr("display","none");
-	 	        
+
 	    	  $("#cmtModifyDoneBtn").remove();	     
 	 	      $("#cmtModifycancelBtn").remove();
 	      })
 	   });
+	       
+	       
+	       
+	       
+	       
+	       
 	       
 	       
 	       
