@@ -155,11 +155,11 @@ public class MemberController extends HttpServlet {
 				System.out.println("비밀번호 찾나요?");
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone");
-				MemberDTO dto = dao.findid(name, phone);
+				MemberDTO dto = dao.findpw(name, phone);
 				if (dto != null) {
 					request.getSession().setAttribute("finded", dto);
 				}
-				response.sendRedirect("member/findPw.jsp");
+				response.sendRedirect("member/findIdView.jsp");
 				
 			 // 비밀번호 변경
 			} else if(url.contentEquals("/findpw2.mem")) {

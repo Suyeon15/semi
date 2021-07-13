@@ -226,6 +226,26 @@ public class MemberDAO {
 			return temp;
 		}
 	}
+	// 비밀번호 찾기
+	public MemberDTO findpw(String name, String phone) throws Exception {
+		String sql = "select * from member where name=? and phone=?";
+		MemberDTO temp = null;
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, name);
+			pstat.setString(2, phone);
+			System.out.println(name);
+			System.out.println(phone);
+			try (ResultSet rs = pstat.executeQuery();) {
+				if (rs.next()) {
+					System.out.println("존재 확인");
+					String searchpw = rs.getNString("pw");
+					temp = new MemberDTO(searchpw);
+				}
+			}
+			System.out.println(temp);
+			return temp;
+		}
+	}
 	//  비밀번호 수정 !!
 	public int ModifyFw(String uId, String uPassword) throws Exception {
 		String sql = "update member set pw = ? where id = ?";
