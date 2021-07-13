@@ -27,8 +27,8 @@ public class GameCmtDTO {
 		return gamecmt_seq;
 	}
 
-	public void setGamecmt_seq(int cmt_seq) {
-		this.gamecmt_seq = cmt_seq;
+	public void setGamecmt_seq(int gamecmt_seq) {
+		this.gamecmt_seq = gamecmt_seq;
 	}
 
 	public String getId() {
