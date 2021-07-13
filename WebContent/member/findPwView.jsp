@@ -28,7 +28,7 @@
 				  text: '변경된 비밀번호로 로그인 하십시오!',
 				}).then(function() {
 					
-					window.location = "member/index.jsp";
+					window.close();
 					//window.location = "${pageContext.request.contextPath}/mypage.mem";
 				});
 

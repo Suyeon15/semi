@@ -219,7 +219,7 @@
                 <span class="box1 int_postal">
                     <input type="text" id="id" name="id" class="int" maxlength="20">
                 </span>
-                <button type="button" class="btn btn-primary" onclick="openIdChk()">검사</button>
+                <button type="button" class="btn btn-primary" onclick="openIdChk()">확인</button>
                 
                 <input type="hidden" name="idDuplication" value="idUncheck">
                 <span class="error_next_box"></span>
