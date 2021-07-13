@@ -47,13 +47,11 @@ public class CmtController extends HttpServlet {
 				if(cmd.contentEquals("/writeProc.com")) {
 					
 					  String comment = request.getParameter("comment");
-			    	  //int game_seq = Integer.parseInt(request.getParameter("game_seq"));		    	 
-					  int game_seq =101;
-			    	  //MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
-			    	  //String id =dto.getId();
-			    	  String id ="abcd";
-			    	  //System.out.println(dto.getId());
-			    	  
+			    	  int game_seq = Integer.parseInt(request.getParameter("game_seq"));		    	 
+
+			    	  MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
+			    	  String id =dto.getId();
+
 			    	  int result = cdao.insert(id,comment,game_seq);
 
 			    	  

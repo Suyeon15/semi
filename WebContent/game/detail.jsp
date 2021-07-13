@@ -668,7 +668,7 @@ a.menu-link.active:after { content: "\2715"; }
 
 }
 
-</style>
+</style> 
     <script>
     $(function(){
 
@@ -678,13 +678,14 @@ a.menu-link.active:after { content: "\2715"; }
 
          //댓글 등록
          $("#submitbtn").on("click",function(){ 
-
+				console.log($("textarea#comment").val());
+				console.log(${list.game_seq});
                $.ajax({
                      url : "${pageContext.request.contextPath}/writeProc.com",
                      type : "get",
                      dataType : "Json",
-                     data : {"comment" :  $("textarea#comment").val()
-                     }
+                     data : {"comment" :  $("textarea#comment").val(),
+                    	 "game_seq" : ${list.game_seq}}
 
                      }).done(function(resp) {
                         console.log(resp.game_seq);
