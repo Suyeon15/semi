@@ -138,6 +138,7 @@ public class MemberController extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("member/modyView.jsp");
 				rd.forward(request,response);
 			
+				
 				// id 찾기
 			}else if(url.contentEquals("/findid.mem")) {
 				System.out.println("아이디 찾나요?");
@@ -150,7 +151,7 @@ public class MemberController extends HttpServlet {
 				response.sendRedirect("member/findIdView.jsp");
 				
 				
-				// 비밀번호 찾기
+			// 비밀번호 찾기
 			}else if(url.contentEquals("/findpw.mem")) {
 				System.out.println("비밀번호 찾나요?");
 				String name = request.getParameter("name");
@@ -159,7 +160,7 @@ public class MemberController extends HttpServlet {
 				if (dto != null) {
 					request.getSession().setAttribute("finded", dto);
 				}
-				response.sendRedirect("member/findIdView.jsp");
+				response.sendRedirect("member/findPw.jsp");
 				
 			 // 비밀번호 변경
 			} else if(url.contentEquals("/findpw2.mem")) {

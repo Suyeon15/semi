@@ -212,6 +212,7 @@ $(function(){
 
 </head>
 <body>
+
 	<div class="nav_wrapper"> 
   <!--<a class="menu-link" href="#menu"></a>-->
   
@@ -244,8 +245,8 @@ $(function(){
 
       <li ><a href="#Link" title="Link">Board</a>
         <ul >
-          <li ><a href="#Link" title="Link ">자유 게시판</a></li>
-          <li ><a href="#Link" title="Link">후기 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list2.bor?cpage=1" title="Link">후기 게시판</a></li>
         </ul>
       </li>
 
@@ -289,12 +290,11 @@ $(function(){
       </ul>
     </c:when>
     
-    
 
     <c:otherwise>
    	 <ul>
-       <li><a href="member/index.jsp" title="Link">로그인</a></li>
-       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="index.jsp" title="Link">로그인</a></li>
+       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>
 </c:choose>
