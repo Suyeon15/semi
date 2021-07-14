@@ -21,6 +21,9 @@
 <!-- 광재CSS 링크 -->
 <link rel="stylesheet" type="text/css" href="board/style.css" >
 
+<script src="https://unpkg.com/dayjs"></script>
+
+
 <style>
 body {color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 13px;}
 .table-responsive {margin: 30px 0;}
@@ -162,177 +165,200 @@ table a, #comments a{background-color:inherit;}
 </style>
 <script>
 $(document).ready(function(){
-	   // Activate tooltip
-	   $('[data-toggle="tooltip"]').tooltip();
-	   
-	   $("#backBtn").on("click",function(){
-			location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
-		})
-	   
-	   
-	   // modal에 삭제할 seq 값 부여
-	   $("#deleteEmployeeModal").on("shown.bs.modal",function(e){
-	      let seq = $(e.relatedTarget).data("seq");
-	      $("#cmtdelete").attr("seq",seq);
-	   })
-	   
-	   
-	      // 댓글 등록 및 출력
-	$("#sign").click(function(){
-	      if($("#comment").val() == ""){
-	         alert("댓글을 입력하세요.");
-	         $("#comment").val("").focus();
-	         
-	      }else{
-	         $.ajax({
-	            url:"${pageContext.request.contextPath}/write.cmt",
-	            type:"post",
-	            dataType:"json",
-	            data:{
-	               cmt_content : $("#comment").val(),
-	               board_seq : $("#board_seq").val()
-	            },
-	              success: function(resp){
-	                 
-	             
-	                 $("#comment").val("");
+      // Activate tooltip
+      $('[data-toggle="tooltip"]').tooltip();
+      
+      $("#backBtn").on("click",function(){
+         location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+      })
+      
+      
+      // modal에 삭제할 seq 값 부여
+      $("#deleteEmployeeModal").on("shown.bs.modal",function(e){
+         let seq = $(e.relatedTarget).data("seq");
+         $("#cmtdelete").attr("seq",seq);
+      })
+      
+      
+         // 댓글 등록 및 출력
+  	   $("#sign").click(function(){
+         if($("#comment").val() == ""){
+            alert("댓글을 입력하세요.");
+            $("#comment").val("").focus();
+            
+         }else{
+            $.ajax({
+               url:"${pageContext.request.contextPath}/write.cmt",
+               type:"post",
+               dataType:"json",
+               data:{
+                  cmt_content : $("#comment").val(),
+                  board_seq : $("#board_seq").val()
+               },
+                 success: function(resp){
+                    
+                
+                    $("#comment").val("");
 
-	                    let div1 = $("<div class='comcont'>");
-	                    let div2 = $("<div class='comcont_btn'>");
-	                    
-	                    let ul = $("<ul>");
-	                    ul.attr("class","cmtlist seq_"+resp.cmt_seq);
-	                    let li = $("<li>");
-	                    let article = $("<article>");
-	                    let header = $("<header>");
-	                    let address = $("<address>");
+                       let div1 = $("<div class='comcont'>");
+                       let div2 = $("<div class='comcont_btn'>");
+                       
+                       let ul = $("<ul>");
+                       ul.attr("class","cmtlist seq_"+resp.cmt_seq);
+                       let li = $("<li>");
+                       let article = $("<article>");
+                       let header = $("<header>");
+                       let address = $("<address>");
 
-	                    // 전체 입력 댓글 구현
-	                    ul.append(li);
-	                    li.append(article);
-	                    article.append(header);
-	                    header.append(address);
-	                    address.append("By" + resp.id + "<time>" + resp.cmt_date);
-	                    div1.append(resp.cmt_content);
-	                    article.append(div1);
-	                    article.append(div2);
-	                   
-	                    
-	                    // 수정버튼
-	                    let cmtedita=$("<a href='' class='edit' data-toggle='modal' id='cmtModify'>");
-	                    cmtedita.attr("data-seq",resp.cmt_seq);
-	                    let cmtediti=$("<i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i>");
-	                    cmtedita.append(cmtediti); 
-	                    div2.append(cmtedita);
-	                    
-	                    
-	                    // 삭제버튼
-	                    let cmtdela = $("<a href='#deleteEmployeeModal' class='delete' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
-	                    cmtdela.attr("data-seq",resp.cmt_seq);
-	                    let cmtdeli = $("<i class='material-icons' title='Delete' id='cmtDeleteBtn'>&#xE872;</i>");
-	                    
-	                    cmtdela.append(cmtdeli);
-	                    div2.append(cmtdela);
-	                    
-	        
-	                    ul.prependTo($("#cmt"));
-	                     
-	          }
+                       // 전체 입력 댓글 구현
+                       ul.append(li);
+                       li.append(article);
+                       article.append(header);
+                       header.append(address);
+                       address.append("By " + resp.id + "<time>" + '&nbsp&nbsp&nbsp&nbsp&nbsp' + dayjs().format("YYYY-MM-DD"));
+                       
+                       div1.append(resp.cmt_content);
+                       
+                      
+                       
+                       // 연필 수정버튼
+                       let cmtedita=$("<a href='' class='edit set2' data-toggle='modal' id='cmtModify'>");
+                       cmtedita.attr("data-seq",resp.cmt_seq);
+                       let cmtediti=$("<i class='material-icons set2' id='cmtModifyViewBtn'>&#xE254;</i>");
+                       cmtedita.append(cmtediti); 
+                       div2.append(cmtedita);
+                       
+                       
+                       // 휴지통 삭제버튼
+                       let cmtdela = $("<a href='#deleteEmployeeModal' class='delete set2' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
+                       cmtdela.attr("data-seq",resp.cmt_seq);
+                       let cmtdeli = $("<i class='material-icons set2' title='Delete' id='cmtDeleteBtn'>&#xE872;</i>");                      
+                       cmtdela.append(cmtdeli);
+                       div2.append(cmtdela);
+                       
+                       
+                       
+                       //엑스 버튼
+                       let cancela =$("<a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style='display:none'>");
+                       cancela.attr("seq",resp.cmt_seq);
+                       let canceli =$("<i class='material-icons set1' id='cancelIcon' style='display:none'>&#xe5c9;</i>");
+                       cancela.append(canceli);
+                       div2.prepend(cancela);
+                       
+                       //체크 버튼
+                       let checka = $("<a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' style='display:none'>");
+                       checka.attr("seq",resp.cmt_seq);
+                       let checki =$("<i class='material-icons set1' id='checkIcon' style='display:none'>&#xe86c;</i>");
+                       checka.append(checki);
+                       div2.prepend(checka);
+                       
+                       
+                       article.append(div1);
+                       article.append(div2);
+                       $("#cmt").prepend(ul);
+                  
+                        
+             }
 
-	         })
-	      }
-	   })
-	   
-	   // 댓글 삭제
-	   $("#cmtdelete").on("click", function() {  
-	     let seq = $(this).attr("seq");
-	     $(".cmtlist.seq_"+seq).remove();
-	      
-	      $.ajax({
-	         url : "${pageContext.request.contextPath}/delete.cmt",
-	         type : "post",
-	         dataType : "json",
-	         data : {"cmt_seq" : seq}
-	      })
-	   });
+            })
+         }
+      })
+      
+      // 모달의 삭제버튼을 통해서 댓글 삭제
+      $("#cmtdelete").on("click", function() {  
+        let seq = $(this).attr("seq");
+        $(".cmtlist.seq_"+seq).remove();
+         
+         $.ajax({
+            url : "${pageContext.request.contextPath}/delete.cmt",
+            type : "post",
+            dataType : "json",
+            data : {"cmt_seq" : seq}
+         })
+      });
 
-	       // ※※ajax로 새로 막 생긴 댓글의 수정버튼 클릭 시 이벤트 ※※ 
-	       $(document).on("click","#cmtModify",function(){   
-	    	   let seq = $(this).data("seq");
-	    	   let parent =  $(this).parent().siblings(".comcont");
-	    	   parent.attr("id","modifyCont");
- 	           parent.attr("contenteditable","true");
-	    	   parent.focus();
-	    	   
-	    	   let done = $("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn'>");
-	    	   done.attr("seq",seq);
-	
- 	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
- 	    	   done.append(doneIcon);	    	   
-	    	   $(this).before(done);
-	 	        
-	    	   let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
- 	    	   let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
- 	    	   cancel.append(cancelIcon);	  
- 	    	   $("#cmtDelete").before(cancel);
- 	    	  
-	 	       $(this).css("display","none");
-	 	       $("#cmtModifyViewBtn").css("display","none");
-	 	       $("#cmtDelete").css("display","none");
-	 	       $("#cmtDeleteBtn").css("display","none");
-	       })
+          // ※※Ajax 수정  연필 버튼 클릭 시 이벤트 ※※ 
+          $(document).on("click","#cmtModify",function(){   
+        	  let seq = $(this).data("seq");
+              let parent =  $(this).parent().siblings(".comcont");
+              parent.attr("id","modifyCont");
+              parent.attr("contenteditable","true");
+              parent.focus();
+              
+              let comcontBtn = $(this).parent();
+              comcontBtn.children(".set1").css("display","inline-block");
+              comcontBtn.children(".set1").children().css("display","inline-block");
+              
+              comcontBtn.children(".set2").css("display","none");
+  
+
+          })
  
-	       // ※※modal에 수정할 seq 값 부여 ※※
-	   $("#CommentsModifyForm").on("shown.bs.modal",function(e){
-	      let seq = $(e.relatedTarget).attr("seq");
-	      $("#cmtModifycmpBtn").attr("seq",seq);
-	   })
-	       
-	    // ※※ajax로 새로 막 생긴 댓글의 수정 완료 버튼 클릭 시 ,모달팝업 후 수정 완료하기! ※※
-	   $("#cmtModifycmpBtn").on("click", function() {  
-	     let seq = $(this).attr("seq");
-	      $.ajax({
-	         url : "${pageContext.request.contextPath}/modify.cmt",
-	         type : "post",
-	         dataType : "json",
-	         data : {
-	        	 "cmt_content" : $("#modifyCont").text(),
-	        	 "cmt_seq" :seq
-	        	 }
-	      }).done(function(){
-	    	  $("#modifyCont").attr("contenteditable","false");
-	    	  $("#modifyCont").css("color","transparent");
-	    	  $("#modifyCont").css("text-shadow"," 0 0 0 black");
-	    	  
-	    	  $("#cmtModify").css("display","inline-block");
-	 	       $("#cmtModifyViewBtn").css("display","inline-block");
-	 	       $("#cmtDelete").css("display","inline-block");
-	 	        $("#cmtDeleteBtn").css("display","inline-block");
+          
+          
+          
+          
+//           ※※기존 댓글리스트 수정  연필 버튼 클릭 시 이벤트 ※※ 
+          $("#cmtModify").on("click",function(){   
+             let seq = $(this).data("seq");
+             let parent =  $(this).parent().siblings(".comcont");
+             parent.attr("id","modifyCont");
+             parent.attr("contenteditable","true");
+             parent.focus();
+             
+             
+            
+            	 $(this).closest("#cmtModifyDoneBtn").css("display","inline-block");    
+            	 $(this).closest("#checkIcon").css("display","inline-block"); 
+            	 $(this).closest("#cmtModifycancelBtn").css("display","inline-block"); 
+            	 $(this).closest("#cancelIcon").css("display","inline-block"); 
+         
+              
+             
+             
+             $(this).css("display","none");
+             $(this).children("#cmtModifyViewBtn").css("display","none");
+             $(this).next("#cmtDelete").css("display","none");
+             $(this).next("#cmtDelete").children("#cmtDeleteBtn").css("display","none");
+          })
+          
+          
+          
+          
+          // ※※modal에 수정할 seq 값 부여 ※※
+      $("#CommentsModifyForm").on("shown.bs.modal",function(e){
+         let seq = $(e.relatedTarget).attr("seq");
+         $(".cmtModifycmpBtn").attr("seq",seq);
+      })
+          
+      
+       // ※※모달박스의 수정버튼 클릭 시 ※※
+      $(document).on("click","#cmtModifycmpBtn", function() {  
+        let seq = $(this).attr("seq");
+         $.ajax({
+            url : "${pageContext.request.contextPath}/modify.cmt",
+            type : "post",
+            dataType : "json",
+            data : {
+               "cmt_content" : $("#modifyCont").text(),
+               "cmt_seq" :seq
+               }
+         }).done(function(){
+        	 let comcont = $("#modifyCont");
+        	 comcont.attr("contenteditable","false");
+        	
+        
+            comcont.next().children(".set1").css("display","none");
+            comcont.next().children(".set2").css("display","inline-block");
+            comcont.next().children(".set2").children().css("display","inline-block");
+           
+         })
+      });
+          
 
-	    	  $("#cmtModifyDoneBtn").remove();	     
-	 	      $("#cmtModifycancelBtn").remove();
-	 	      
-	 	     
-	      })
-	   });
-	       
 
-	      // 수정 댓글 출력
-	      $("#cmtModifycmpBtn").on("click",function(){
-	         var content = $('.comcont').html();
-	           $('#cmt_content').val( content );
-	         $.ajax({
-	              url: "${pageContext.request.contextPath}/modify.cmt",
-	              dataType:"json",
-	                 type: "post",
-	                 data: {
-	                    cmt_content : $("#cmt_content").val(),
-	                     cmt_seq : $("#cmt_seq").val()
-	                 }
-	           })
-	      })
-	       
-	})
+          
+   })
 </script>
 </head>
 <body>
@@ -369,8 +395,8 @@ $(document).ready(function(){
 
       <li ><a href="#Link" title="Link">Board</a>
         <ul >
-          <li ><a href="#Link" title="Link ">자유 게시판</a></li>
-          <li ><a href="#Link" title="Link">후기 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list2.bor?cpage=1" title="Link">후기 게시판</a></li>
         </ul>
       </li>
 
@@ -388,7 +414,7 @@ $(document).ready(function(){
 	
 <c:choose>
 	
-		<c:when test="${login ne null && login.id eq 'admin'}">
+	<c:when test="${login ne null && login.id eq 'admin'}">
     <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
@@ -414,12 +440,11 @@ $(document).ready(function(){
       </ul>
     </c:when>
     
-    
 
     <c:otherwise>
    	 <ul>
-       <li><a href="member/index.jsp" title="Link">로그인</a></li>
-       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="index.jsp" title="Link">로그인</a></li>
+       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>
 </c:choose>
@@ -475,7 +500,7 @@ $(document).ready(function(){
                            <article>
                               <header>
                                  <address>
-                                    By ${i.id}
+                                    By ${i.id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <time datetime="">${i.cmt_date}</time>
                                     <!-- <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time> -->
                                  </address>
@@ -484,10 +509,22 @@ $(document).ready(function(){
 <!--                               <input type='hidden' name='cmt_content' id='cmt_content'> -->
                               <div class="comcont_btn">
                                  <c:if test="${i.id eq login.id}">
-                                    <a href="" class="edit" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
-                                    <i class="material-icons">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
-                                    <i class="material-icons" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
+                                  	 <a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none;">
+                                    <i class='material-icons set1' id="checkIcon" style="display:none;">&#xe86c;</i></a>
+                                    <a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style="display:none;">
+                                    <i class='material-icons set1' id="cancelIcon" style="display:none;">&#xe5c9;</i></a>
+                                   
+                                   
+<!--                                    연필 수정버튼 -->
+                                    <a href="" class="edit set2" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
+                                    <i class="material-icons set2" id="cmtModifyViewBtn">&#xE254;</i></a>
+                                    
+<!--                                 휴지통 삭제버튼 -->
+                                    <a href="#deleteEmployeeModal" class="delete set2" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
+                                    <i class="material-icons set2" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
+                                    
+                                  
+                                    
                                  </c:if>
                               </div>
                            </article>
@@ -589,7 +626,7 @@ $(document).ready(function(){
                <div class="modal-footer">
                   <input type="button" class="btn btn-default" data-dismiss="modal"
                      value="취소">
-                     <input type="button" class="btn btn-danger" value="수정" id="cmtModifycmpBtn" data-dismiss="modal">
+                     <input type="button" class="btn btn-danger cmtModifycmpBtn" value="수정" id="cmtModifycmpBtn" data-dismiss="modal">
                </div>
             </form>
          </div>
