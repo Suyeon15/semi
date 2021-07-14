@@ -181,11 +181,7 @@ $(document).ready(function(){
       
       
          // 댓글 등록 및 출력
-<<<<<<< HEAD
         $("#sign").click(function(){
-=======
-  	   $("#sign").click(function(){
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
          if($("#comment").val() == ""){
             alert("댓글을 입력하세요.");
             $("#comment").val("").focus();
@@ -283,11 +279,7 @@ $(document).ready(function(){
 
           // ※※Ajax 수정  연필 버튼 클릭 시 이벤트 ※※ 
           $(document).on("click","#cmtModify",function(){   
-<<<<<<< HEAD
              let seq = $(this).data("seq");
-=======
-        	  let seq = $(this).data("seq");
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
               let parent =  $(this).parent().siblings(".comcont");
               parent.attr("id","modifyCont");
               parent.attr("contenteditable","true");
@@ -316,17 +308,10 @@ $(document).ready(function(){
              
              
             
-<<<<<<< HEAD
                 $(this).closest("#cmtModifyDoneBtn").css("display","inline-block");    
                 $(this).closest("#checkIcon").css("display","inline-block"); 
                 $(this).closest("#cmtModifycancelBtn").css("display","inline-block"); 
                 $(this).closest("#cancelIcon").css("display","inline-block"); 
-=======
-            	 $(this).closest("#cmtModifyDoneBtn").css("display","inline-block");    
-            	 $(this).closest("#checkIcon").css("display","inline-block"); 
-            	 $(this).closest("#cmtModifycancelBtn").css("display","inline-block"); 
-            	 $(this).closest("#cancelIcon").css("display","inline-block"); 
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
          
               
              
@@ -359,15 +344,9 @@ $(document).ready(function(){
                "cmt_seq" :seq
                }
          }).done(function(){
-<<<<<<< HEAD
             let comcont = $("#modifyCont");
             comcont.attr("contenteditable","false");
            
-=======
-        	 let comcont = $("#modifyCont");
-        	 comcont.attr("contenteditable","false");
-        	
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
         
             comcont.next().children(".set1").css("display","none");
             comcont.next().children(".set2").css("display","inline-block");
@@ -417,11 +396,7 @@ $(document).ready(function(){
       <li ><a href="#Link" title="Link">Category</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
-<<<<<<< HEAD
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
-=======
-          <li ><a href="${pageContext.request.contextPath}/list2.bor?cpage=1" title="Link">후기 게시판</a></li>
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
         </ul>
       </li>
 
@@ -437,13 +412,8 @@ $(document).ready(function(){
 
    
 <c:choose>
-<<<<<<< HEAD
    
       <c:when test="${login ne null && login.id eq 'admin'}">
-=======
-	
-	<c:when test="${login ne null && login.id eq 'admin'}">
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
     <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
@@ -469,17 +439,12 @@ $(document).ready(function(){
       </ul>
     </c:when>
     
+    
 
     <c:otherwise>
-<<<<<<< HEAD
        <ul>
        <li><a href="member/index.jsp" title="Link">로그인</a></li>
        <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
-=======
-   	 <ul>
-       <li><a href="index.jsp" title="Link">로그인</a></li>
-       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
       </ul>
    </c:otherwise>
 </c:choose>
@@ -544,11 +509,7 @@ $(document).ready(function(){
 <!--                               <input type='hidden' name='cmt_content' id='cmt_content'> -->
                               <div class="comcont_btn">
                                  <c:if test="${i.id eq login.id}">
-<<<<<<< HEAD
                                       <a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none;">
-=======
-                                  	 <a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none;">
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
                                     <i class='material-icons set1' id="checkIcon" style="display:none;">&#xe86c;</i></a>
                                     <a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style="display:none;">
                                     <i class='material-icons set1' id="cancelIcon" style="display:none;">&#xe5c9;</i></a>
