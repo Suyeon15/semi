@@ -93,7 +93,7 @@ body, input, textarea, select {
 }
 
 #starbox{
-   width:65%;
+   width:100%;
    height:15%;
    text-align:right;
 }
@@ -236,7 +236,7 @@ li {
 
 
 .rating{
-    padding: 0 0 0 60%;
+    padding: 0 0 0 63%;
 }
 
 #ratingnum{
@@ -724,8 +724,9 @@ a.menu-link.active:after { content: "\2715"; }
                    let cmt_seq = $(this).parent().attr("seq");
                    
                    let parent =  $(this).parent().siblings(".comcont");
-                   parent.attr("contenteditable","true");
                    parent.attr("id","modifyCont");
+                   parent.attr("contenteditable","true");
+                   
                    parent.focus();
                    
     	 	       $("#cmedit").css("display","none");
@@ -744,6 +745,7 @@ a.menu-link.active:after { content: "\2715"; }
     	 	       $(this).css("display","none");
                    
                    console.log($('#modifyCont').text());
+                   
                    $("#cmtModifyDoneBtn").on("click",function(){
 
                        $.ajax({
@@ -751,7 +753,7 @@ a.menu-link.active:after { content: "\2715"; }
                             dataType:"json",
                                type: "post",
                                data: {
-                                  comment : $("#modifyCont").text(),
+                                  "comments" : $("#modifyCont").text(),
                                    cmt_seq : cmt_seq
                                }
                          }).done(function(){
@@ -794,17 +796,29 @@ a.menu-link.active:after { content: "\2715"; }
           
                // 별점 데이터 보내기
                $("#save").on("click", function() {
-               $.ajax({
-                        url : "${pageContext.request.contextPath}/rating.game",
-                        type : "get",
-                        dataType : "Json",
-                        data : {"newrating" : clickrate,
-                        	"game_seq": ${list.game_seq}}
+            	   var result = confirm('별점 등록 시 수정은 불가합니다. 지금 별점을 바꾸려면  리셋 버튼을 누르고 다시 별점을 골라 주세요.'); 
+                   
+                   if(result){
+                	   
+                       $.ajax({
+                           url : "${pageContext.request.contextPath}/rating.game",
+                           type : "get",
+                           dataType : "Json",
+                           data : {"newrating" : clickrate,
+                           	"game_seq": ${list.game_seq}
+                           }
 
-                        })
-               })
+                       })
+               }//if
+   
+           })
 
-
+           $("#reset").on("click", function() {
+   
+        	   //$("input[name='rating']:radio[value='N']").prop('checked', true);
+        	   $("input[name='rating']").removeAttr('checked');
+  
+           })
      
       })
     </script>
@@ -953,6 +967,7 @@ a.menu-link.active:after { content: "\2715"; }
                      <h4><div id="ratingnum"> (${list.rating})</div></h4>
                       <div class="cmd">
                         <input type="button" name="save" id="save" value="등록">
+                        <input type="button" name="reset" id="reset" value="리셋">
                     </div>
                  </div>
             
