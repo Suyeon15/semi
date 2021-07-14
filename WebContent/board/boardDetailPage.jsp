@@ -256,7 +256,7 @@ $(document).ready(function(){
                        article.append(div1);
                        article.append(div2);
                        $("#cmt").prepend(ul);
-                      // ul.prependTo($("#cmt"));
+                  
                         
              }
 
@@ -346,8 +346,7 @@ $(document).ready(function(){
          }).done(function(){
         	 let comcont = $("#modifyCont");
         	 comcont.attr("contenteditable","false");
-        	 comcont.css("color","transparent");
-        	 comcont.css("text-shadow"," 0 0 0 black");
+        	
         
             comcont.next().children(".set1").css("display","none");
             comcont.next().children(".set2").css("display","inline-block");
@@ -357,25 +356,6 @@ $(document).ready(function(){
       });
           
 
-          
-          
-          
-          
-          
-       // 수정 댓글 출력
-//        $(".cmtModifycmpBtn").on("click",function(){
-//           var content = $('.comcont').html();
-//             $('#cmt_content').val( content );
-//           $.ajax({
-//                url: "${pageContext.request.contextPath}/modify.cmt",
-//                dataType:"json",
-//                   type: "post",
-//                   data: {
-//                      cmt_content : $("#cmt_content").val(),
-//                       cmt_seq : $("#cmt_seq").val()
-//                   }
-//             })
-//        })
 
           
    })
