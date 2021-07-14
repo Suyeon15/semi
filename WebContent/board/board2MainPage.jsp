@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BoardMainPage</title>
+<title>BoardMainPage2</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -116,11 +116,11 @@ float:right;
 $(function(){
 	
 	$("#writeBtn").on("click",function(){
-		location.href ="${pageContext.request.contextPath}/write.bor"
+		location.href ="${pageContext.request.contextPath}/write.bor2"
 	})
 	
 	$("#backBtn").on("click",function(){
-		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+		location.href = "${pageContext.request.contextPath}/list.bor2?cpage=1";
 	})
 	
 	
@@ -231,7 +231,7 @@ $(function(){
 		<div class="table-wrapper">
 		<div class="row">
 			<div class="table-title col-12">
-				<h2><b>자유 게시판</b></h2>
+				<h2><b>후기 게시판</b></h2>
 			</div>			
 		</div>
 
@@ -317,10 +317,10 @@ $(function(){
 				<c:forEach var="i" items="${navi}" varStatus="s">	
 					<c:choose>
 						<c:when test="${i=='>'}">
-							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index-1]+1}&category=${category}&searchWord=${searchWord}">Next</a>
+							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor2?cpage=${navi[s.index-1]+1}&category=${category}&searchWord=${searchWord}">Next</a>
 						</c:when>
 						<c:when test="${i=='<'}">
-							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
+							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor2?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
 						</c:when>
                        	<c:when test="${i==cpage}">
                            	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
@@ -338,7 +338,7 @@ $(function(){
 		
 		
 		<div class="controls col-12 search">
-		<form action="${pageContext.request.contextPath}/list.bor?cpage=1" method="post" style="display: inline-block;">
+		<form action="${pageContext.request.contextPath}/list.bor2?cpage=1" method="post" style="display: inline-block;">
 			<div class="float1">
 			<select name="category" class="form-control form-control-inline">
 				<option value="title">제목</option>

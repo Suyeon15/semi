@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSessionListener;
 import dao.FileDAO;
 
 @WebListener
-public class ImgSessionListener implements HttpSessionListener {
+public class ImgSessionListener2 implements HttpSessionListener {
 	
 	
 @Override

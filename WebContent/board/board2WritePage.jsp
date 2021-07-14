@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BoardWritePage</title>
+<title>BoardWritePage2</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- include libraries(jQuery, bootstrap) -->
@@ -69,7 +69,7 @@ display:inline;
 $(function(){
 	let i=0;
 	$("#backBtn").on("click",function(){
-		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+		location.href = "${pageContext.request.contextPath}/list.bor2?cpage=1";
 	})
 	
 	
@@ -132,12 +132,10 @@ $(function(){
 	                 let form = new FormData()    
 	                 form.append("file",file);    
 	      
-	                 
-	                 
 	                 $.ajax({
 	                    data:form,
 	                    type:"post",
-	                    url:"${pageContext.request.contextPath}/upload.file",
+	                    url:"${pageContext.request.contextPath}/upload.file2",
 	                    contentType:false,   
 	                    processData:false,  
 	                	dataType:"json",
@@ -145,36 +143,23 @@ $(function(){
 	                 }).done(function(resp){
 	                  
 	                   $(editor).summernote('insertImage',"${pageContext.request.contextPath}"+resp.returnPath); //editor 인스턴스의 insertImage 기능으로 이미지를 화면에 출력
-	   
-	                   
+
 	                   // input type=hidden 노드
 	                   let input = $("<input type='hidden'>");
 	                   input.attr("name","summerImg");
 	                   input.attr("value",[resp.oriName,resp.sysName]);
 	                  
-	                   
 	                   $("#frm").append(input);
-	                   
-	                   
-	                 });
-	                 
-	                 
-	                 
-	               }
-	              
+	                 }); 
+	               } 
 	           }
-	        
 	      });
 
 	
-	
-	
 	$(window).on("unload",function(){
-		navigator.sendBeacon("${pageContext.request.contextPath}/unload.file");
+		navigator.sendBeacon("${pageContext.request.contextPath}/unload.file2");
 	})
-	
-	
-	
+
 })
 
 
@@ -295,7 +280,7 @@ $(function(){
 		</div>
     </div>
 
-	<form id="frm" action="${pageContext.request.contextPath}/save.bor" method="post" enctype="multipart/form-data">
+	<form id="frm" action="${pageContext.request.contextPath}/save.bor2" method="post" enctype="multipart/form-data">
     <div class="row"> 
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
@@ -340,11 +325,6 @@ $(function(){
   </div>
 </div>
 
-
-  
-  
-  
-
 <c:choose>
 	<c:when test="${login ne null && login.id eq 'admin'}">
 		<div class="row" style="margin-top:15px">
@@ -359,16 +339,10 @@ $(function(){
 	</c:otherwise>
 </c:choose>
 
-
-
-
-
 	<div id="imgtest">
 		
 	</div>
 		
-
-
     <div class="row">
       <hr>
       <div class="col-12">
@@ -379,9 +353,6 @@ $(function(){
     </div>
 </form>
     </div>
-
-
-
 
 
 </body>

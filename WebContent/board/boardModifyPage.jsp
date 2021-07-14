@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WritePage</title>
+<title>BoardModifyPage</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- include libraries(jQuery, bootstrap) -->
@@ -244,8 +244,8 @@ $(function(){
 
       <li ><a href="#Link" title="Link">Board</a>
         <ul >
-          <li ><a href="#Link" title="Link ">자유 게시판</a></li>
-          <li ><a href="#Link" title="Link">후기 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
         </ul>
       </li>
 
