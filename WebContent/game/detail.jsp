@@ -17,12 +17,7 @@
 <style>
 
     
-body {
-   color: #566787;
-   background: #f5f5f5;
-   font-family: 'Varela Round', sans-serif;
-   font-size: 13px;
-}
+
 .table-responsive {
     margin: 30px 0;
 }
@@ -673,116 +668,145 @@ a.menu-link.active:after { content: "\2715"; }
 
 }
 
-</style>
+</style> 
     <script>
-       $(function(){
+    $(function(){
 
-         //값 변수에 저장
-            let contentmsg = $("#comment").val();
-            console.log(contentmsg);
+        //값 변수에 저장
+           let contentmsg = $("#comment").val();
+           console.log(contentmsg);
 
-          //댓글 등록
-          $("#submitbtn").on("click",function(){ 
+         //댓글 등록
+         $("#submitbtn").on("click",function(){ 
+				console.log($("textarea#comment").val());
+				console.log(${list.game_seq});
+               $.ajax({
+                     url : "${pageContext.request.contextPath}/writeProc.com",
+                     type : "get",
+                     dataType : "Json",
+                     data : {"comment" :  $("textarea#comment").val(),
+                    	 "game_seq" : ${list.game_seq}}
 
-                $.ajax({
-                      url : "${pageContext.request.contextPath}/writeProc.com",
+                     }).done(function(resp) {
+                        console.log(resp.game_seq);
+                         //댓글창 비워주기
+                         location.href="${pageContext.request.contextPath}/detail.game?game_seq="+resp.game_seq;
+              
+               alert("댓글이 등록됐습니다!");
+             })
+
+          });           
+
+          
+          //댓글 삭제
+          $(document).on("click","#cmdel",function(){
+             var result = confirm('댓글을 정말 삭제하시겠습니까?'); 
+             
+             if(result){
+                
+                  $(this).parents("#cmtbox").remove();
+                  let cmt_seq = $(this).parent().attr("seq");
+               
+                  $.ajax({ 
+                      url : "${pageContext.request.contextPath}/delete.com",
                       type : "get",
                       dataType : "Json",
-                      data : {"comment" :  $("textarea#comment").val()
-                      }
+                      data : {"cmt_seq" : cmt_seq}
+                      });                 
+             }
 
-                      }).done(function(resp) {
-                         console.log(resp.game_seq);
-                          //댓글창 비워주기
-                          location.href="${pageContext.request.contextPath}/detail.game?game_seq="+resp.game_seq;
-               
-                alert("댓글이 등록됐습니다!");
-              })
+          })
 
-           });           
-
-           
-           //댓글 삭제
-           $(document).on("click","#cmdel",function(){
-              var result = confirm('댓글을 정말 삭제하시겠습니까?'); 
-              
-              if(result){
-                 
-                   $(this).parents("#cmtbox").remove();
-                   let cmt_seq = $(this).parent().attr("seq");
-                
-                   $.ajax({ 
-                       url : "${pageContext.request.contextPath}/delete.com",
-                       type : "get",
-                       dataType : "Json",
-                       data : {"cmt_seq" : cmt_seq}
-                       }); 
-                   
-              }else { 
-                 
-              }
-
-           })
-
-           //댓글 수정
-           $(document).on("click","#cmedit",function(){
-    
-                    let cmt_seq = $(this).parent().attr("seq");
-                    
-                    let parent =  $(this).parent().siblings(".comcont");
-                    parent.attr("contenteditable","true");
-                    parent.focus();
-                    
-                    $("#cmtModifycmpBtn").on("click",function(){
-                        var content = $('.comcont').html();
-                          $('#cmt_content').val( content );
-                        $.ajax({
-                             url: "${pageContext.request.contextPath}/modify.com",
-                             dataType:"json",
-                                type: "post",
-                                data: {
-                                   cmt_content : $("#cmt_content").val(),
-                                    cmt_seq : $("#cmt_seq").val()
-                                }
-                          })
-                     })
-
-               })
-               
-
-           
-           // 별점 클릭
-           $("input[name='rating']").on("click",function(){
-                    
-                        clickrate = $("input[name='rating']:checked").val();
-                       for(let i=1; i<6; i++){
-                          let rate = $("input[id='rating"+i+"']").val();
-                          
-                      if(clickrate>=rate){
-                         $("input[id='rating"+i+"']").prop('checked', true); 
-                      }
-                       } 
-
-              })
-                                     
-           
-                // 별점 데이터 보내기
-                $("#save").on("click", function() {
-               console.log("hi?");
-                $.ajax({
-                         url : "${pageContext.request.contextPath}/rating.game",
-                         type : "get",
-                         dataType : "Json",
-                         data : {"newrating" : clickrate }
-
-                         })
-                })
-
-             
-
+          
+          //댓글 수정
+          $(document).on("click","#cmedit",function(){
    
-      
-       })
+                   let cmt_seq = $(this).parent().attr("seq");
+                   
+                   let parent =  $(this).parent().siblings(".comcont");
+                   parent.attr("contenteditable","true");
+                   parent.attr("id","modifyCont");
+                   parent.focus();
+                   
+    	 	       $("#cmedit").css("display","none");
+    	 	       $("#cmdel").css("display","none");
+    	 	       
+    	 	       let done = $("<a href='' style='color:green' id='cmtModifyDoneBtn'>");
+     	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+     	    	   done.append(doneIcon);	
+     	    	  	$(this).before(done);
+    	 	        
+    	    	   let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
+     	    	   let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
+     	    	   cancel.append(cancelIcon);
+     	    	   $("#cmdel").before(cancel);
+     	    	  
+    	 	       $(this).css("display","none");
+                   
+                   console.log($('#modifyCont').text());
+                   $("#cmtModifyDoneBtn").on("click",function(){
+
+                       $.ajax({
+                            url: "${pageContext.request.contextPath}/modify.com",
+                            dataType:"json",
+                               type: "post",
+                               data: {
+                                  comment : $("#modifyCont").text(),
+                                   cmt_seq : cmt_seq
+                               }
+                         }).done(function(){
+                        	 
+               	    	  	 $("#modifyCont").attr("contenteditable","false");
+            	    	  
+            	 	      	 $("#cmedit").css("display","inline-block");
+            	 	       	 $("#cmdel").css("display","inline-block");
+
+            	    	 	 $("#cmtModifyDoneBtn").remove();	     
+            	 	      	 $("#cmtModifycancelBtn").remove();
+            	 	      	 
+            	 	      	alert("댓글을 수정했습니다!");
+                         })
+                         console.log($('#modifyCont').text());
+                    });
+
+              })
+              
+
+          
+          // 별점 클릭
+          $("input[name='rating']").on("click",function(){
+
+        	  clickrate = $("input[name='rating']:checked").val();
+
+                      for(let i=1; i<6; i++){
+                         let rate = $("input[id='rating"+i+"']").val();
+                         
+                     if(clickrate>=rate){
+                        $("input[id='rating"+i+"']").prop('checked', true); 
+                     }else{
+                    	 $("input[id='rating']").prop('checked', false);
+                     }
+                      } 
+
+				
+             })
+                                    
+          
+               // 별점 데이터 보내기
+               $("#save").on("click", function() {
+               $.ajax({
+                        url : "${pageContext.request.contextPath}/rating.game",
+                        type : "get",
+                        dataType : "Json",
+                        data : {"newrating" : clickrate,
+                        	"game_seq": ${list.game_seq}}
+
+                        })
+               })
+
+
+     
+      })
     </script>
 </head>
 <body>
@@ -946,17 +970,17 @@ a.menu-link.active:after { content: "\2715"; }
          <div id="comments">
         <ul id=cmtlist>
         <c:forEach var="list" items="${cmtlist}">
-          <li class="${list.cmt_seq}" id="cmtbox">
+          <li class="${list.gamecmt_seq}" id="cmtbox">
             <article>
                 <address>
-                <div class="cmt_seq"> ${list.cmt_seq} </div>
+                <div class="cmt_seq"> ${list.gamecmt_seq} </div>
                 <div class="cmt_id"> <p2>${list.id}</p2></div>
                 </address>
                 <div id="datebox">${list.reg_date}</div>
                 <div class="comcont" id="comcont">
                       ${list.comments}
                  </div>
-                 <div id=iconbox seq="${list.cmt_seq}">
+                 <div id=iconbox seq="${list.gamecmt_seq}">
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit" id="cmedit"></i>
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete" id="cmdel"></i>
                 </div>

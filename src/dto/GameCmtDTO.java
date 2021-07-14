@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class GameCmtDTO {
 	
-	private int cmt_seq;
+	private int gamecmt_seq;
 	private String id;
 	private String comments;
 	private Date reg_date;
@@ -14,21 +14,21 @@ public class GameCmtDTO {
 		super();
 	}
 
-	public GameCmtDTO(int cmt_seq, String id, String comments, Date reg_date, int game_seq) {
+	public GameCmtDTO(int gamecmt_seq, String id, String comments, Date reg_date, int game_seq) {
 		super();
-		this.cmt_seq = cmt_seq;
+		this.gamecmt_seq = gamecmt_seq;
 		this.id = id;
 		this.comments = comments;
 		this.reg_date = reg_date;
 		this.game_seq = game_seq;
 	}
 
-	public int getCmt_seq() {
-		return cmt_seq;
+	public int getGamecmt_seq() {
+		return gamecmt_seq;
 	}
 
-	public void setCmt_seq(int cmt_seq) {
-		this.cmt_seq = cmt_seq;
+	public void setGamecmt_seq(int gamecmt_seq) {
+		this.gamecmt_seq = gamecmt_seq;
 	}
 
 	public String getId() {

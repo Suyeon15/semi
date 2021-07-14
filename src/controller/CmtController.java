@@ -47,13 +47,12 @@ public class CmtController extends HttpServlet {
 				if(cmd.contentEquals("/writeProc.com")) {
 					
 					  String comment = request.getParameter("comment");
-			    	  //int game_seq = Integer.parseInt(request.getParameter("game_seq"));		    	 
-					  int game_seq =101;
+			    	  int game_seq = Integer.parseInt(request.getParameter("game_seq"));		    	 
+
 			    	  //MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
 			    	  //String id =dto.getId();
-			    	  String id ="abcd";
-			    	  //System.out.println(dto.getId());
-			    	  
+			    	  String id ="su1234";
+
 			    	  int result = cdao.insert(id,comment,game_seq);
 
 			    	  
@@ -78,13 +77,13 @@ public class CmtController extends HttpServlet {
 			    	 cdao.delete(cmt_seq1);
 
 			    
-			    }else if(cmd.contentEquals("/update.com")) {   
+			    }else if(cmd.contentEquals("/modify.com")) {   
 				 
 			    String comments = request.getParameter("comments");
-				 String cmt_seq = request.getParameter("cmt_seq");
-				 int cmt_seq1 = Integer.parseUnsignedInt(cmt_seq);	
+				 int gamecmt_seq = Integer.parseInt(request.getParameter("cmt_seq"));
+
 				 
-		    	 cdao.modify(comments, cmt_seq1);
+		    	 cdao.modify(comments, gamecmt_seq);
 
 		    	  
 		      }

@@ -95,8 +95,8 @@ public class GameController extends HttpServlet {
 		         
 		      }else if(cmd.contentEquals("/rating.game")){
 
-		    	  //System.out.println(dto.getId());int game_seq = Integer.parseInt(request.getParameter("game_seq"));
-		    	  int game_seq =101;
+		    	  int game_seq = Integer.parseInt(request.getParameter("game_seq"));
+
 		          
 		    	  //원래 평점 
 		    	  double orirating =  dao.Getrating(game_seq);
