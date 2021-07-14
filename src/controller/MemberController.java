@@ -174,14 +174,11 @@ public class MemberController extends HttpServlet {
 			
 			// 로그아웃 하기 
 			} else if (url.contentEquals("/logoutProc.mem")) {
-				// 로그아웃 하기  : https://joalog.tistory.com/81		
-				
 				request.getSession().invalidate();
 				response.sendRedirect("member/logoutView.jsp");
 				
 				
-				
-				
+								
 			// 관리자 리스트
 			}else if (url.contentEquals("/adminlist.mem")) {
 				ArrayList<MemberDTO> list = dao.getMemberList();
