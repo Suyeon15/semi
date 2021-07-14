@@ -222,11 +222,7 @@ $(function(){
       <li ><a href="#Link" title="Link">Board</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
-<<<<<<< HEAD
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
-=======
-          <li ><a href="${pageContext.request.contextPath}/list2.bor?cpage=1" title="Link">후기 게시판</a></li>
->>>>>>> 9d8b222dbb4ece9cd9ccdf628246d4778ceed5e8
         </ul>
       </li>
 
