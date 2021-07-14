@@ -49,9 +49,8 @@ public class CmtController extends HttpServlet {
 					  String comment = request.getParameter("comment");
 			    	  int game_seq = Integer.parseInt(request.getParameter("game_seq"));		    	 
 
-			    	  //MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
-			    	  //String id =dto.getId();
-			    	  String id ="su1234";
+			    	  MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
+			    	  String id =dto.getId();
 
 			    	  int result = cdao.insert(id,comment,game_seq);
 
