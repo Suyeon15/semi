@@ -218,28 +218,45 @@ $(document).ready(function(){
                        address.append("By " + resp.id + "<time>" + '&nbsp&nbsp&nbsp&nbsp&nbsp' + dayjs().format("YYYY-MM-DD"));
                        
                        div1.append(resp.cmt_content);
-                       article.append(div1);
-                       article.append(div2);
+                       
                       
                        
-                       // 수정버튼
-                       let cmtedita=$("<a href='' class='edit' data-toggle='modal' id='cmtModify'>");
+                       // 연필 수정버튼
+                       let cmtedita=$("<a href='' class='edit set2' data-toggle='modal' id='cmtModify'>");
                        cmtedita.attr("data-seq",resp.cmt_seq);
-                       let cmtediti=$("<i class='material-icons' id='cmtModifyViewBtn'>&#xE254;</i>");
+                       let cmtediti=$("<i class='material-icons set2' id='cmtModifyViewBtn'>&#xE254;</i>");
                        cmtedita.append(cmtediti); 
                        div2.append(cmtedita);
                        
                        
-                       // 삭제버튼
-                       let cmtdela = $("<a href='#deleteEmployeeModal' class='delete' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
+                       // 휴지통 삭제버튼
+                       let cmtdela = $("<a href='#deleteEmployeeModal' class='delete set2' data-toggle='modal' id='cmtDelete' data-target='#deleteEmployeeModal'>");
                        cmtdela.attr("data-seq",resp.cmt_seq);
-                       let cmtdeli = $("<i class='material-icons' title='Delete' id='cmtDeleteBtn'>&#xE872;</i>");
-                       
+                       let cmtdeli = $("<i class='material-icons set2' title='Delete' id='cmtDeleteBtn'>&#xE872;</i>");                      
                        cmtdela.append(cmtdeli);
                        div2.append(cmtdela);
                        
-           
-                       ul.prependTo($("#cmt"));
+                       
+                       
+                       //엑스 버튼
+                       let cancela =$("<a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style='display:none'>");
+                       cancela.attr("seq",resp.cmt_seq);
+                       let canceli =$("<i class='material-icons set1' id='cancelIcon' style='display:none'>&#xe5c9;</i>");
+                       cancela.append(canceli);
+                       div2.prepend(cancela);
+                       
+                       //체크 버튼
+                       let checka = $("<a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' style='display:none'>");
+                       checka.attr("seq",resp.cmt_seq);
+                       let checki =$("<i class='material-icons set1' id='checkIcon' style='display:none'>&#xe86c;</i>");
+                       checka.append(checki);
+                       div2.prepend(checka);
+                       
+                       
+                       article.append(div1);
+                       article.append(div2);
+                       $("#cmt").prepend(ul);
+                      // ul.prependTo($("#cmt"));
                         
              }
 
@@ -260,8 +277,29 @@ $(document).ready(function(){
          })
       });
 
-          // ※※수정  연필 버튼 클릭 시 이벤트 ※※ 
+          // ※※Ajax 수정  연필 버튼 클릭 시 이벤트 ※※ 
           $(document).on("click","#cmtModify",function(){   
+        	  let seq = $(this).data("seq");
+              let parent =  $(this).parent().siblings(".comcont");
+              parent.attr("id","modifyCont");
+              parent.attr("contenteditable","true");
+              parent.focus();
+              
+              let comcontBtn = $(this).parent();
+              comcontBtn.children(".set1").css("display","inline-block");
+              comcontBtn.children(".set1").children().css("display","inline-block");
+              
+              comcontBtn.children(".set2").css("display","none");
+  
+
+          })
+ 
+          
+          
+          
+          
+//           ※※기존 댓글리스트 수정  연필 버튼 클릭 시 이벤트 ※※ 
+          $("#cmtModify").on("click",function(){   
              let seq = $(this).data("seq");
              let parent =  $(this).parent().siblings(".comcont");
              parent.attr("id","modifyCont");
@@ -269,47 +307,33 @@ $(document).ready(function(){
              parent.focus();
              
              
-             
-             let exist = $("#cmtModifyDoneBtn");
-             console.log(exist.length);
-             
-             if (exist.length<1){
-             let done = $("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn'>");
-             done.attr("seq",seq);
-   
-              let doneIcon = $("<i class='material-icons' id='checkIcon'>&#xe86c</i>"); 
-              done.append(doneIcon);             
-             $(this).before(done);
-               
-             let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
-              let cancelIcon = $("<i class='material-icons' id='cancelIcon'>&#xe5c9;</i>"); 
-              cancel.append(cancelIcon);     
-              $("#cmtDelete").before(cancel);
-             
-             }else{
-            	 $("#cmtModifyDoneBtn").css("display","inline-block");    
-            	 $("#checkIcon").css("display","inline-block"); 
-                 $("#cmtModifycancelBtn").css("display","inline-block"); 
-                 $("#cancelIcon").css("display","inline-block"); 
-             }
+            
+            	 $(this).closest("#cmtModifyDoneBtn").css("display","inline-block");    
+            	 $(this).closest("#checkIcon").css("display","inline-block"); 
+            	 $(this).closest("#cmtModifycancelBtn").css("display","inline-block"); 
+            	 $(this).closest("#cancelIcon").css("display","inline-block"); 
+         
               
              
              
-              
-              $(this).css("display","none");
-              $("#cmtModifyViewBtn").css("display","none");
-              $("#cmtDelete").css("display","none");
-              $("#cmtDeleteBtn").css("display","none");
+             $(this).css("display","none");
+             $(this).children("#cmtModifyViewBtn").css("display","none");
+             $(this).next("#cmtDelete").css("display","none");
+             $(this).next("#cmtDelete").children("#cmtDeleteBtn").css("display","none");
           })
- 
+          
+          
+          
+          
           // ※※modal에 수정할 seq 값 부여 ※※
       $("#CommentsModifyForm").on("shown.bs.modal",function(e){
          let seq = $(e.relatedTarget).attr("seq");
-         $("#cmtModifycmpBtn").attr("seq",seq);
+         $(".cmtModifycmpBtn").attr("seq",seq);
       })
           
+      
        // ※※모달박스의 수정버튼 클릭 시 ※※
-      $("#cmtModifycmpBtn").on("click", function() {  
+      $(document).on("click","#cmtModifycmpBtn", function() {  
         let seq = $(this).attr("seq");
          $.ajax({
             url : "${pageContext.request.contextPath}/modify.cmt",
@@ -320,38 +344,39 @@ $(document).ready(function(){
                "cmt_seq" :seq
                }
          }).done(function(){
-            $("#modifyCont").attr("contenteditable","false");
-            $("#modifyCont").css("color","transparent");
-            $("#modifyCont").css("text-shadow"," 0 0 0 black");
-            
-            $("#cmtModify").css("display","inline-block");
-              $("#cmtModifyViewBtn").css("display","inline-block");
-              $("#cmtDelete").css("display","inline-block");
-               $("#cmtDeleteBtn").css("display","inline-block");
-
-            $("#cmtModifyDoneBtn").css("display","none");    
-            $("#checkIcon").css("display","none"); 
-             $("#cmtModifycancelBtn").css("display","none"); 
-             $("#cancelIcon").css("display","none"); 
-            
+        	 let comcont = $("#modifyCont");
+        	 comcont.attr("contenteditable","false");
+        	 comcont.css("color","transparent");
+        	 comcont.css("text-shadow"," 0 0 0 black");
+        
+            comcont.next().children(".set1").css("display","none");
+            comcont.next().children(".set2").css("display","inline-block");
+            comcont.next().children(".set2").children().css("display","inline-block");
+           
          })
       });
           
 
-//          // 수정 댓글 출력
-//          $("#cmtModifycmpBtn").on("click",function(){
-//             var content = $('.comcont').html();
-//               $('#cmt_content').val( content );
-//             $.ajax({
-//                  url: "${pageContext.request.contextPath}/modify.cmt",
-//                  dataType:"json",
-//                     type: "post",
-//                     data: {
-//                        cmt_content : $("#cmt_content").val(),
-//                         cmt_seq : $("#cmt_seq").val()
-//                     }
-//               })
-//          })
+          
+          
+          
+          
+          
+       // 수정 댓글 출력
+//        $(".cmtModifycmpBtn").on("click",function(){
+//           var content = $('.comcont').html();
+//             $('#cmt_content').val( content );
+//           $.ajax({
+//                url: "${pageContext.request.contextPath}/modify.cmt",
+//                dataType:"json",
+//                   type: "post",
+//                   data: {
+//                      cmt_content : $("#cmt_content").val(),
+//                       cmt_seq : $("#cmt_seq").val()
+//                   }
+//             })
+//        })
+
           
    })
 </script>
@@ -504,17 +529,21 @@ $(document).ready(function(){
 <!--                               <input type='hidden' name='cmt_content' id='cmt_content'> -->
                               <div class="comcont_btn">
                                  <c:if test="${i.id eq login.id}">
-                                    <a href="" class="edit" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
-                                    <i class="material-icons">&#xE254;</i></a>
+                                  	 <a class='set1' href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none;">
+                                    <i class='material-icons set1' id="checkIcon" style="display:none;">&#xe86c;</i></a>
+                                    <a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style="display:none;">
+                                    <i class='material-icons set1' id="cancelIcon" style="display:none;">&#xe5c9;</i></a>
+                                   
+                                   
+<!--                                    연필 수정버튼 -->
+                                    <a href="" class="edit set2" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
+                                    <i class="material-icons set2" id="cmtModifyViewBtn">&#xE254;</i></a>
                                     
-                                    <a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none">
-                                    <i class='material-icons' id="checkIcon" style="display:none">&#xe86c;</i></a>
+<!--                                 휴지통 삭제버튼 -->
+                                    <a href="#deleteEmployeeModal" class="delete set2" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
+                                    <i class="material-icons set2" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
                                     
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
-                                    <i class="material-icons" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
-                                    
-                                    <a href='' style='color:red' id='cmtModifycancelBtn' style="display:none">
-                                    <i class='material-icons' id="cancelIcon" style="display:none">&#xe5c9;</i></a>
+                                  
                                     
                                  </c:if>
                               </div>
@@ -617,7 +646,7 @@ $(document).ready(function(){
                <div class="modal-footer">
                   <input type="button" class="btn btn-default" data-dismiss="modal"
                      value="취소">
-                     <input type="button" class="btn btn-danger" value="수정" id="cmtModifycmpBtn" data-dismiss="modal">
+                     <input type="button" class="btn btn-danger cmtModifycmpBtn" value="수정" id="cmtModifycmpBtn" data-dismiss="modal">
                </div>
             </form>
          </div>
