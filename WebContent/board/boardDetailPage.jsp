@@ -21,6 +21,9 @@
 <!-- 광재CSS 링크 -->
 <link rel="stylesheet" type="text/css" href="board/style.css" >
 
+<script src="https://unpkg.com/dayjs"></script>
+
+
 <style>
 body {color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 13px;}
 .table-responsive {margin: 30px 0;}
@@ -178,7 +181,7 @@ $(document).ready(function(){
       
       
          // 댓글 등록 및 출력
-   $("#sign").click(function(){
+  	   $("#sign").click(function(){
          if($("#comment").val() == ""){
             alert("댓글을 입력하세요.");
             $("#comment").val("").focus();
@@ -212,7 +215,8 @@ $(document).ready(function(){
                        li.append(article);
                        article.append(header);
                        header.append(address);
-                       address.append("By" + resp.id + "<time>" + resp.cmt_date);
+                       address.append("By " + resp.id + "<time>" + '&nbsp&nbsp&nbsp&nbsp&nbsp' + dayjs().format("YYYY-MM-DD"));
+                       
                        div1.append(resp.cmt_content);
                        article.append(div1);
                        article.append(div2);
@@ -243,7 +247,7 @@ $(document).ready(function(){
          }
       })
       
-      // 댓글 삭제
+      // 모달의 삭제버튼을 통해서 댓글 삭제
       $("#cmtdelete").on("click", function() {  
         let seq = $(this).attr("seq");
         $(".cmtlist.seq_"+seq).remove();
@@ -256,26 +260,42 @@ $(document).ready(function(){
          })
       });
 
-          // ※※ajax로 새로 막 생긴 댓글의 수정버튼 클릭 시 이벤트 ※※ 
+          // ※※수정  연필 버튼 클릭 시 이벤트 ※※ 
           $(document).on("click","#cmtModify",function(){   
              let seq = $(this).data("seq");
              let parent =  $(this).parent().siblings(".comcont");
              parent.attr("id","modifyCont");
-               parent.attr("contenteditable","true");
+             parent.attr("contenteditable","true");
              parent.focus();
              
+             
+             
+             let exist = $("#cmtModifyDoneBtn");
+             console.log(exist.length);
+             
+             if (exist.length<1){
              let done = $("<a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn'>");
              done.attr("seq",seq);
    
-              let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+              let doneIcon = $("<i class='material-icons' id='checkIcon'>&#xe86c</i>"); 
               done.append(doneIcon);             
              $(this).before(done);
                
              let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
-              let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
+              let cancelIcon = $("<i class='material-icons' id='cancelIcon'>&#xe5c9;</i>"); 
               cancel.append(cancelIcon);     
               $("#cmtDelete").before(cancel);
              
+             }else{
+            	 $("#cmtModifyDoneBtn").css("display","inline-block");    
+            	 $("#checkIcon").css("display","inline-block"); 
+                 $("#cmtModifycancelBtn").css("display","inline-block"); 
+                 $("#cancelIcon").css("display","inline-block"); 
+             }
+              
+             
+             
+              
               $(this).css("display","none");
               $("#cmtModifyViewBtn").css("display","none");
               $("#cmtDelete").css("display","none");
@@ -288,7 +308,7 @@ $(document).ready(function(){
          $("#cmtModifycmpBtn").attr("seq",seq);
       })
           
-       // ※※ajax로 새로 막 생긴 댓글의 수정 완료 버튼 클릭 시 ,모달팝업 후 수정 완료하기! ※※
+       // ※※모달박스의 수정버튼 클릭 시 ※※
       $("#cmtModifycmpBtn").on("click", function() {  
         let seq = $(this).attr("seq");
          $.ajax({
@@ -309,28 +329,29 @@ $(document).ready(function(){
               $("#cmtDelete").css("display","inline-block");
                $("#cmtDeleteBtn").css("display","inline-block");
 
-            $("#cmtModifyDoneBtn").remove();        
-             $("#cmtModifycancelBtn").remove();
-             
+            $("#cmtModifyDoneBtn").css("display","none");    
+            $("#checkIcon").css("display","none"); 
+             $("#cmtModifycancelBtn").css("display","none"); 
+             $("#cancelIcon").css("display","none"); 
             
          })
       });
           
 
-         // 수정 댓글 출력
-         $("#cmtModifycmpBtn").on("click",function(){
-            var content = $('.comcont').html();
-              $('#cmt_content').val( content );
-            $.ajax({
-                 url: "${pageContext.request.contextPath}/modify.cmt",
-                 dataType:"json",
-                    type: "post",
-                    data: {
-                       cmt_content : $("#cmt_content").val(),
-                        cmt_seq : $("#cmt_seq").val()
-                    }
-              })
-         })
+//          // 수정 댓글 출력
+//          $("#cmtModifycmpBtn").on("click",function(){
+//             var content = $('.comcont').html();
+//               $('#cmt_content').val( content );
+//             $.ajax({
+//                  url: "${pageContext.request.contextPath}/modify.cmt",
+//                  dataType:"json",
+//                     type: "post",
+//                     data: {
+//                        cmt_content : $("#cmt_content").val(),
+//                         cmt_seq : $("#cmt_seq").val()
+//                     }
+//               })
+//          })
           
    })
 </script>
@@ -474,7 +495,7 @@ $(document).ready(function(){
                            <article>
                               <header>
                                  <address>
-                                    By ${i.id}
+                                    By ${i.id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <time datetime="">${i.cmt_date}</time>
                                     <!-- <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time> -->
                                  </address>
@@ -485,8 +506,16 @@ $(document).ready(function(){
                                  <c:if test="${i.id eq login.id}">
                                     <a href="" class="edit" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
                                     <i class="material-icons">&#xE254;</i></a>
+                                    
+                                    <a href='#CommentsModifyForm' data-toggle='modal' style='color:green' id='cmtModifyDoneBtn' seq="${i.cmt_seq}" style="display:none">
+                                    <i class='material-icons' id="checkIcon" style="display:none">&#xe86c;</i></a>
+                                    
                                     <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
                                     <i class="material-icons" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
+                                    
+                                    <a href='' style='color:red' id='cmtModifycancelBtn' style="display:none">
+                                    <i class='material-icons' id="cancelIcon" style="display:none">&#xe5c9;</i></a>
+                                    
                                  </c:if>
                               </div>
                            </article>
