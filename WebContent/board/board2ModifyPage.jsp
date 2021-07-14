@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BoardModifyPage</title>
+<title>BoardModifyPage2</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- include libraries(jQuery, bootstrap) -->
@@ -212,7 +212,6 @@ $(function(){
 
 </head>
 <body>
-
 	<div class="nav_wrapper"> 
   <!--<a class="menu-link" href="#menu"></a>-->
   
@@ -290,11 +289,12 @@ $(function(){
       </ul>
     </c:when>
     
+    
 
     <c:otherwise>
    	 <ul>
-       <li><a href="index.jsp" title="Link">로그인</a></li>
-       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="member/index.jsp" title="Link">로그인</a></li>
+       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>
 </c:choose>
@@ -302,9 +302,6 @@ $(function(){
 </div>
 <!-- 광재 Script 링크 -->
 <script src="board/script.js"></script>
-
-
-
 
 
 
@@ -370,15 +367,9 @@ $(function(){
 				<button class="btn btn-danger" type="button" id="btn3">삭제</button>
 			  </div>
 		</div>
-       
-        </div>
-          
+		</div>  
   </div>
 </div>
-
-  
-  
-  
 
 <c:choose>
 	<c:when test="${login ne null && login.id eq 'admin'}">
@@ -394,32 +385,15 @@ $(function(){
 	</c:otherwise>
 </c:choose>
 
-
-	
-
-
-
-		
-
-
     <div class="row">
       <hr>
       <div class="col-12">
         <button type="button" id="backBtn" class="btn btn-default pull-left" style="background-color: #00285b; color:white">목록</button>
-        
         <div class="pull-right"><a id="modifyBtn" class="btn btn-info boardAddBtn"><span class="glyphicon glyphicon-pencil"></span> 수정</a></div>
       </div> 
     </div>
-    
-    
 </form>
-
-
     </div>
-
-
-
-
 
 </body>
 </html>

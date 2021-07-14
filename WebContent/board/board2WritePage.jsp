@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BoardModifyPage</title>
+<title>BoardWritePage2</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- include libraries(jQuery, bootstrap) -->
@@ -20,7 +20,7 @@
 
 
 <!-- 광재CSS 링크 -->
-<link rel="stylesheet" type="text/css" href="board/style.css" >
+<link rel="stylesheet" type="text/css" href="style.css" >
 
 
 
@@ -62,21 +62,18 @@ display:inline;
 }
 
 
-
 </style>
 
 
 <script>
 $(function(){
-	
-	$("#summernote").val('${dto.content}');
-	
+	let i=0;
 	$("#backBtn").on("click",function(){
-		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+		location.href = "${pageContext.request.contextPath}/list.bor2?cpage=1";
 	})
 	
 	
-	$("#modifyBtn").on("click",function(){
+	$("#saveBtn").on("click",function(){
 		
 		let title = $("#bbs_title").val();
 		let content = $("#summernote").val();
@@ -118,19 +115,6 @@ $(function(){
 	})	
 	
 	
-	$(".delTarget").on("click",function(){
-		let fileSeq=$(this).attr("seq");
-		let del = $("<input type='hidden' name='delFiles'>");
-		del.val(fileSeq);
-		
-		$("#fileDiv").append(del);
-		
-		$(this).parent().parent().remove();
-	})
-	
-	
-	
-	
 	
 	 $('#summernote').summernote({
 	        placeholder: 'Write contents',
@@ -142,69 +126,44 @@ $(function(){
 	        callbacks:{
 	            onImageUpload:function(files) {
 	                  
-	                 let editor = this;   
+	                 let editor = this;  
 	                 let file = files[0];      
 	               
-	                 let form = new FormData()   
-	                 form.append("file",file);     
+	                 let form = new FormData()    
+	                 form.append("file",file);    
 	      
-	                 
-	                 
 	                 $.ajax({
 	                    data:form,
 	                    type:"post",
-	                    url:"${pageContext.request.contextPath}/upload.file",
+	                    url:"${pageContext.request.contextPath}/upload.file2",
 	                    contentType:false,   
 	                    processData:false,  
 	                	dataType:"json",
 	           
 	                 }).done(function(resp){
-	             
-	                   
-	                   $(editor).summernote('insertImage',"${pageContext.request.contextPath}"+resp.returnPath);
-	   
-	                   
+	                  
+	                   $(editor).summernote('insertImage',"${pageContext.request.contextPath}"+resp.returnPath); //editor 인스턴스의 insertImage 기능으로 이미지를 화면에 출력
+
 	                   // input type=hidden 노드
 	                   let input = $("<input type='hidden'>");
 	                   input.attr("name","summerImg");
 	                   input.attr("value",[resp.oriName,resp.sysName]);
 	                  
-	                   
 	                   $("#frm").append(input);
-	                   
-	                   
-	                 });
-	                 
-	                 
-	                 
-	               },
-	               
-	              
-	               onMediaDelete:function(target){
-	            	  
-	            	   $.ajax({
-	            		   data:{src:target[0].src},
-	            		   type:"post",
-	            		   url:"${pageContext.request.contextPath}/deleteImg.file",   		   
-	            	   }).done(function(resp){
-	            		   console.log(resp);
-	            	   })
-	               }
-	              
-	               
-	               
-	               
+	                 }); 
+	               } 
 	           }
-	        
 	      });
+
 	
-	
-	
-	
-	
-	
-	
+	$(window).on("unload",function(){
+		navigator.sendBeacon("${pageContext.request.contextPath}/unload.file2");
+	})
+
 })
+
+
+
 
 
 
@@ -213,8 +172,9 @@ $(function(){
 </head>
 <body>
 
-	<div class="nav_wrapper"> 
-  <!--<a class="menu-link" href="#menu"></a>-->
+
+<div class="nav_wrapper"> 
+ 
   
   <div class="spinner-master">
     <input type="checkbox" id="spinner-form" />
@@ -264,7 +224,7 @@ $(function(){
 	
 <c:choose>
 	
-	<c:when test="${login ne null && login.id eq 'admin'}">
+		<c:when test="${login ne null && login.id eq 'admin'}">
     <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
@@ -290,18 +250,19 @@ $(function(){
       </ul>
     </c:when>
     
+    
 
     <c:otherwise>
    	 <ul>
-       <li><a href="index.jsp" title="Link">로그인</a></li>
-       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="member/index.jsp" title="Link">로그인</a></li>
+       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>
 </c:choose>
   </nav>
 </div>
 <!-- 광재 Script 링크 -->
-<script src="board/script.js"></script>
+<script src="script.js"></script>
 
 
 
@@ -314,18 +275,17 @@ $(function(){
     <div class="table-wrapper">
 		<div class="row">
 			<div class="table-title col-12">
-				<h2><b>Modify Contents</b></h2>
+				<h2><b>Write Contents</b></h2>
 			</div>			
 		</div>
     </div>
 
-	 <form id="frm" action="${pageContext.request.contextPath}/modify.bor" method="post" enctype="multipart/form-data">
-    <div class="row">
-   		<input type="hidden" name="board_seq" value=${dto.board_seq}>
+	<form id="frm" action="${pageContext.request.contextPath}/save.bor2" method="post" enctype="multipart/form-data">
+    <div class="row"> 
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
         <div class="col-sm-10 writeDiv">
-          <input type="text" class="form-control" id="bbs_title" name="title" placeholder="Title" value=${dto.title} >
+          <input type="text" class="form-control" id="bbs_title" name="title" placeholder="Title" >
         </div>
       </div>
  
@@ -338,20 +298,9 @@ $(function(){
        
        <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">첨부파일</label>
-        
-        <div class="col-sm-10 writeDiv" id="fileDiv">
-  
-			 <c:forEach var="f" items="${flist}">
-			 	<div class="input-group">
-                    <a href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}" style="margin:0 20px 0 5px">${f.oriName}</a>     
-                    <div class="input-group-btn" style="display: inline;">
-					<button class="btn btn-danger delTarget" type="button" seq=${f.file_seq} style="padding:0; margin:0; width:15px; height:16px">X</button>
-			  		</div>
-			  	</div>	
-             </c:forEach>
-  
-       	<br>
-       	
+        <div class="col-sm-10 writeDiv">
+
+       
         <div class="input-group" >
 			  <input type="file" class="form-control" id="file1"  name="file1" style="display:inline; width:430px">
 			  <div class="input-group-btn" style="display: inline;">
@@ -359,7 +308,7 @@ $(function(){
 			  </div>
 		</div>
 		<div class="input-group" >
-			  <input type="file" class="form-control" id="file2"  name="file2" style="display:inline; width:430px">
+			  <input type="file" class="form-control" id="file2"  name="file2" style="display:inline; width:430px" >
 			  <div class="input-group-btn" style="display: inline;">
 				<button class="btn btn-danger" type="button" id="btn2">삭제</button>
 			  </div>
@@ -376,17 +325,13 @@ $(function(){
   </div>
 </div>
 
-  
-  
-  
-
 <c:choose>
 	<c:when test="${login ne null && login.id eq 'admin'}">
 		<div class="row" style="margin-top:15px">
 			<label class="col-sm-2 control-label">공지 등록 여부</label>
         	<div class="col-sm-10 writeDiv" >
-         	 <input type="radio" name="notice" value="Y" style="margin-left:8px">등록  &nbsp; &nbsp; &nbsp;<input type="radio" name="notice" value="N" checked>등록안함
-       		 </div>
+          	<input type="radio" name="notice" value="Y" style="margin-left:8px">등록  &nbsp; &nbsp; &nbsp;<input type="radio" name="notice" value="N" checked>등록안함
+        	</div>
 		</div> 
 	</c:when>
 	<c:otherwise>
@@ -394,31 +339,20 @@ $(function(){
 	</c:otherwise>
 </c:choose>
 
-
-	
-
-
-
+	<div id="imgtest">
 		
-
-
+	</div>
+		
     <div class="row">
       <hr>
       <div class="col-12">
         <button type="button" id="backBtn" class="btn btn-default pull-left" style="background-color: #00285b; color:white">목록</button>
         
-        <div class="pull-right"><a id="modifyBtn" class="btn btn-info boardAddBtn"><span class="glyphicon glyphicon-pencil"></span> 수정</a></div>
+        <div class="pull-right"><a id="saveBtn" class="btn btn-info boardAddBtn"><span class="glyphicon glyphicon-pencil"></span> 등록</a></div>
       </div> 
     </div>
-    
-    
 </form>
-
-
     </div>
-
-
-
 
 
 </body>

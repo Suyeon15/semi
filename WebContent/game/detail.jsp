@@ -857,8 +857,8 @@ a.menu-link.active:after { content: "\2715"; }
 
       <li ><a href="#Link" title="Link">Board</a>
         <ul >
-          <li ><a href="#Link" title="Link ">자유 게시판</a></li>
-          <li ><a href="#Link" title="Link">후기 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
+          <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
         </ul>
       </li>
 
