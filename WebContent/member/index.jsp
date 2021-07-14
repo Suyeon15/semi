@@ -115,7 +115,6 @@ html {
 </style>
 </head>
 <body>
-<body>
 	<form action="${pageContext.request.contextPath}/loginProc.mem" method="post">
 		<div class="container">
 			<div class="helper"></div>
@@ -137,10 +136,10 @@ html {
 							<li><a href="membership.mem">회원가입</a></li>
 							<span> &nbsp;|</span>
 					
-							<li><a href='#' onclick="window.open('${pageContext.request.contextPath}/member/findId.jsp','window','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, width=600,height=760,left=0, right=500, top=0, scrollbars=yes');return false">
+							<li><a href='#' onclick="window.open('${pageContext.request.contextPath}/member/findId.jsp','window','width=600,height=760, right=500, top=0, scroll=no');return false">
 							아이디 찾기</a></li>
 							<span> &nbsp;|</span>
-							<li><a href='#' onclick="window.open('${pageContext.request.contextPath}/member/findPw.jsp','window','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, width=600,height=760,left=0, right=500, top=0, scroll=no');return false">
+							<li><a href='#' onclick="window.open('${pageContext.request.contextPath}/member/findPw.jsp','window','width=600,height=760, right=500, top=0, scroll=no');return false">
 							비밀번호 찾기</a></li>
 
 							<span> &nbsp;|</span>
@@ -153,20 +152,6 @@ html {
 	</form>
 	<script src="../js/right.js"></script>
 	<script src="../js/f5_attack.js"></script>
-	
-	
-	
 
-	
-	
-	
 </body>
-
-
-
-
-
-
-
-
 </html>
