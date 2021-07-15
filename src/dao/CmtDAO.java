@@ -106,6 +106,7 @@ public class CmtDAO {
 		      
 		   }
 		
+		//확인용 커밋
 		public int Getseq() throws Exception{
 
 		      String sql = "SELECT gamecmt_seq.NEXTVAL FROM DUAL";
@@ -134,7 +135,7 @@ public class CmtDAO {
 	     
 	     public int modify(String comments, int gamecmt_seq) throws Exception{
 	         String sql ="update game_cmt set comments=? where gamecmt_seq=?";
-	         
+	       
 	         try(Connection con = this.getConnection(); 
 	               PreparedStatement pstat = con.prepareStatement(sql)){
 	        	 

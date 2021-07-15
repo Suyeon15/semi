@@ -62,7 +62,6 @@ public class CmtController extends HttpServlet {
 			    	  obj1.addProperty("id", id);
 			    	  obj1.addProperty("game_seq", game_seq);
 
-
 			    	  response.setCharacterEncoding("utf8");
 			          response.setContentType("text/html; charset=utf8;");
 			          
