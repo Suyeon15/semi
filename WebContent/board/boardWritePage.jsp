@@ -269,7 +269,7 @@ $(function(){
 
     <c:otherwise>
    	 <ul>
-       <li><a href="index.jsp" title="Link">로그인</a></li>
+       <li><a href="member/index.jsp" title="Link">로그인</a></li>
        <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>

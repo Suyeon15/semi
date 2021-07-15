@@ -259,7 +259,7 @@ $(function(){
 						<c:when test="${list.notice eq 'Y'}">
 						<tr style="background-color:#FFFACD" onMouseOver="this.style='background-color:#D3D3D3'" onMouseOut="this.style='background-color:#FFFACD'">
 							<td class="d-sm-table-cell"><i class="material-icons notification_important" style="font-size:20px">&#xe004;</i></td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?board_seq=${list.board_seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq=${list.board_seq}">${list.title}</a></td>
 							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
@@ -269,7 +269,7 @@ $(function(){
 						<c:otherwise>
 						<tr>
 							<td class="d-sm-table-cell" style="width:7%">${list.board_seq}</td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?board_seq=${list.board_seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq=${list.board_seq}">${list.title}</a></td>
 							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
@@ -286,7 +286,7 @@ $(function(){
 					<c:forEach var="searchlist" items="${searchList}">
 					<tr>
 					<td class="d-sm-table-cell" style="width:7%">${searchlist.board_seq}</td>
-					<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?seq=${searchlist.board_seq}">${searchlist.title}</a></td>
+					<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?seq=${searchlist.board_seq}">${searchlist.title}</a></td>
 					<td class="d-sm-table-cell" style="width:13%">${searchlist.id}</td>
 					<td class="d-none d-md-table-cell" style="width:20%">${searchlist.write_date}</td>
 					<td class="d-none d-md-table-cell" style="width:10%">${searchlist.view_count}</td>
@@ -356,15 +356,7 @@ $(function(){
 			</div>
 		</form>
 		</div>
-		
 		</div>
-		
-
 		</div>
-
-
-
-	
-
 </body>
 </html>
