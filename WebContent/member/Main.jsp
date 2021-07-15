@@ -316,7 +316,7 @@
         <!--------------------------게임 3x3 화면----------------------------->
         <ul class="nospace group overview">
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game1.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=28"><img src="../member_Img/game_img/game1.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">slither.io</h6>
                 <p>장르: 웹 게임, 액션 게임, 대규모 다중 사용자 온라인 게임, 캐주얼 게임</p>
@@ -325,7 +325,7 @@
           </li>
 
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game2.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=33"><img src="../member_Img/game_img/game2.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">agar.io</h6>
                 <p>장르: 액션 게임, 대규모 다중 사용자 온라인 게임</p>
@@ -334,9 +334,9 @@
 
           </li>
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game3.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=6"><img src="../member_Img/game_img/game3.png" alt=""></a>
               <figcaption>
-                <h6 class="heading">depo.io</h6>
+                <h6 class="heading">diep.io</h6>
                 <p>장르: 액션 게임</p>
               </figcaption>
             </figure>
@@ -344,7 +344,7 @@
 
           
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game4.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=40"><img src="../member_Img/game_img/game4.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">좀비로얄아이오</h6>
                 <p>장르: 배틀 로얄 게임, 생존 게임</p>
@@ -353,7 +353,7 @@
           </li>
           
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game5.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=4"><img src="../member_Img/game_img/game5.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">Creatur.io</h6>
                 <p>장르: 생존 게임</p>
@@ -361,7 +361,7 @@
             </figure>
           </li>
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game6.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=30"><img src="../member_Img/game_img/game6.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">Starve.io</h6>
                 <p>플랫폼: 안드로이드</p>
