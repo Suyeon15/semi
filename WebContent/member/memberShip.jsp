@@ -13,6 +13,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 
 <style>
@@ -24,8 +30,10 @@
         margin: 0;
         height: 100%;
         background: rgb(255, 206, 1);
-        font-family: Georgia, "맑은 고딕", serif;
+        font-family: 'Noto Sans KR';
+        font-size: 20px;
     }
+    
    
     #logo {
         width: 240px;
@@ -109,6 +117,17 @@
         padding-bottom: 15px;
         background-color: rgb(84, 37, 212);
     }
+    
+    #check {
+        border: solid 1px #dadada;
+        padding: 10px 14px 10px 14px;
+        box-sizing: border-box;
+        float: right;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        background-color: rgb(84, 37, 212);
+    }
+    
 
 
 
@@ -219,7 +238,7 @@
                 <span class="box1 int_postal">
                     <input type="text" id="id" name="id" class="int" maxlength="20">
                 </span>
-                <button type="button" class="btn btn-primary" onclick="openIdChk()">확인</button>
+                <button type="button" class="btn btn-primary" id="check" onclick="openIdChk()">확인</button>
                 
                 <input type="hidden" name="idDuplication" value="idUncheck">
                 <span class="error_next_box"></span>
@@ -262,7 +281,7 @@
              <div>
                 <h3 class="join_title"><label for="email">본인확인 이메일</label></h3>
                 <span class="box int_email">
-                    <input type="text" id="email" name="email" class="int" maxlength="100" placeholder="선택입력">
+                    <input type="text" id="email" name="email" class="int" maxlength="100">
                 </span>
                 <span class="error_next_box"></span>    
             </div>
@@ -272,7 +291,7 @@
             <div>
                 <h3 class="join_title"><label for="phoneNo">핸드폰</label></h3>
                 <span class="box int_phone">
-                    <input type="tel" id="phone" name="phone" class="int" maxlength="16">
+                    <input type="tel" id="phone" name="phone" class="int" maxlength="16" placeholder="필수 입력">
                 </span>
                 <span class="error_next_box"></span>
             </div>
@@ -518,6 +537,8 @@
 			
 			let idInput = document.getElementById("id");
 			let pwInput = document.getElementById("pswd1");
+			let pw2Input = document.getElementById("pswd2");
+			
 			let nameInput = document.getElementById("name");
 			let phone1Input = document.getElementById("phone1");
 			let phone2Input = document.getElementById("phone2");
@@ -526,7 +547,8 @@
 			
 			let resultId = idPattern.test(idInput.value);
 			let resultPw = pwPattern.test(pwInput.value);
-			let resultName = namePattern.test(name.value);
+			let resultPw2 = pwPattern.test(pw2Input.value);
+			let resultName = namePattern.test(nameInput.value);
 
 			let resultPhone = isPhoneNum.test(phone.value);
 
@@ -553,6 +575,21 @@
 					})
 				return;
 			}
+			
+			if (!resultPw2) {
+				Swal.fire({
+					  icon: 'error',
+					  title: '비밀번호 재확인이 잘못됐습니다.',
+					  text: '한번 확인해보세요!',
+					  
+					})
+				return;
+			}
+			
+			
+			
+			
+			
 			if (!resultName) {
 				Swal.fire({
 					  icon: 'error',
@@ -562,20 +599,22 @@
 					})
 				return;
 			}
+			
+			if (!resultEmail) {
+				Swal.fire({
+					  icon: 'error',
+					  title: '이메일이 잘못됐습니다.',
+					  text: '한번 확인해보세요!',  
+					})
+				return;
+			}
+			
 			if (!resultPhone) {
 				Swal.fire({
 					  icon: 'error',
 					  title: '전화번호가 잘못됐습니다.',
 					  text: '한번 확인해보세요!',
 					  
-					})
-				return;
-			}
-			if (!resultEmail) {
-				Swal.fire({
-					  icon: 'error',
-					  title: '이메일이 잘못됐습니다.',
-					  text: '한번 확인해보세요!',  
 					})
 				return;
 			}

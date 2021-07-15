@@ -22,6 +22,7 @@
 	rel="stylesheet">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>비밀번호 찾기</title>
 <style>
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
@@ -34,7 +35,7 @@ body {
 	height: 50%;
 	margin: 0;
 	padding-bottom: 60px;
-	font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+	font-family: 'Noto Sans KR';
 	background-repeat: no-repeat;
 }
 

@@ -14,7 +14,10 @@
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>아이디 찾기</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+
+ <title>아이디 찾기</title>
     <style>
         @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
@@ -26,7 +29,7 @@
 	    margin: 0;
 
   		padding-bottom: 60px;
-  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+  		font-family: 'Noto Sans KR';
   		background-repeat: no-repeat;
 	}
 	
