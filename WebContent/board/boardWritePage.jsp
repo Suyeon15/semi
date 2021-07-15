@@ -189,7 +189,7 @@ $(function(){
 
 
 
-	<div class="nav_wrapper"> 
+<div class="nav_wrapper"> 
   <!--<a class="menu-link" href="#menu"></a>-->
   
   <div class="spinner-master">
@@ -206,7 +206,7 @@ $(function(){
       
       <li ><div class="nabar_logo">방구석 오락실</div></li>
     
-      <li ><a href="Main.jsp" title="Link">Home</a></li>
+      <li ><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">Home</a></li>
       
 
       <li ><a href="" title="Link">Game</a>
