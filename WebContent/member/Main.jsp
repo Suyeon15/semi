@@ -52,8 +52,8 @@
         return false;
       })
 
-      $('.carousel').carousel({ interval: 3000 })
-
+      $('.carousel').carousel({ interval: 30000 })
+      
     });
   </script>
   <!----------------------------->
@@ -267,11 +267,15 @@
 	<br>
 	<br>
 	<br>
-  <div id="demo" class="carousel slide" data-ride="carousel">
+	<!-- 여기서 시간 초 수정!! date-interval이 초단위 수정 -->
+  <div id="demo" class="carousel slide" data-ride="carousel" data-interval="50000"> 
     <div class="carousel-inner">
       <!-- 슬라이드 쇼 -->
       <div class="carousel-item active">
-        <!--가로--> <img class="d-block w-100" src="../member_Img/slide/slide1.png" alt="First slide">
+      <video  autoplay loop muted>
+		<source src="../member_Img/slide/movie.mp4" class="d-block w-5000" alt="First slide">
+	</video>
+        
 
       </div>
       <div class="carousel-item"> <img class="d-block w-100" src="../member_Img/slide/slide2.png" alt="Second slide">
@@ -327,8 +331,8 @@
           <li class="one_third">
             <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=33"><img src="../member_Img/game_img/game2.png" alt=""></a>
               <figcaption>
-                <h6 class="heading">agar.io</h6>
-                <p>장르: 액션 게임, 대규모 다중 사용자 온라인 게임</p>
+                <h6 class="heading">TETR.IO</h6>
+                <p>장르: 퍼즐 게임</p>
               </figcaption>
             </figure>
 
