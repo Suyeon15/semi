@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="../js/f5_attack.js"></script>
+<script src="../js/right.js"></script>
 </head>
 <body>
 	<b><font size="4" color="gray">아이디 중복체크</font></b><br><br>

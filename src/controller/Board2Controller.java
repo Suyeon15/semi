@@ -87,15 +87,15 @@ public class Board2Controller extends HttpServlet {
 			response.sendRedirect("board/board2WritePage.jsp");
 		
 		}else if(cmd.contentEquals("/detail.bor2")) {
-			int board_seq = Integer.parseInt(request.getParameter("board_seq"));
+			int board_seq2 = Integer.parseInt(request.getParameter("board_seq2"));
 			
-			dao.view_count(board_seq); // 조회수 올리는 코드
-			Board2DTO dto = dao.detail(board_seq);  //게시글의 디테일 내용 가져오기
-			List<Comments2DTO> cmtlist = cdao.getCommentsList(board_seq); // 댓글 목록을 가져오는 코드
+			dao.view_count(board_seq2); // 조회수 올리는 코드
+			Board2DTO dto = dao.detail(board_seq2);  //게시글의 디테일 내용 가져오기
+			List<Comments2DTO> cmtlist = cdao.getCommentsList(board_seq2); // 댓글 목록을 가져오는 코드
 			String result = g.toJson(cmtlist);
 
 			
-			List<File2DTO> flist = fdao.fileList(board_seq);  //게시글의 첨부파일 리스트 가져오기
+			List<File2DTO> flist = fdao.fileList(board_seq2);  //게시글의 첨부파일 리스트 가져오기
 			
 			
 			
@@ -164,11 +164,11 @@ public class Board2Controller extends HttpServlet {
 				}
 			}
 			
-			response.sendRedirect("detail.bor2?board_seq="+board_seq);
+			response.sendRedirect("detail.bor2?board_seq2="+board_seq);
 			
 			
 		}else if(cmd.contentEquals("/delete.bor2")) {
-            int board_seq = Integer.parseInt(request.getParameter("board_seq"));
+            int board_seq = Integer.parseInt(request.getParameter("board_seq2"));
             int result = dao.delete(board_seq);
             
             response.sendRedirect(ctxPath + "/list.bor2?cpage=1");
@@ -176,7 +176,7 @@ public class Board2Controller extends HttpServlet {
         
             
 		}else if(cmd.contentEquals("/modifyPage.bor2")) {
-			int board_seq = Integer.parseInt(request.getParameter("board_seq"));
+			int board_seq = Integer.parseInt(request.getParameter("board_seq2"));
 			Board2DTO dto = dao.detail(board_seq);
 			
 			List<File2DTO> flist = fdao.fileList(board_seq);
@@ -191,7 +191,7 @@ public class Board2Controller extends HttpServlet {
 			MultipartRequest multi = new MultipartRequest(request,filePath,FileConfig.uploadMaxSize,"utf-8",new DefaultFileRenamePolicy());
 			
 			
-			int board_seq = Integer.parseInt(multi.getParameter("board_seq"));
+			int board_seq = Integer.parseInt(multi.getParameter("board_seq2"));
 			String reTitle = dao.XSSFilter(multi.getParameter("title"));
 			String reContent = multi.getParameter("content");
 			String notice = multi.getParameter("notice");
@@ -247,7 +247,7 @@ public class Board2Controller extends HttpServlet {
 			
 			
 			
-			response.sendRedirect("detail.bor2?board_seq="+ board_seq);
+			response.sendRedirect("detail.bor2?board_seq2="+ board_seq);
 			
 		}
 		
