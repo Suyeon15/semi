@@ -52,7 +52,7 @@
         return false;
       })
 
-      $('.carousel').carousel({ interval: 3000 })
+      $('.carousel').carousel({ interval: 30000 })
       
     });
   </script>
@@ -267,11 +267,15 @@
 	<br>
 	<br>
 	<br>
-  <div id="demo" class="carousel slide" data-ride="carousel">
+	<!-- 여기서 시간 초 수정!! date-interval이 초단위 수정 -->
+  <div id="demo" class="carousel slide" data-ride="carousel" data-interval="50000"> 
     <div class="carousel-inner">
       <!-- 슬라이드 쇼 -->
       <div class="carousel-item active">
-        <!--가로--> <img class="d-block w-100" src="../member_Img/slide/slide1.png" alt="First slide">
+      <video  autoplay loop muted>
+		<source src="../member_Img/slide/movie.mp4" class="d-block w-5000" alt="First slide">
+	</video>
+        
 
       </div>
       <div class="carousel-item"> <img class="d-block w-100" src="../member_Img/slide/slide2.png" alt="Second slide">
