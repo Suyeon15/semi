@@ -84,7 +84,6 @@ public class CmtController extends HttpServlet {
 				 
 		    	 cdao.modify(comments, gamecmt_seq);
 
-		    	  
 		      }
 				
 				
