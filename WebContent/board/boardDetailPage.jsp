@@ -21,6 +21,8 @@
 <!-- 광재CSS 링크 -->
 <link rel="stylesheet" type="text/css" href="board/style.css" >
 
+<script src="https://unpkg.com/dayjs"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
@@ -230,10 +232,9 @@ $(document).ready(function(){
                        li.append(article);
                        article.append(header);
                        header.append(address);
-                       address.append("By" + resp.id + "<time>" + resp.cmt_date);
+                       address.append("By " + resp.id + "<time>" + '&nbsp&nbsp&nbsp&nbsp&nbsp' + dayjs().format("YYYY-MM-DD"));
+                       
                        div1.append(resp.cmt_content);
-                       article.append(div1);
-                       article.append(div2);
                       
                        
                        // 수정버튼
