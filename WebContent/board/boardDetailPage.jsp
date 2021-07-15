@@ -21,8 +21,22 @@
 <!-- 광재CSS 링크 -->
 <link rel="stylesheet" type="text/css" href="board/style.css" >
 
-<script src="https://unpkg.com/dayjs"></script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<style>
+.heading  {
+     font-family: 'Black Han Sans';
+     font-size: 40px;
+    }
+    
+    a, span, fieldset {
+    	font-family: 'Noto Sans KR';
+ }
+ 
+</style>
+ 
+</style>
 
 <style>
 body {color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 13px;}
