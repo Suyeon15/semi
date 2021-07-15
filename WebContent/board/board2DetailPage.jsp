@@ -188,12 +188,12 @@ $(document).ready(function(){
             
          }else{
             $.ajax({
-               url:"${pageContext.request.contextPath}/write.cmt",
+               url:"${pageContext.request.contextPath}/write.cmt2",
                type:"post",
                dataType:"json",
                data:{
                   cmt_content : $("#comment").val(),
-                  board_seq : $("#board_seq").val()
+                  board_seq2 : $("#board_seq").val()
                },
                  success: function(resp){
                     
@@ -270,7 +270,7 @@ $(document).ready(function(){
         $(".cmtlist.seq_"+seq).remove();
          
          $.ajax({
-            url : "${pageContext.request.contextPath}/delete.cmt",
+            url : "${pageContext.request.contextPath}/delete.cmt2",
             type : "post",
             dataType : "json",
             data : {"cmt_seq" : seq}
@@ -336,7 +336,7 @@ $(document).ready(function(){
       $(document).on("click","#cmtModifycmpBtn", function() {  
         let seq = $(this).attr("seq");
          $.ajax({
-            url : "${pageContext.request.contextPath}/modify.cmt",
+            url : "${pageContext.request.contextPath}/modify.cmt2",
             type : "post",
             dataType : "json",
             data : {
@@ -393,7 +393,7 @@ $(document).ready(function(){
       </li>
 
 
-      <li ><a href="#Link" title="Link">Category</a>
+      <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link">Category</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
@@ -484,7 +484,7 @@ $(document).ready(function(){
                <h4>Files</h4>
                <c:forEach var="f" items="${flist}">
                   <a
-                     href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a>
+                     href="${pageContext.request.contextPath}/download.file2?file_seq2=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a>
                   <br>
                </c:forEach>
             </div>
@@ -533,7 +533,7 @@ $(document).ready(function(){
                </div>
                <h4>Write A Comment</h4>
                <input type="hidden" value="${list.board_seq}"
-                  name="${list.board_seq}" id="board_seq2">
+                  name="${list.board_seq}" id="board_seq">
                <div class="block clear">
                   <label for="comment">Your Comment</label> <br>
                   <textarea name="cmt_content" id="comment" cols="25" rows="3"

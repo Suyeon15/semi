@@ -40,9 +40,9 @@ public class File2Controller extends HttpServlet {
 		
 		try {
 		if(cmd.contentEquals("/download.file2")) {
-			String oriName2 = request.getParameter("oriName2");
-			String sysName2 = request.getParameter("sysName2");
-			String filePath2 = request.getServletContext().getRealPath("files2");
+			String oriName2 = request.getParameter("oriName");
+			String sysName2 = request.getParameter("sysName");
+			String filePath2 = request.getServletContext().getRealPath("files");
 			
 			File targetFile = new File(filePath2+"/"+sysName2);
 			
