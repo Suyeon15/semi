@@ -281,7 +281,7 @@
              <div>
                 <h3 class="join_title"><label for="email">본인확인 이메일</label></h3>
                 <span class="box int_email">
-                    <input type="text" id="email" name="email" class="int" maxlength="100" placeholder="선택입력">
+                    <input type="text" id="email" name="email" class="int" maxlength="100">
                 </span>
                 <span class="error_next_box"></span>    
             </div>
@@ -291,7 +291,7 @@
             <div>
                 <h3 class="join_title"><label for="phoneNo">핸드폰</label></h3>
                 <span class="box int_phone">
-                    <input type="tel" id="phone" name="phone" class="int" maxlength="16">
+                    <input type="tel" id="phone" name="phone" class="int" maxlength="16" placeholder="필수 입력">
                 </span>
                 <span class="error_next_box"></span>
             </div>
