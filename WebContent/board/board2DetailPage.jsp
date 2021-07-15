@@ -169,7 +169,7 @@ $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
       
       $("#backBtn").on("click",function(){
-         location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+         location.href = "${pageContext.request.contextPath}/list.bor2?cpage=1";
       })
       
       
@@ -522,8 +522,7 @@ $(document).ready(function(){
 <!--                                 휴지통 삭제버튼 -->
                                     <a href="#deleteEmployeeModal" class="delete set2" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
                                     <i class="material-icons set2" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
-                                    
-                                  
+
                                     
                                  </c:if>
                               </div>

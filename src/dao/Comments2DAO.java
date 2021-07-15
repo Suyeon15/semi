@@ -62,7 +62,7 @@ public class Comments2DAO {
 
 
 		   public List<Comments2DTO> getCommentsList(int board_seq2) throws Exception{
-		      String sql = "select * from comments where board_seq2 =? order by cmt_seq2 desc";
+		      String sql = "select * from comments2 where board_seq2 =? order by cmt_seq2 desc";
 		      try(
 		            Connection con = this.getConnection();
 		            PreparedStatement pstat = con.prepareStatement(sql);){

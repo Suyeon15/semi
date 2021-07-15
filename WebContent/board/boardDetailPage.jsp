@@ -152,7 +152,7 @@ tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color
 table a, #comments a{background-color:inherit;}
 #comments li a.edit{color: #FFC107; align:rigth;} #comments li a.delete{color: #F44336;}
 .comcont_btn {text-align: right;}
-.btn_wrap {padding-top: 50px; border-top: 1px solid #ddd;}
+.btn_wrap {padding-top: 50px; border-top: 1px solid #ddd;padding-button:20px;}
 .contents {padding: 20px; min-height: 300px; background-color: #FBFBFB;}
 .title {overflow: hidden; padding-bottom: 10px; border-bottom: 1px solid #ddd;}
 .title ul {overflow:hidden; float:right; padding: 0; margin: 0;}
@@ -513,8 +513,7 @@ $(document).ready(function(){
                                     <i class='material-icons set1' id="checkIcon" style="display:none;">&#xe86c;</i></a>
                                     <a class='set1' href='' style='color:red' id='cmtModifycancelBtn' style="display:none;">
                                     <i class='material-icons set1' id="cancelIcon" style="display:none;">&#xe5c9;</i></a>
-                                   
-                                   
+                        
 <!--                                    연필 수정버튼 -->
                                     <a href="" class="edit set2" data-toggle="modal" id="cmtModify" data-seq="${i.cmt_seq}">
                                     <i class="material-icons set2" id="cmtModifyViewBtn">&#xE254;</i></a>
@@ -522,9 +521,7 @@ $(document).ready(function(){
 <!--                                 휴지통 삭제버튼 -->
                                     <a href="#deleteEmployeeModal" class="delete set2" data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" data-target="#deleteEmployeeModal">
                                     <i class="material-icons set2" data-toggle="" title="Delete" id="cmtDeleteBtn">&#xE872;</i></a>
-                                    
-                                  
-                                    
+
                                  </c:if>
                               </div>
                            </article>
@@ -551,7 +548,7 @@ $(document).ready(function(){
                      <a href="#boardDeleteForm" class="btn btn-danger" data-toggle="modal">삭제</a>
                   </c:when>
                </c:choose>
-            <button type="button" id="backBtn" class="btn btn-default pull-left" style="background-color: #00285b; color:white">목록</button>
+            <a href="#" id="backBtn" class="btn btn-default pull-left" style="background-color: #00285b; color:white">목록</a>
       </div>
    </div>
 
@@ -565,17 +562,13 @@ $(document).ready(function(){
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                </div>
                <div class="modal-body">
-
-                  
                   <p>삭제된 댓글은 복구할 수 없습니다.</p>
-                 
                </div>
                <div class="modal-footer">
                   <input type="button" class="btn btn-default" data-dismiss="modal"
                      value="취소">
                      <input type="hidden" name="${i.cmt_seq}" value="${i.cmt_seq}" id="">
                   <input type="button" class="btn btn-danger" value="삭제" id="cmtdelete"  data-dismiss="modal" class="close">
-                  
                </div>
             </form>
          </div>

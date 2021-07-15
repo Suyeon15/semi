@@ -3,84 +3,84 @@ package dto;
 import java.sql.Date;
 
 public class Board2DTO {
-	private int board_seq2;
-	private String id2;
-	private String title2;
-	private String content2;
-	private Date write_date2;
-	private int view_count2;
-	private String notice2;
+	private int board_seq;
+	private String id;
+	private String title;
+	private String content;
+	private Date write_date;
+	private int view_count;
+	private String notice;
 	
 	public Board2DTO() {
 		super();
 	}
 
-	public Board2DTO(int board_seq2, String id2, String title2, String content2, Date write_date2, int view_count2,
-			String notice2) {
+	public Board2DTO(int board_seq, String id, String title, String content, Date write_date, int view_count,
+			String notice) {
 		super();
-		this.board_seq2 = board_seq2;
-		this.id2 = id2;
-		this.title2 = title2;
-		this.content2 = content2;
-		this.write_date2 = write_date2;
-		this.view_count2 = view_count2;
-		this.notice2 = notice2;
+		this.board_seq = board_seq;
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.write_date = write_date;
+		this.view_count = view_count;
+		this.notice = notice;
 	}
 
-	public int getBoard_seq2() {
-		return board_seq2;
+	public int getBoard_seq() {
+		return board_seq;
 	}
 
-	public void setBoard_seq2(int board_seq2) {
-		this.board_seq2 = board_seq2;
+	public void setBoard_seq(int board_seq) {
+		this.board_seq = board_seq;
 	}
 
-	public String getId2() {
-		return id2;
+	public String getId() {
+		return id;
 	}
 
-	public void setId2(String id2) {
-		this.id2 = id2;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getTitle2() {
-		return title2;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitle2(String title2) {
-		this.title2 = title2;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getContent2() {
-		return content2;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContent2(String content2) {
-		this.content2 = content2;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Date getWrite_date2() {
-		return write_date2;
+	public Date getWrite_date() {
+		return write_date;
 	}
 
-	public void setWrite_date2(Date write_date2) {
-		this.write_date2 = write_date2;
+	public void setWrite_date(Date write_date) {
+		this.write_date = write_date;
 	}
 
-	public int getView_count2() {
-		return view_count2;
+	public int getView_count() {
+		return view_count;
 	}
 
-	public void setView_count2(int view_count2) {
-		this.view_count2 = view_count2;
+	public void setView_count(int view_count) {
+		this.view_count = view_count;
 	}
 
-	public String getNotice2() {
-		return notice2;
+	public String getNotice() {
+		return notice;
 	}
 
-	public void setNotice2(String notice2) {
-		this.notice2 = notice2;
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 	
 	

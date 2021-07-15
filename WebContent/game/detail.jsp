@@ -995,10 +995,14 @@ a.menu-link.active:after { content: "\2715"; }
                 <div class="comcont" id="comcont">
                       ${list.comments}
                  </div>
+                 <c:choose>
+                 <c:when test="${login.id eq list.id}">
                  <div id=iconbox seq="${list.gamecmt_seq}">
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit" id="cmedit"></i>
                    <i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete" id="cmdel"></i>
                 </div>
+                </c:when>
+                </c:choose>
             </article>
           </li>
           </c:forEach>

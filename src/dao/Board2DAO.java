@@ -35,20 +35,20 @@ public class Board2DAO {
 	
 //========= 게시판 기본 메서드 ======================================================================	
 	public List<Board2DTO> selectAll() throws Exception {
-		String sql ="select * from board2";
+		String sql ="select * from board";
 		List<Board2DTO> list = new ArrayList<>();
 		try(Connection con = this.getConnection(); 
 			PreparedStatement pstat = con.prepareStatement(sql);
 			ResultSet rs = pstat.executeQuery();){
 			while(rs.next()) {
-				int board_seq2 = rs.getInt("board_seq2");
-				String id2 = rs.getNString("id2");
-				String title2 = this.ReXSSFilter(rs.getNString("title2"));
-				String content2 =rs.getNString("content2");
-				Date write_date2 = rs.getDate("write_date2");
-				int view_count2 = rs.getInt("view_count2");
-				String notice2 = rs.getNString("notice2");
-				list.add(new Board2DTO(board_seq2,id2,title2,content2,write_date2,view_count2,notice2));
+				int board_seq = rs.getInt("board_seq");
+				String id = rs.getNString("id");
+				String title = this.ReXSSFilter(rs.getNString("title"));
+				String content =rs.getNString("content");
+				Date write_date = rs.getDate("write_date");
+				int view_count = rs.getInt("view_count");
+				String notice = rs.getNString("notice");
+				list.add(new Board2DTO(board_seq,id,title,content,write_date,view_count,notice));
 			}
 			return list;
 		}
@@ -56,20 +56,20 @@ public class Board2DAO {
 	
 	
 	public Board2DTO detail(int board_seq) throws Exception {
-		String sql ="select * from board2 where board_seq=?";
+		String sql ="select * from board where board_seq=?";
 		Board2DTO dto = new Board2DTO();
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat =con.prepareStatement(sql)){
 			pstat.setInt(1, board_seq);
 			try(ResultSet rs =pstat.executeQuery();){
 				if(rs.next()) {
-					dto.setBoard_seq2(rs.getInt("board_seq2"));
-					dto.setId2(rs.getNString("id2"));
-					dto.setTitle2(this.ReXSSFilter(rs.getString("title2")));
-					dto.setContent2(rs.getString("content2"));
-					dto.setWrite_date2(rs.getDate("write_date2"));
-					dto.setView_count2(rs.getInt("view_count2"));
-					dto.setNotice2(rs.getNString("notice2"));
+					dto.setBoard_seq(rs.getInt("board_seq"));
+					dto.setId(rs.getNString("id"));
+					dto.setTitle(this.ReXSSFilter(rs.getString("title")));
+					dto.setContent(rs.getString("content"));
+					dto.setWrite_date(rs.getDate("write_date"));
+					dto.setView_count(rs.getInt("view_count"));
+					dto.setNotice(rs.getNString("notice"));
 				}
 				return dto;
 			}
@@ -98,13 +98,13 @@ public class Board2DAO {
 	
 	
 	public int insert(Board2DTO dto) throws Exception {
-		String sql = "insert into board2 values(?,?,?,?,sysdate,0,?)";
+		String sql = "insert into board values(?,?,?,?,sysdate,0,?)";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setInt(1, dto.getBoard_seq2());
-			pstat.setString(2, dto.getId2());
-			pstat.setString(3, dto.getTitle2());
-			pstat.setString(4, dto.getContent2());
-			pstat.setString(5, dto.getNotice2());
+			pstat.setInt(1, dto.getBoard_seq());
+			pstat.setString(2, dto.getId());
+			pstat.setString(3, dto.getTitle());
+			pstat.setString(4, dto.getContent());
+			pstat.setString(5, dto.getNotice());
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
@@ -112,21 +112,21 @@ public class Board2DAO {
 	}
 	
 	public List<Board2DTO> search(String category, String searchWord) throws Exception {
-		String sql ="select * from board2 where "+category +" like ?";
+		String sql ="select * from board where "+category +" like ?";
 		List<Board2DTO> list = new ArrayList<Board2DTO>();		
 		try(Connection con = this.getConnection(); 
 					PreparedStatement pstat = con.prepareStatement(sql);){
 					pstat.setString(1, "%"+searchWord+"%");
 					try(ResultSet rs = pstat.executeQuery();){
 						while(rs.next()) {
-						  int board_seq2 = rs.getInt("board_seq2");
-						  String id2 = rs.getNString("id2");
-						  String title2 = this.ReXSSFilter(rs.getString("title2"));
-						  String content2 = rs.getString("content2");
-						  Date write_date2 = rs.getDate("write_date2");
-					      int view_count2 = rs.getInt("view_count2");
-					      String notice2 = rs.getNString("notice2");
-							list.add(new Board2DTO(board_seq2,id2, title2, content2,write_date2, view_count2,notice2));
+						  int board_seq = rs.getInt("board_seq");
+						  String id = rs.getNString("id");
+						  String title = this.ReXSSFilter(rs.getString("title"));
+						  String content = rs.getString("content");
+						  Date write_date = rs.getDate("write_date");
+					      int view_count = rs.getInt("view_count");
+					      String notice = rs.getNString("notice");
+							list.add(new Board2DTO(board_seq,id, title, content,write_date, view_count,notice));
 						}
 					}return list;
 				}
@@ -141,7 +141,7 @@ public class Board2DAO {
 //========= 게시판  페이징 처리 ======================================================================
 	
 	private int getRecordCount() throws Exception {
-		String sql = "select count(*) from board2";
+		String sql = "select count(*) from board";
 		try (Connection con = this.getConnection();
 			 PreparedStatement pstat = con.prepareStatement(sql);
 			 ResultSet rs = pstat.executeQuery();) {
@@ -152,7 +152,7 @@ public class Board2DAO {
 	}
 	// 오버 로딩해서 다시 하나 더 만들기
 		private int getRecordCount(String category, String keyword) throws Exception {
-			String sql = "select count(*) from board2 where " + category + " like ?";
+			String sql = "select count(*) from board where " + category + " like ?";
 			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 				pstat.setString(1, "%" + keyword + "%");
 				try (ResultSet rs = pstat.executeQuery();) {
@@ -230,8 +230,8 @@ public class Board2DAO {
 	}
 	
 	public List<Board2DTO> getPageList(int startNum, int endNum) throws Exception {
-		String sql = "select * from " + "(select " + "row_number() over(order by notice2 desc, board_seq2 desc) rnum," + "board_seq2,"+"id2," + "title2,"
-				+ "content2," + "write_date2," + "view_count2, notice2 " + "from board2) " + "where " + "rnum between ? and ?";
+		String sql = "select * from " + "(select " + "row_number() over(order by notice desc, board_seq desc) rnum," + "board_seq,"+"id," + "title,"
+				+ "content," + "write_date," + "view_count, notice " + "from board) " + "where " + "rnum between ? and ?";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setInt(1, startNum);
 			pstat.setInt(2, endNum);
@@ -240,14 +240,14 @@ public class Board2DAO {
 				List<Board2DTO> list = new ArrayList<Board2DTO>();
 
 				while (rs.next()) {
-					int board_seq2 = rs.getInt("board_seq2");
-					String id2 = rs.getNString("id2");
-					String title2 = this.ReXSSFilter(rs.getString("title2"));
-					String content2 = rs.getString("content2");
-					Date write_date2 = rs.getDate("write_date2");
-					int view_count2 = rs.getInt("view_count2");
-					String notice2 = rs.getNString("notice2");
-					list.add(new Board2DTO(board_seq2,id2,title2,content2,write_date2,view_count2,notice2));
+					int board_seq = rs.getInt("board_seq");
+					String id = rs.getNString("id");
+					String title = this.ReXSSFilter(rs.getString("title"));
+					String content = rs.getString("content");
+					Date write_date = rs.getDate("write_date");
+					int view_count = rs.getInt("view_count");
+					String notice = rs.getNString("notice");
+					list.add(new Board2DTO(board_seq,id,title,content,write_date,view_count,notice));
 				}
 				return list;
 			}
@@ -255,8 +255,8 @@ public class Board2DAO {
 	}
 	// 검색 후, 페이지 리스트를 가져오는 메서드를 오버로딩해서 한번 더 만들기!
 		public List<Board2DTO> getPageList(int startNum, int endNum, String category, String keyword) throws Exception {
-			String sql = "select * from " + "(select " + "row_number() over(order by notice2 desc, board_seq2 desc) rnum," + "board_seq2,"+"id2," + "title2,"
-					+ "content2," + "write_date2," + "view_count2, notice2 " + "from board2 where "+category+" like ?) " + "where " + "rnum between ? and ?";
+			String sql = "select * from " + "(select " + "row_number() over(order by notice desc, board_seq desc) rnum," + "board_seq,"+"id," + "title,"
+					+ "content," + "write_date," + "view_count, notice " + "from board where "+category+" like ?) " + "where " + "rnum between ? and ?";
 			try (Connection con = this.getConnection(); 
 				PreparedStatement pstat = con.prepareStatement(sql);) {
 				
@@ -269,14 +269,14 @@ public class Board2DAO {
 					List<Board2DTO> list = new ArrayList<Board2DTO>();
 
 					while (rs.next()) {
-						int board_seq2 = rs.getInt("board_seq2");
-						String id2 = rs.getNString("id2");
-						String title2 = this.ReXSSFilter(rs.getString("title2"));
-						String content2 = rs.getString("content2");
-						Date write_date2 = rs.getDate("write_date2");
-						int view_count2 = rs.getInt("view_count2");
-						String notice2 = rs.getNString("notice2");
-						list.add(new Board2DTO(board_seq2, id2,title2,content2,write_date2,view_count2,notice2));
+						int board_seq = rs.getInt("board_seq");
+						String id = rs.getNString("id");
+						String title = this.ReXSSFilter(rs.getString("title"));
+						String content = rs.getString("content");
+						Date write_date = rs.getDate("write_date");
+						int view_count = rs.getInt("view_count");
+						String notice = rs.getNString("notice");
+						list.add(new Board2DTO(board_seq, id,title,content,write_date,view_count,notice));
 					}
 					return list;
 				}
@@ -297,11 +297,11 @@ public class Board2DAO {
 		}
 		
 		// 조회수 출력 ---------------------------------------------------------------
-		   public int view_count(int board_seq2) throws Exception{
-		      String sql="update board2 set view_count2 = view_count2+1 where board_seq2=?";
+		   public int view_count(int board_seq) throws Exception{
+		      String sql="update board set view_count = view_count+1 where board_seq=?";
 		      try(Connection con = this.getConnection(); 
 		            PreparedStatement pstat = con.prepareStatement(sql);){
-		         pstat.setInt(1,board_seq2);
+		         pstat.setInt(1,board_seq);
 
 		         int result = pstat.executeUpdate();
 		         con.commit();
@@ -309,13 +309,13 @@ public class Board2DAO {
 		      }
 		   }
 		   // 게시글 삭제 -------------------------------------------------------------------
-		   public int delete(int board_seq2) throws Exception{
-		      String sql = "delete from board2 where board_seq2 = ?";
+		   public int delete(int board_seq) throws Exception{
+		      String sql = "delete from board where board_seq = ?";
 		      try(
 		            Connection con = this.getConnection();
 		            PreparedStatement pstat = con.prepareStatement(sql);
 		            ){
-		         pstat.setInt(1, board_seq2);
+		         pstat.setInt(1, board_seq);
 		   
 		         int result = pstat.executeUpdate();
 		         con.commit();
@@ -325,14 +325,14 @@ public class Board2DAO {
 		   
 		   
 		   // 게시글 수정
-		   public int modify(int board_seq2,String reTitle2,String reContent2,String notice2) throws Exception {
-			   String sql ="update board2 set title2=?, content2=?, notice=2? where board_seq=2?";
+		   public int modify(int board_seq,String reTitle,String reContent,String notice) throws Exception {
+			   String sql ="update board set title=?, content=?, notice=? where board_seq=?";
 			   try(Connection con = this.getConnection(); 
 				   PreparedStatement pstat = con.prepareStatement(sql)){
-				   pstat.setNString(1, reTitle2);
-				   pstat.setNString(2, reContent2);
-				   pstat.setNString(3, notice2);
-				   pstat.setInt(4, board_seq2);
+				   pstat.setNString(1, reTitle);
+				   pstat.setNString(2, reContent);
+				   pstat.setNString(3, notice);
+				   pstat.setInt(4, board_seq);
 				   int result =pstat.executeUpdate();
 				   con.commit();
 				   return result;
