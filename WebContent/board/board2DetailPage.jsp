@@ -383,7 +383,7 @@ $(document).ready(function(){
       <li ><a href="Main.jsp" title="Link">Home</a></li>
       
 
-      <li ><a href="" title="Link">Game</a>
+      <li ><a href="${pageContext.request.contextPath}/allGames.game" title="Link">Game</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/allGames.game" title="Link">전체게임</a></li>
 

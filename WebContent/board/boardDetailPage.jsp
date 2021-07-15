@@ -383,7 +383,7 @@ $(document).ready(function(){
       <li ><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">Home</a></li>
       
 
-      <li ><a href="" title="Link">Game</a>
+      <li ><a href="${pageContext.request.contextPath}/allGames.game" title="Link">Game</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/allGames.game" title="Link">전체게임</a></li>
 
@@ -443,8 +443,8 @@ $(document).ready(function(){
 
     <c:otherwise>
    	 <ul>
-       <li><a href="index.jsp" title="Link">로그인</a></li>
-       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">로그인</a></li>
+       <li><a href="${pageContext.request.contextPath}/member/memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
 	</c:otherwise>
 </c:choose>
