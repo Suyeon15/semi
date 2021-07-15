@@ -52,8 +52,8 @@
         return false;
       })
 
-      $('.carousel').carousel({ interval: 3000 })
-
+      $('.carousel').carousel({ interval: 30000 })
+      
     });
   </script>
   <!----------------------------->
@@ -267,11 +267,15 @@
 	<br>
 	<br>
 	<br>
-  <div id="demo" class="carousel slide" data-ride="carousel">
+	<!-- 여기서 시간 초 수정!! date-interval이 초단위 수정 -->
+  <div id="demo" class="carousel slide" data-ride="carousel" data-interval="50000"> 
     <div class="carousel-inner">
       <!-- 슬라이드 쇼 -->
       <div class="carousel-item active">
-        <!--가로--> <img class="d-block w-100" src="../member_Img/slide/slide1.png" alt="First slide">
+      <video  autoplay loop muted>
+		<source src="../member_Img/slide/movie.mp4" class="d-block w-5000" alt="First slide">
+	</video>
+        
 
       </div>
       <div class="carousel-item"> <img class="d-block w-100" src="../member_Img/slide/slide2.png" alt="Second slide">
@@ -316,7 +320,7 @@
         <!--------------------------게임 3x3 화면----------------------------->
         <ul class="nospace group overview">
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game1.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=28"><img src="../member_Img/game_img/game1.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">slither.io</h6>
                 <p>장르: 웹 게임, 액션 게임, 대규모 다중 사용자 온라인 게임, 캐주얼 게임</p>
@@ -325,18 +329,18 @@
           </li>
 
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game2.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=33"><img src="../member_Img/game_img/game2.png" alt=""></a>
               <figcaption>
-                <h6 class="heading">agar.io</h6>
-                <p>장르: 액션 게임, 대규모 다중 사용자 온라인 게임</p>
+                <h6 class="heading">TETR.IO</h6>
+                <p>장르: 퍼즐 게임</p>
               </figcaption>
             </figure>
 
           </li>
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game3.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=6"><img src="../member_Img/game_img/game3.png" alt=""></a>
               <figcaption>
-                <h6 class="heading">depo.io</h6>
+                <h6 class="heading">diep.io</h6>
                 <p>장르: 액션 게임</p>
               </figcaption>
             </figure>
@@ -344,7 +348,7 @@
 
           
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game4.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=40"><img src="../member_Img/game_img/game4.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">좀비로얄아이오</h6>
                 <p>장르: 배틀 로얄 게임, 생존 게임</p>
@@ -353,7 +357,7 @@
           </li>
           
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game5.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=4"><img src="../member_Img/game_img/game5.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">Creatur.io</h6>
                 <p>장르: 생존 게임</p>
@@ -361,7 +365,7 @@
             </figure>
           </li>
           <li class="one_third">
-            <figure><a href="#"><img src="../member_Img/game_img/game6.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=30"><img src="../member_Img/game_img/game6.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">Starve.io</h6>
                 <p>플랫폼: 안드로이드</p>

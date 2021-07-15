@@ -363,7 +363,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-   <div class="nav_wrapper"> 
+<div class="nav_wrapper"> 
   <!--<a class="menu-link" href="#menu"></a>-->
   
   <div class="spinner-master">
@@ -393,7 +393,7 @@ $(document).ready(function(){
       </li>
 
 
-      <li ><a href="#Link" title="Link">Category</a>
+      <li ><a href="#Link" title="Link">Board</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
@@ -402,36 +402,37 @@ $(document).ready(function(){
 
       <li ><a href="#Link" title="Link">Category Games</a>
         <ul >
-          <li ><a href="${pageContext.request.contextPath}/rpgGames.game" title="Link">RPG   </a></li>
+          <li ><a href="${pageContext.request.contextPath}/rpgGames.game" title="Link">RPG	</a></li>
           <li ><a href="${pageContext.request.contextPath}/shootingGames.game" title="Link">Shooting</a></li>
           <li ><a href="${pageContext.request.contextPath}/arcadeGames.game" title="Link">Arcade</a></li>
+          <li ><a href="${pageContext.request.contextPath}/etcGames.game" title="Link">ETC</a></li>
         </ul>
       </li>
       </ul>
       
 
-   
+	
 <c:choose>
-   
-      <c:when test="${login ne null && login.id eq 'admin'}">
+	
+	<c:when test="${login ne null && login.id eq 'admin'}">
     <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>
        <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
       </ul>
-   </c:when>
-   
-   
-   <c:when test="${login ne null && login.id eq 'guest'}">
+	</c:when>
+	
+	
+	<c:when test="${login ne null && login.id eq 'guest'}">
       <ul>
-          <li><a href="#" title="Link">${login.id } 님</a></li>
-          <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
+       	<li><a href="#" title="Link">${login.id } 님</a></li>
+       	<li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
       </ul>
     </c:when>
-   
-   
-   <c:when test="${login != null}">
+	
+	
+	<c:when test="${login != null}">
       <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>
@@ -439,14 +440,13 @@ $(document).ready(function(){
       </ul>
     </c:when>
     
-    
 
     <c:otherwise>
-       <ul>
-       <li><a href="member/index.jsp" title="Link">로그인</a></li>
-       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
+   	 <ul>
+       <li><a href="index.jsp" title="Link">로그인</a></li>
+       <li><a href="memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
-   </c:otherwise>
+	</c:otherwise>
 </c:choose>
   </nav>
 </div>

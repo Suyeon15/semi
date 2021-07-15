@@ -52,7 +52,6 @@ public class CmtController extends HttpServlet {
 			    	  MemberDTO dto = (MemberDTO)request.getSession().getAttribute("login");
 			    	  String id =dto.getId();
 
-
 			    	  int result = cdao.insert(id,comment,game_seq);
 
 			    	  
