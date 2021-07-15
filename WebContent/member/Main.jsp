@@ -38,7 +38,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <!-- 스타일 -->
   <link rel="stylesheet" href="style.css" />
-
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <!--------------------------------------------------------------------------------------------------------------->
   <!-- 카테고리 기능 script-->
   <script>
@@ -76,6 +81,15 @@
     }
 
     /*-------------------탭 하는 스타일!!-------------------------*/
+   .heading {
+     font-family: 'Black Han Sans';
+     font-size: 40px;
+    }
+    
+    a, span {
+    	font-family: 'Noto Sans KR';
+    }
+    
     #containers {
       width: 1350px;
       margin: 0 auto;

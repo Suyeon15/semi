@@ -14,6 +14,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<style>
+.heading  {
+     font-family: 'Black Han Sans';
+     font-size: 40px;
+    }
+    
+    a, span, fieldset {
+    	font-family: 'Noto Sans KR';
+ }
+ 
+</style>
 <style>
 
     
@@ -45,7 +60,7 @@
    float: right;
 }
 
-body, input, textarea, select, div ,legend {
+body , input, textarea, select, div ,legend {
     font-family: Verdana, Geneva, sans-serif;
 }
 

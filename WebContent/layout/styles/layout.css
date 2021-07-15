@@ -11,6 +11,12 @@ File: Layout CSS
 
 @import url("fontawesome-free/css/fontawesome-all.min.css");
 @import url("framework.css");
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
@@ -21,7 +27,15 @@ File: Layout CSS
 .row4, .row4 a{}
 .row5{border-top:1px solid;}
 
-
+   .heading {
+     font-family: 'Black Han Sans';
+     font-size: 40px;
+    }
+    
+    a {
+    	font-family: 'Noto Sans KR';
+    }
+    
 /* Top Bar
 --------------------------------------------------------------------------------------------------------------- */
 #topbar{padding:15px 0; font-size:.8rem; text-transform:uppercase;}

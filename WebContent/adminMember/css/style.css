@@ -2,9 +2,16 @@
 	url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic,cyrillic-ext)
 	;
 
-body {
-	font-family: 'Open Sans';
-}
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@500&display=swap');
+
+.heading {
+     font-family: 'Black Han Sans';
+     font-size: 40px;
+    }
+    
+    a {
+    	font-family: 'Noto Sans KR';
+ }
 
 .container.home {
 	margin-top: 50px
