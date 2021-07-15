@@ -30,6 +30,13 @@
    margin: 50px 0 0 0;
 }
 
+.container-xl{
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+
+}
+
 .table-title h2 {
    margin: 5px 0 0;
    font-size: 24px;
@@ -38,7 +45,7 @@
    float: right;
 }
 
-body, input, textarea, select {
+body, input, textarea, select, div ,legend {
     font-family: Verdana, Geneva, sans-serif;
 }
 
@@ -87,7 +94,7 @@ body, input, textarea, select {
 }
 
 #btnbox {
-    padding: 20% 0 0 7%;
+    padding: 5% 0 0 7%;
     width: 100%;
     height: 30%;
 }
@@ -96,6 +103,7 @@ body, input, textarea, select {
    width:100%;
    height:15%;
    text-align:right;
+   padding: 3% 0 0 0;
 }
 
 #exbox{
@@ -988,7 +996,7 @@ a.menu-link.active:after { content: "\2715"; }
           <li class="${list.gamecmt_seq}" id="cmtbox">
             <article>
                 <address>
-                <div class="cmt_seq"> </div>
+                <div class="cmt_seq"> by </div>
                 <div class="cmt_id"> <p2>${list.id}</p2></div>
                 </address>
                 <div id="datebox">${list.reg_date}</div>
