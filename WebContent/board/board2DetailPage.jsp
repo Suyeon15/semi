@@ -443,8 +443,8 @@ $(document).ready(function(){
 
     <c:otherwise>
        <ul>
-       <li><a href="member/index.jsp" title="Link">로그인</a></li>
-       <li><a href="member/memberShip.jsp" title="Link">회원 가입</a></li>
+       <li><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">로그인</a></li>
+       <li><a href="${pageContext.request.contextPath}/member/memberShip.jsp" title="Link">회원 가입</a></li>
       </ul>
    </c:otherwise>
 </c:choose>
