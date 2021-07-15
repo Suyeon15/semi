@@ -52,9 +52,9 @@
         return false;
       })
 
-      $('.carousel').carousel({ interval: 3000 });
-
-
+      $('.carousel').carousel({ interval: 3000 })
+      
+    });
   </script>
   <!----------------------------->
 
@@ -254,7 +254,7 @@
 </div>
 <script src="script.js"></script>
 <script src="../js/right.js"></script>
-<!--  <script src="../js/f5_attack.js"></script>-->
+<script src="../js/f5_attack.js"></script>
 
 
 
@@ -325,7 +325,7 @@
           </li>
 
           <li class="one_third">
-            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=33"><img src="../member_Img/game_img/game.png" alt=""></a>
+            <figure><a href="${pageContext.request.contextPath}/detail.game?game_seq=33"><img src="../member_Img/game_img/game2.png" alt=""></a>
               <figcaption>
                 <h6 class="heading">TETR.IO</h6>
                 <p>장르: 퍼즐 게임</p>
