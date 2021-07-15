@@ -273,16 +273,21 @@
       <!-- 슬라이드 쇼 -->
       <div class="carousel-item active">
       <video  autoplay loop muted>
-		<source src="../member_Img/slide/1.mp4" class="d-block w-5000" alt="First slide">
+		<source src="../member_Img/slide/3.mp4" class="d-block w-500" alt="First slide">
 	</video>
         
 
       </div>
-      <div class="carousel-item"> <img class="d-block w-100" src="../member_Img/slide/2.mp4" alt="Second slide">
+      <div class="carousel-item">
+		<video  autoplay loop muted>
+			<source src="../member_Img/slide/1.mp4" class="d-block w-500" alt="Second slide">
+		</video>
       </div>
 
-      <div class="carousel-item"><img class="d-block w-100" src="../member_Img/slide/3.mp4" alt="Third slide">
-
+        <div class="carousel-item">
+		<video  autoplay loop muted>
+			<source src="../member_Img/slide/2.mp4" class="d-block w-500" alt="Third slide">
+		</video>
       </div> <!-- / 슬라이드 쇼 끝 -->
 
 
