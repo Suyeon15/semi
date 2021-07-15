@@ -31,7 +31,7 @@
         height: 100%;
         background: rgb(255, 206, 1);
         font-family: 'Noto Sans KR';
-        font-size: 40px;
+        font-size: 20px;
     }
     
    
@@ -117,6 +117,17 @@
         padding-bottom: 15px;
         background-color: rgb(84, 37, 212);
     }
+    
+    #check {
+        border: solid 1px #dadada;
+        padding: 10px 14px 10px 14px;
+        box-sizing: border-box;
+        float: right;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        background-color: rgb(84, 37, 212);
+    }
+    
 
 
 
@@ -227,7 +238,7 @@
                 <span class="box1 int_postal">
                     <input type="text" id="id" name="id" class="int" maxlength="20">
                 </span>
-                <button type="button" class="btn btn-primary" onclick="openIdChk()">확인</button>
+                <button type="button" class="btn btn-primary" id="check" onclick="openIdChk()">확인</button>
                 
                 <input type="hidden" name="idDuplication" value="idUncheck">
                 <span class="error_next_box"></span>
