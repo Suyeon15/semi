@@ -988,7 +988,7 @@ a.menu-link.active:after { content: "\2715"; }
           <li class="${list.gamecmt_seq}" id="cmtbox">
             <article>
                 <address>
-                <div class="cmt_seq"> ${list.gamecmt_seq} </div>
+                <div class="cmt_seq"> </div>
                 <div class="cmt_id"> <p2>${list.id}</p2></div>
                 </address>
                 <div id="datebox">${list.reg_date}</div>
