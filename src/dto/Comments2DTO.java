@@ -3,52 +3,52 @@ package dto;
 import java.sql.Date;
 
 public class Comments2DTO {
-	   private int cmt_seq2;
-	   private String id2;
-	   private String cmt_content2;
-	   private Date cmt_date2;
-	   private int board_seq2;
+	private int cmt_seq;
+	   private String id;
+	   private String cmt_content;
+	   private Date cmt_date;
+	   private int board_seq;
 	   
 	   public Comments2DTO() {
 	      super();
 	   }
-	   public Comments2DTO(int cmt_seq2, String id2, String cmt_content2, Date cmt_date2, int board_seq2) {
+	   public Comments2DTO(int cmt_seq, String id, String cmt_content, Date cmt_date, int board_seq) {
 	      super();
-	      this.cmt_seq2 = cmt_seq2;
-	      this.id2 = id2;
-	      this.cmt_content2 = cmt_content2;
-	      this.cmt_date2 = cmt_date2;
-	      this.board_seq2 = board_seq2;
+	      this.cmt_seq = cmt_seq;
+	      this.id = id;
+	      this.cmt_content = cmt_content;
+	      this.cmt_date = cmt_date;
+	      this.board_seq = board_seq;
 	   }
-	   public int getCmt_seq2() {
-	      return cmt_seq2;
+	   public int getCmt_seq() {
+	      return cmt_seq;
 	   }
-	   public void setCmt_seq2(int cmt_seq2) {
-	      this.cmt_seq2 = cmt_seq2;
+	   public void setCmt_seq(int cmt_seq) {
+	      this.cmt_seq = cmt_seq;
 	   }
-	   public String getId2() {
-	      return id2;
+	   public String getId() {
+	      return id;
 	   }
-	   public void setId2(String id2) {
-	      this.id2 = id2;
+	   public void setId(String id) {
+	      this.id = id;
 	   }
-	   public String getCmt_content2() {
-	      return cmt_content2;
+	   public String getCmt_content() {
+	      return cmt_content;
 	   }
-	   public void setCmt_content2(String cmt_content2) {
-	      this.cmt_content2 = cmt_content2;
+	   public void setCmt_content(String cmt_content) {
+	      this.cmt_content = cmt_content;
 	   }
-	   public Date getCmt_date2() {
-	      return cmt_date2;
+	   public Date getCmt_date() {
+	      return cmt_date;
 	   }
-	   public void setCmt_date2(Date cmt_date2) {
-	      this.cmt_date2 = cmt_date2;
+	   public void setCmt_date(Date cmt_date) {
+	      this.cmt_date = cmt_date;
 	   }
-	   public int getBoard_seq2() {
-	      return board_seq2;
+	   public int getBoard_seq() {
+	      return board_seq;
 	   }
-	   public void setBoard_seq2(int board_seq2) {
-	      this.board_seq2 = board_seq2;
+	   public void setBoard_seq(int board_seq) {
+	      this.board_seq = board_seq;
 	   }
 	   
 	   

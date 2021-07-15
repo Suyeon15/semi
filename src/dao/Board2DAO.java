@@ -326,14 +326,14 @@ public class Board2DAO {
 		   
 		   // 게시글 수정
 		   public int modify(int board_seq2,String reTitle2,String reContent2,String notice2) throws Exception {
-			   String sql ="update board2 set title=2?, content=2?, notice=2? where board_seq2=?";
+			   String sql ="update board2 set title2=?, content2=?, notice2=? where board_seq2=?";
 			   try(Connection con = this.getConnection(); 
 				   PreparedStatement pstat = con.prepareStatement(sql)){
 				   pstat.setNString(1, reTitle2);
 				   pstat.setNString(2, reContent2);
 				   pstat.setNString(3, notice2);
 				   pstat.setInt(4, board_seq2);
-				   int result =pstat.executeUpdate();
+				   int result = pstat.executeUpdate();
 				   con.commit();
 				   return result;
 			   }

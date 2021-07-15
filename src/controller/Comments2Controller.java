@@ -41,7 +41,7 @@ public class Comments2Controller extends HttpServlet {
 	            MemberDTO dto = ((MemberDTO)request.getSession().getAttribute("login"));
 	            String id2 =dto.getId();
 	            
-	            String cmt_content2 = request.getParameter("cmt_content2");
+	            String cmt_content2 = request.getParameter("cmt_content");
 	            cmt_content2 = dao.XSSFilter(cmt_content2);
 	            int board_seq2 = Integer.parseInt(request.getParameter("board_seq2"));
 	            
@@ -58,14 +58,14 @@ public class Comments2Controller extends HttpServlet {
 //	            response.sendRedirect("detail.bor?board_seq="+board_seq);
 	            
 	         }else if(cmd.contentEquals("/delete.cmt2")) {
-	            int cmt_seq2 = Integer.parseInt(request.getParameter("cmt_seq2"));
+	            int cmt_seq2 = Integer.parseInt(request.getParameter("cmt_seq"));
 	            cdao.delete(cmt_seq2);
 	            
 	         }else if(cmd.contentEquals("/modify.cmt2")){
 	            
-	            String cmt_content2 = request.getParameter("cmt_content2");
+	            String cmt_content2 = request.getParameter("cmt_content");
 	            cmt_content2 = dao.XSSFilter(cmt_content2);
-	            int cmt_seq2 = Integer.parseInt(request.getParameter("cmt_seq2"));
+	            int cmt_seq2 = Integer.parseInt(request.getParameter("cmt_seq"));
 	         
 	            
 	            cdao.modify(cmt_content2,cmt_seq2);

@@ -72,7 +72,7 @@ $(function(){
 	$("#summernote").val('${dto.content}');
 	
 	$("#backBtn").on("click",function(){
-		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+		location.href = "${pageContext.request.contextPath}/list.bor2?cpage=1";
 	})
 	
 	
@@ -153,7 +153,7 @@ $(function(){
 	                 $.ajax({
 	                    data:form,
 	                    type:"post",
-	                    url:"${pageContext.request.contextPath}/upload.file",
+	                    url:"${pageContext.request.contextPath}/upload.file2",
 	                    contentType:false,   
 	                    processData:false,  
 	                	dataType:"json",
@@ -185,7 +185,7 @@ $(function(){
 	            	   $.ajax({
 	            		   data:{src:target[0].src},
 	            		   type:"post",
-	            		   url:"${pageContext.request.contextPath}/deleteImg.file",   		   
+	            		   url:"${pageContext.request.contextPath}/deleteImg.file2",   		   
 	            	   }).done(function(resp){
 	            		   console.log(resp);
 	            	   })
@@ -242,7 +242,7 @@ $(function(){
       </li>
 
 
-      <li ><a href="#Link" title="Link">Board</a>
+      <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link">Board</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>
@@ -316,9 +316,9 @@ $(function(){
 		</div>
     </div>
 
-	 <form id="frm" action="${pageContext.request.contextPath}/modify.bor" method="post" enctype="multipart/form-data">
+	 <form id="frm" action="${pageContext.request.contextPath}/modify.bor2" method="post" enctype="multipart/form-data">
     <div class="row">
-   		<input type="hidden" name="board_seq" value=${dto.board_seq}>
+   		<input type="hidden" name="board_seq2" value="${dto.board_seq}">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
         <div class="col-sm-10 writeDiv">
@@ -340,7 +340,7 @@ $(function(){
   
 			 <c:forEach var="f" items="${flist}">
 			 	<div class="input-group">
-                    <a href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}" style="margin:0 20px 0 5px">${f.oriName}</a>     
+                    <a href="${pageContext.request.contextPath}/download.file2?file_seq2=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}" style="margin:0 20px 0 5px">${f.oriName}</a>     
                     <div class="input-group-btn" style="display: inline;">
 					<button class="btn btn-danger delTarget" type="button" seq=${f.file_seq} style="padding:0; margin:0; width:15px; height:16px">X</button>
 			  		</div>

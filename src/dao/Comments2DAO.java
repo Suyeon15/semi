@@ -33,7 +33,7 @@ public class Comments2DAO {
 		   }
 
 		   public int insert(int cmt_seq2, String id2, String cmt_content2, int board_seq2) throws Exception {
-		      String sql = "insert into comments values(?,?,?,sysdate,?)";
+		      String sql = "insert into comments2 values(?,?,?,sysdate,?)";
 		      try(
 		            Connection con = this.getConnection();
 		            PreparedStatement pstat = con.prepareStatement(sql);
@@ -118,11 +118,11 @@ public class Comments2DAO {
 		               Date cmt_date2 = rs.getDate("cmt_date2");
 		               int board_seq2 = rs.getInt("board_seq2");
 
-		               dto.setId2(id2);
-		               dto.setCmt_seq2(cmt_seq2);
-		               dto.setCmt_content2(cmt_content2);
-		               dto.setCmt_date2(cmt_date2);
-		               dto.setBoard_seq2(board_seq2);
+		               dto.setId(id2);
+		               dto.setCmt_seq(cmt_seq2);
+		               dto.setCmt_content(cmt_content2);
+		               dto.setCmt_date(cmt_date2);
+		               dto.setBoard_seq(board_seq2);
 		            }
 		            return dto;
 		         }
