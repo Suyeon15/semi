@@ -43,7 +43,7 @@ public class CommentsController extends HttpServlet {
 	            
 	            String cmt_content = request.getParameter("cmt_content");
 	            cmt_content = dao.XSSFilter(cmt_content);
-	            int board_seq = Integer.parseInt(request.getParameter("board_seq"));
+	            int board_seq = Integer.parseInt(request.getParameter("board_seq2"));
 	            
 	            int cmt_seq = cdao.getcmt_seq();
 	            cdao.insert(cmt_seq, id, cmt_content, board_seq);

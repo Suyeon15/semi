@@ -35,9 +35,9 @@ public class File2DAO {
 		String sql ="insert into files2 values(file_seq2.nextval, ?,?,sysdate,?)";
 		try(Connection con = this.getConnection(); 
 			PreparedStatement pstat = con.prepareStatement(sql)){
-			pstat.setString(1,dto.getOriName2());
-			pstat.setString(2,dto.getSysName2());
-			pstat.setInt(3, dto.getBoard_seq2());
+			pstat.setString(1,dto.getOriName());
+			pstat.setString(2,dto.getSysName());
+			pstat.setInt(3, dto.getBoard_seq());
 			
 			int result =pstat.executeUpdate();
 			con.commit();
@@ -51,9 +51,9 @@ public class File2DAO {
 		String sql ="insert into summernote2 values(summer_seq2.nextval, ?,?,sysdate,?)";
 		try(Connection con = this.getConnection(); 
 			PreparedStatement pstat = con.prepareStatement(sql)){
-			pstat.setString(1,dto.getOriName2());
-			pstat.setString(2,dto.getSysName2());
-			pstat.setInt(3, dto.getBoard_seq2());
+			pstat.setString(1,dto.getOriName());
+			pstat.setString(2,dto.getSysName());
+			pstat.setInt(3, dto.getBoard_seq());
 			
 			int result =pstat.executeUpdate();
 			con.commit();
