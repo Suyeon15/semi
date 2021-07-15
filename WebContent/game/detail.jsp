@@ -244,7 +244,7 @@ li {
 
 
 .rating{
-    padding: 0 0 0 63%;
+    padding: 0 0 0 67%;
 }
 
 #ratingnum{
@@ -272,11 +272,12 @@ li {
 .cmd{
     width: auto;
     margin: 0 0 0 0;
-    padding: 1% 0 0 0;
+    padding: 0 0 0 0;
     display: inline-block;
     text-decoration-line : none;
     text-transform: uppercase;
     cursor: pointer;
+
 }
 
 
@@ -850,7 +851,7 @@ a.menu-link.active:after { content: "\2715"; }
       
       <li ><div class="nabar_logo">방구석 오락실</div></li>
     
-      <li ><a href="Main.jsp" title="Link">Home</a></li>
+      <li ><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">Home</a></li>
       
 
       <li ><a href="" title="Link">Game</a>
