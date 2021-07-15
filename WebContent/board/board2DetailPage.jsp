@@ -533,7 +533,7 @@ $(document).ready(function(){
                </div>
                <h4>Write A Comment</h4>
                <input type="hidden" value="${list.board_seq}"
-                  name="${list.board_seq}" id="board_seq">
+                  name="${list.board_seq}" id="board_seq2">
                <div class="block clear">
                   <label for="comment">Your Comment</label> <br>
                   <textarea name="cmt_content" id="comment" cols="25" rows="3"
@@ -545,7 +545,7 @@ $(document).ready(function(){
             <div class="btn_wrap" align="right">
                <c:choose>
                   <c:when test="${login.id eq list.id}">
-                     <a href="${pageContext.request.contextPath}/modifyPage.bor?board_seq=${list.board_seq}"
+                     <a href="${pageContext.request.contextPath}/modifyPage.bor2?board_seq2=${list.board_seq}"
                         class="btn btn-warning" style="background-color: #ffc107; color:white">수정</a>
                      <a href="#boardDeleteForm" class="btn btn-danger" data-toggle="modal">삭제</a>
                   </c:when>
@@ -586,7 +586,7 @@ $(document).ready(function(){
       <div class="modal-dialog">
          <div class="modal-content">
             <form
-               action="${pageContext.request.contextPath}/delete.bor?board_seq=${list.board_seq}"
+               action="${pageContext.request.contextPath}/delete.bor2?board_seq2=${list.board_seq}"
                method="post">
                <div class="modal-header">
                   <h4 class="modal-title">게시글을 삭제하시겠습니까?</h4>

@@ -259,7 +259,7 @@ $(function(){
 						<c:when test="${list.notice eq 'Y'}">
 						<tr style="background-color:#FFFACD" onMouseOver="this.style='background-color:#D3D3D3'" onMouseOut="this.style='background-color:#FFFACD'">
 							<td class="d-sm-table-cell"><i class="material-icons notification_important" style="font-size:20px">&#xe004;</i></td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq=${list.board_seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq2=${list.board_seq}">${list.title}</a></td>
 							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
@@ -269,7 +269,7 @@ $(function(){
 						<c:otherwise>
 						<tr>
 							<td class="d-sm-table-cell" style="width:7%">${list.board_seq}</td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq=${list.board_seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor2?board_seq2=${list.board_seq}">${list.title}</a></td>
 							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
@@ -323,10 +323,10 @@ $(function(){
 							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor2?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
 						</c:when>
                        	<c:when test="${i==cpage}">
-                           	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                           	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="${pageContext.request.contextPath}/list.bor2?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
                         </c:when>
                         <c:otherwise>
-                           	<li class="page-item" id="currentPage"><a href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                           	<li class="page-item" id="currentPage"><a href="${pageContext.request.contextPath}/list.bor2?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
                         </c:otherwise>
 					</c:choose>
 				</c:forEach>
