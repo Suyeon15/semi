@@ -537,6 +537,8 @@
 			
 			let idInput = document.getElementById("id");
 			let pwInput = document.getElementById("pswd1");
+			let pw2Input = document.getElementById("pswd2");
+			
 			let nameInput = document.getElementById("name");
 			let phone1Input = document.getElementById("phone1");
 			let phone2Input = document.getElementById("phone2");
@@ -545,7 +547,8 @@
 			
 			let resultId = idPattern.test(idInput.value);
 			let resultPw = pwPattern.test(pwInput.value);
-			let resultName = namePattern.test(name.value);
+			let resultPw2 = pwPattern.test(pw2Input.value);
+			let resultName = namePattern.test(nameInput.value);
 
 			let resultPhone = isPhoneNum.test(phone.value);
 
@@ -572,6 +575,21 @@
 					})
 				return;
 			}
+			
+			if (!resultPw2) {
+				Swal.fire({
+					  icon: 'error',
+					  title: '비밀번호 재확인이 잘못됐습니다.',
+					  text: '한번 확인해보세요!',
+					  
+					})
+				return;
+			}
+			
+			
+			
+			
+			
 			if (!resultName) {
 				Swal.fire({
 					  icon: 'error',
@@ -581,20 +599,22 @@
 					})
 				return;
 			}
+			
+			if (!resultEmail) {
+				Swal.fire({
+					  icon: 'error',
+					  title: '이메일이 잘못됐습니다.',
+					  text: '한번 확인해보세요!',  
+					})
+				return;
+			}
+			
 			if (!resultPhone) {
 				Swal.fire({
 					  icon: 'error',
 					  title: '전화번호가 잘못됐습니다.',
 					  text: '한번 확인해보세요!',
 					  
-					})
-				return;
-			}
-			if (!resultEmail) {
-				Swal.fire({
-					  icon: 'error',
-					  title: '이메일이 잘못됐습니다.',
-					  text: '한번 확인해보세요!',  
 					})
 				return;
 			}
