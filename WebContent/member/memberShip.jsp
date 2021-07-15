@@ -13,6 +13,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 
 <style>
@@ -24,8 +30,10 @@
         margin: 0;
         height: 100%;
         background: rgb(255, 206, 1);
-        font-family: Georgia, "맑은 고딕", serif;
+        font-family: 'Noto Sans KR';
+        font-size: 40px;
     }
+    
    
     #logo {
         width: 240px;
