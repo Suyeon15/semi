@@ -805,7 +805,7 @@ a.menu-link.active:after { content: "\2715"; }
           
                // 별점 데이터 보내기
                $("#save").on("click", function() {
-            	   var result = confirm('별점 등록 시 수정은 불가합니다. 지금 별점을 바꾸려면  리셋 버튼을 누르고 다시 별점을 골라 주세요.'); 
+            	   var result = confirm('별점 등록 시 수정은 불가합니다. 지금 별점을 바꾸려면 취소를 누르고 리셋 버튼을 누른 후 다시 별점을 골라 주세요.'); 
                    
                    if(result){
                 	   
@@ -824,8 +824,8 @@ a.menu-link.active:after { content: "\2715"; }
 
            $("#reset").on("click", function() {
    
-        	   //$("input[name='rating']:radio[value='N']").prop('checked', true);
-        	   $("input[name='rating']").removeAttr('checked');
+        	   $("input[name='rating']").prop('checked', false);
+
   
            })
      
