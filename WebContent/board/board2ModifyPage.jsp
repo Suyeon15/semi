@@ -196,7 +196,7 @@ $(function(){
 	               onMediaDelete:function(target){
 	            	  
 	            	   $.ajax({
-	            		   data:{src:target[0].src},
+	            		   data:{"src":target[0].src},
 	            		   type:"post",
 	            		   url:"${pageContext.request.contextPath}/deleteImg.file2",   		   
 	            	   }).done(function(resp){
