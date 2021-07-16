@@ -25,7 +25,7 @@
     }
     
     a, span, fieldset {
-    	font-family: 'Noto Sans KR';
+       font-family: 'Noto Sans KR';
  }
  
 </style>
@@ -702,14 +702,14 @@ a.menu-link.active:after { content: "\2715"; }
 
          //댓글 등록
          $("#submitbtn").on("click",function(){ 
-				console.log($("textarea#comment").val());
-				console.log(${list.game_seq});
+            console.log($("textarea#comment").val());
+            console.log(${list.game_seq});
                $.ajax({
                      url : "${pageContext.request.contextPath}/writeProc.com",
                      type : "get",
                      dataType : "Json",
                      data : {"comment" :  $("textarea#comment").val(),
-                    	 "game_seq" : ${list.game_seq}}
+                        "game_seq" : ${list.game_seq}}
 
                      }).done(function(resp) {
                         console.log(resp.game_seq);
@@ -753,20 +753,20 @@ a.menu-link.active:after { content: "\2715"; }
                    
                    parent.focus();
                    
-    	 	       $("#cmedit").css("display","none");
-    	 	       $("#cmdel").css("display","none");
-    	 	       
-    	 	       let done = $("<a href='' style='color:green' id='cmtModifyDoneBtn'>");
-     	    	   let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
-     	    	   done.append(doneIcon);	
-     	    	  	$(this).before(done);
-    	 	        
-    	    	   let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
-     	    	   let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
-     	    	   cancel.append(cancelIcon);
-     	    	   $("#cmdel").before(cancel);
-     	    	  
-    	 	       $(this).css("display","none");
+                  $("#cmedit").css("display","none");
+                  $("#cmdel").css("display","none");
+                  
+                  let done = $("<a href='' style='color:green' id='cmtModifyDoneBtn'>");
+                  let doneIcon = $("<i class='material-icons'>&#xe86c</i>"); 
+                  done.append(doneIcon);   
+                    $(this).before(done);
+                   
+                 let cancel = $("<a href='' style='color:red' id='cmtModifycancelBtn'>");
+                  let cancelIcon = $("<i class='material-icons' >&#xe5c9;</i>"); 
+                  cancel.append(cancelIcon);
+                  $("#cmdel").before(cancel);
+                 
+                  $(this).css("display","none");
                    
                    console.log($('#modifyCont').text());
                    
@@ -781,16 +781,16 @@ a.menu-link.active:after { content: "\2715"; }
                                    cmt_seq : cmt_seq
                                }
                          }).done(function(){
-                        	 
-               	    	  	 $("#modifyCont").attr("contenteditable","false");
-            	    	  
-            	 	      	 $("#cmedit").css("display","inline-block");
-            	 	       	 $("#cmdel").css("display","inline-block");
+                            
+                               $("#modifyCont").attr("contenteditable","false");
+                        
+                             $("#cmedit").css("display","inline-block");
+                              $("#cmdel").css("display","inline-block");
 
-            	    	 	 $("#cmtModifyDoneBtn").remove();	     
-            	 	      	 $("#cmtModifycancelBtn").remove();
-            	 	      	 
-            	 	      	alert("댓글을 수정했습니다!");
+                           $("#cmtModifyDoneBtn").remove();        
+                             $("#cmtModifycancelBtn").remove();
+                             
+                            alert("댓글을 수정했습니다!");
                          })
                          console.log($('#modifyCont').text());
                     });
@@ -802,7 +802,7 @@ a.menu-link.active:after { content: "\2715"; }
           // 별점 클릭
           $("input[name='rating']").on("click",function(){
 
-        	  clickrate = $("input[name='rating']:checked").val();
+             clickrate = $("input[name='rating']:checked").val();
 
                       for(let i=1; i<6; i++){
                          let rate = $("input[id='rating"+i+"']").val();
@@ -810,36 +810,39 @@ a.menu-link.active:after { content: "\2715"; }
                      if(clickrate>=rate){
                         $("input[id='rating"+i+"']").prop('checked', true); 
                      }else{
-                    	 $("input[id='rating']").prop('checked', false);
+                        $("input[id='rating']").prop('checked', false);
                      }
                       } 
 
-				
+            
              })
                                     
           
                // 별점 데이터 보내기
                $("#save").on("click", function() {
-            	   var result = confirm('별점 등록 시 수정은 불가합니다. 지금 별점을 바꾸려면 취소를 누르고 리셋 버튼을 누른 후 다시 별점을 골라 주세요.'); 
+                  var result = confirm('별점 등록 시 수정은 불가합니다. 지금 별점을 바꾸려면 취소를 누르고 리셋 버튼을 누른 후 다시 별점을 골라 주세요.'); 
                    
                    if(result){
-                	   
+                      
                        $.ajax({
                            url : "${pageContext.request.contextPath}/rating.game",
                            type : "get",
                            dataType : "Json",
                            data : {"newrating" : clickrate,
-                           	"game_seq": ${list.game_seq}
+                              "game_seq": ${list.game_seq}
                            }
-
+                       }).done(function(resp){
+                          console.log(resp.rating);
+                          $("#ratingnum").text("(" + (Math.round(resp.rating*10)/10.0) + ")");
                        })
+                       
                }//if
    
            })
 
            $("#reset").on("click", function() {
    
-        	   $("input[name='rating']").prop('checked', false);
+              $("input[name='rating']").prop('checked', false);
 
   
            })
@@ -900,25 +903,25 @@ a.menu-link.active:after { content: "\2715"; }
    
 <c:choose>
    
-  	<c:when test="${login ne null && login.id eq 'admin'}">
+     <c:when test="${login ne null && login.id eq 'admin'}">
     <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/adminlist.mem" title="Link">관리자 모드</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>
        <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
       </ul>
-	</c:when>
-	
-	
-	<c:when test="${login ne null && login.id eq 'guest'}">
+   </c:when>
+   
+   
+   <c:when test="${login ne null && login.id eq 'guest'}">
       <ul>
-       	<li><a href="#" title="Link">${login.id } 님</a></li>
-       	<li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
+          <li><a href="#" title="Link">${login.id } 님</a></li>
+          <li><a href="${pageContext.request.contextPath}/logoutProc.mem" title="Link">로그 아웃</a></li>
       </ul>
     </c:when>
-	
-	
-	<c:when test="${login != null}">
+   
+   
+   <c:when test="${login != null}">
       <ul>
        <li><a href="#" title="Link">${login.id } 님</a></li>
        <li><a href="${pageContext.request.contextPath}/mypage.mem" title="Link">내 정보 수정</a></li>

@@ -394,7 +394,7 @@ $(document).ready(function(){
       
       <li ><div class="nabar_logo">방구석 오락실</div></li>
     
-      <li ><a href="Main.jsp" title="Link">Home</a></li>
+      <li ><a href="${pageContext.request.contextPath}/member/Main.jsp" title="Link">Home</a></li>
       
 
       <li ><a href="${pageContext.request.contextPath}/allGames.game" title="Link">Game</a>
@@ -407,7 +407,7 @@ $(document).ready(function(){
       </li>
 
 
-      <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link">Category</a>
+      <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link">Board</a>
         <ul >
           <li ><a href="${pageContext.request.contextPath}/list.bor?cpage=1" title="Link ">자유 게시판</a></li>
           <li ><a href="${pageContext.request.contextPath}/list.bor2?cpage=1" title="Link">후기 게시판</a></li>

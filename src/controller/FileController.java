@@ -38,6 +38,8 @@ public class FileController extends HttpServlet {
 		BoardDAO dao = BoardDAO.getInstance();
 		FileDAO fdao = FileDAO.getInstance();
 		
+		request.setCharacterEncoding("utf-8");
+		
 		try {
 		if(cmd.contentEquals("/download.file")) {
 			String oriName = request.getParameter("oriName");
@@ -83,14 +85,13 @@ public class FileController extends HttpServlet {
 			obj.addProperty("returnPath", returnPath);
 			obj.addProperty("oriName", oriName);
 			obj.addProperty("sysName", sysName);
-			
-			
 	
 			List<String> ingFileList =(List<String>) request.getSession().getAttribute("ingFileList");
 			ingFileList.add(sysName);
    		    request.getSession().setAttribute("filePath",filePath);
-
-			
+   		    
+   		    response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().append(obj.toString());
 			
 		}else if(cmd.contentEquals("/deleteImg.file")) {
