@@ -38,6 +38,8 @@ public class File2Controller extends HttpServlet {
 		Board2DAO dao = Board2DAO.getInstance();
 		File2DAO fdao = File2DAO.getInstance();
 		
+		request.setCharacterEncoding("utf-8");
+		
 		try {
 		if(cmd.contentEquals("/download.file2")) {
 			String oriName2 = request.getParameter("oriName");
@@ -90,7 +92,8 @@ public class File2Controller extends HttpServlet {
 			ingFileList.add(sysName);
    		    request.getSession().setAttribute("filePath",filePath);
 
-			
+   		    response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().append(obj.toString());
 			
 		}else if(cmd.contentEquals("/deleteImg.file")) {

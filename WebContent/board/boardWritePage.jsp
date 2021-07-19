@@ -134,6 +134,7 @@ $(function(){
 	        height: 400,
 	        minHeight: 300,             // set minimum height of editor
 	        maxHeight: 300,             // set maximum height of editor
+	        lang: "ko-KR",
 	        codeviewFilter: true,
 	        codeviewIframeFilter: true,
 	        callbacks:{
